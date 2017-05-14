@@ -4,7 +4,9 @@
   "private": true,
   "scripts":{
     "start": "hexo s",
-    "deployF": "hexo g && git add -A && git commit -m 'update' && git push -f -u origin myBlog:master",
+    "deployF": "npm run generate &&  npm run commit && npm run push",
+    "commit": "git add -A && git commit -m 'update'",
+    "push": "git push -f -u origin myBlog:master",
     "generate": "hexo g"
   },
   "hexo": {
