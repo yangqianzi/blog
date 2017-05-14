@@ -69,7 +69,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C++,QT,CloudCompare," />
+  <meta name="keywords" content="C++,CloudCompare,QT," />
 
 
 
@@ -94,7 +94,7 @@
 这是第一篇，插件框架篇，你可以根据本文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CloudCompare插件编写一（插件框架）">
-<meta property="og:url" content="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/index.html">
+<meta property="og:url" content="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/index.html">
 <meta property="og:site_name" content="HuiHut">
 <meta property="og:description" content="唠叨本文唠叨了些CloudComapre这个开源软件的插件编写。
 虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！
@@ -143,7 +143,7 @@
 
 
 
-  <link rel="canonical" href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
+  <link rel="canonical" href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
 
 
 
@@ -331,7 +331,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">
+    <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Menghui Xie">
@@ -438,7 +438,7 @@
         <h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文唠叨了些CloudComapre这个开源软件的插件编写。</p>
 <p>虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！</p>
 <p>所以这是一个完整插件的入门教程，我们要写的插件是qSAF(Scan Angle Filter)，这是可以过滤给定范围内点的扫描角度的插件。</p>
-<p>下面分三篇来介绍，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+<p>下面分三篇来介绍，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
 <p>这是第一篇，<strong>插件框架篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="CloudComapre"><a href="#CloudComapre" class="headerlink" title="CloudComapre"></a>CloudComapre</h2><p>CloudComapre是一个开源的3D点云和网格的处理软件，开可以处理各类点云格式的数据。</p>
@@ -508,7 +508,7 @@ endif()
 <p>保存刷新后就会在项目上看到了。</p>
 <h3 id="pro文件编写"><a href="#pro文件编写" class="headerlink" title="pro文件编写"></a>pro文件编写</h3><p>由于qmake自动生成的pro文件不适合我们要写的插件，所以要自己修改pro文件。</p>
 <p>pro文件的编写可以参考：</p>
-<p><a href="http://huihut.com/2017/04/26/QTProFile/">QT的pro文件编写</a></p>
+<p><a href="http://huihut.com/2017/04/26/QTProFile/" target="_blank" rel="external">QT的pro文件编写</a></p>
 <p>里面的常规pro文件就是qSAF的。</p>
 <p>里面的路径可以不用修改，具体看你项目的Release生成的位置，</p>
 <p><strong><em>特别注意：指定生成路径中的libs和plugins要正确</em></strong></p>
@@ -579,9 +579,9 @@ void doAction();
 <p>其实只要使用<code>CloudComapre</code>提供的插件模板<code>qDummyPlugin</code>，改成自己的就可以啦。</p>
 <p>现在可以发挥你的想象力，在<code>doAction()</code>里面随心所欲地做各种事情啦。</p>
 <p>但是只有框架还不够，要想对点云进行操作，和SAF功能的具体实现，还需要了解<code>CloudComapre</code>中点云的数据结构：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">CloudComapre插件编写二（数据结构）</a></p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">CloudComapre插件编写二（数据结构）</a></p>
 <p>如果你对点云数据结构虐它如虐狗，可以戳这里：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">CloudComapre插件编写三（算法实现）</a></p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">CloudComapre插件编写三（算法实现）</a></p>
 
       
     </div>
@@ -613,9 +613,9 @@ void doAction();
           
             <a href="/tags/C/" rel="tag"># C++</a>
           
-            <a href="/tags/QT/" rel="tag"># QT</a>
-          
             <a href="/tags/CloudCompare/" rel="tag"># CloudCompare</a>
+          
+            <a href="/tags/QT/" rel="tag"># QT</a>
           
         </div>
       

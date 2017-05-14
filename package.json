@@ -2,6 +2,11 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "scripts":{
+    "start": "hexo s",
+    "deployF": "hexo g && git add -A && git commit -m 'update' && git push -f -u origin myBlog:master",
+    "generate": "hexo g"
+  },
   "hexo": {
     "version": "3.2.2"
   },

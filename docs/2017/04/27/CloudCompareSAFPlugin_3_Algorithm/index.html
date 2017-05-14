@@ -69,7 +69,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C++,QT,CloudCompare," />
+  <meta name="keywords" content="C++,CloudCompare,QT," />
 
 
 
@@ -94,7 +94,7 @@ qSAF源码：Github . qSAF
 UI界面新建QT设计器界面类，命名为ccSAFDlg，在ccSAFDlg.ui文件设计简单">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CloudCompare插件编写三（算法实现）">
-<meta property="og:url" content="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/index.html">
+<meta property="og:url" content="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/index.html">
 <meta property="og:site_name" content="HuiHut">
 <meta property="og:description" content="唠叨本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是插件框架篇、数据结构篇、算法实现篇。
 这是第三篇，算法实现篇，你可以根据本文改成自己的插件，待卿临幸。
@@ -140,7 +140,7 @@ UI界面新建QT设计器界面类，命名为ccSAFDlg，在ccSAFDlg.ui文件设
 
 
 
-  <link rel="canonical" href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
+  <link rel="canonical" href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
 
 
 
@@ -328,7 +328,7 @@ UI界面新建QT设计器界面类，命名为ccSAFDlg，在ccSAFDlg.ui文件设
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">
+    <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Menghui Xie">
@@ -432,7 +432,7 @@ UI界面新建QT设计器界面类，命名为ccSAFDlg，在ccSAFDlg.ui文件设
       
 
       
-        <h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+        <h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
 <p>这是第三篇，<strong>算法实现篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="前文概要"><a href="#前文概要" class="headerlink" title="前文概要"></a>前文概要</h2><p>在上回中，我们知道了点云中扫描角度的存储结构，下面我们来讲qSAF的具体实现。</p>
@@ -492,7 +492,7 @@ void ccSAFDlg::saveSettings()
     threshold_2 = doubleSpinBox_2-&gt;value();
 }
 </code></pre><p>现在界面就做好了。</p>
-<h2 id="插件doAction实现"><a href="#插件doAction实现" class="headerlink" title="插件doAction实现"></a>插件doAction实现</h2><p>至于doAction的实现，点云其中的数据结构，可以参考第二篇，<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a></p>
+<h2 id="插件doAction实现"><a href="#插件doAction实现" class="headerlink" title="插件doAction实现"></a>插件doAction实现</h2><p>至于doAction的实现，点云其中的数据结构，可以参考第二篇，<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a></p>
 <p>简单地说，我们需要：</p>
 <ol>
 <li>用<code>Scan Angle Rank</code>，通过<code>getScalarFieldIndexByName()</code>获得扫描角度在标量域中的索引</li>
@@ -707,9 +707,9 @@ void ccSAFDlg::saveSettings()
           
             <a href="/tags/C/" rel="tag"># C++</a>
           
-            <a href="/tags/QT/" rel="tag"># QT</a>
-          
             <a href="/tags/CloudCompare/" rel="tag"># CloudCompare</a>
+          
+            <a href="/tags/QT/" rel="tag"># QT</a>
           
         </div>
       

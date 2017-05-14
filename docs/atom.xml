@@ -4,9 +4,9 @@
   <subtitle>Menghui&#39;s Blog</subtitle>
   <link href="//atom.xml" rel="self"/>
   
-  <link href="http://huihut.com/"/>
+  <link href="https://blog.huihut.com/"/>
   <updated>2017-05-13T12:29:00.000Z</updated>
-  <id>http://huihut.com/</id>
+  <id>https://blog.huihut.com/</id>
   
   <author>
     <name>Menghui Xie</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>hexo 构建静态文件无法生成 index.html 等文件</title>
-    <link href="http://huihut.com/2017/05/13/HexoNPMERR/"/>
-    <id>http://huihut.com/2017/05/13/HexoNPMERR/</id>
+    <link href="https://blog.huihut.com/2017/05/13/HexoNPMERR/"/>
+    <id>https://blog.huihut.com/2017/05/13/HexoNPMERR/</id>
     <published>2017-05-13T12:28:58.000Z</published>
     <updated>2017-05-13T12:29:00.000Z</updated>
     
@@ -43,26 +43,26 @@
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Git" scheme="http://huihut.com/tags/Git/"/>
+      <category term="Git" scheme="https://blog.huihut.com/tags/Git/"/>
     
-      <category term="Hexo" scheme="http://huihut.com/tags/Hexo/"/>
+      <category term="Hexo" scheme="https://blog.huihut.com/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>CloudCompare插件编写一（插件框架）</title>
-    <link href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
-    <id>http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/</id>
+    <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
+    <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/</id>
     <published>2017-04-27T10:11:53.000Z</published>
     <updated>2017-04-29T11:23:20.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文唠叨了些CloudComapre这个开源软件的插件编写。</p>
 <p>虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！</p>
 <p>所以这是一个完整插件的入门教程，我们要写的插件是qSAF(Scan Angle Filter)，这是可以过滤给定范围内点的扫描角度的插件。</p>
-<p>下面分三篇来介绍，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+<p>下面分三篇来介绍，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
 <p>这是第一篇，<strong>插件框架篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="CloudComapre"><a href="#CloudComapre" class="headerlink" title="CloudComapre"></a>CloudComapre</h2><p>CloudComapre是一个开源的3D点云和网格的处理软件，开可以处理各类点云格式的数据。</p>
@@ -132,7 +132,7 @@ endif()
 <p>保存刷新后就会在项目上看到了。</p>
 <h3 id="pro文件编写"><a href="#pro文件编写" class="headerlink" title="pro文件编写"></a>pro文件编写</h3><p>由于qmake自动生成的pro文件不适合我们要写的插件，所以要自己修改pro文件。</p>
 <p>pro文件的编写可以参考：</p>
-<p><a href="http://huihut.com/2017/04/26/QTProFile/">QT的pro文件编写</a></p>
+<p><a href="http://huihut.com/2017/04/26/QTProFile/" target="_blank" rel="external">QT的pro文件编写</a></p>
 <p>里面的常规pro文件就是qSAF的。</p>
 <p>里面的路径可以不用修改，具体看你项目的Release生成的位置，</p>
 <p><strong><em>特别注意：指定生成路径中的libs和plugins要正确</em></strong></p>
@@ -203,9 +203,9 @@ void doAction();
 <p>其实只要使用<code>CloudComapre</code>提供的插件模板<code>qDummyPlugin</code>，改成自己的就可以啦。</p>
 <p>现在可以发挥你的想象力，在<code>doAction()</code>里面随心所欲地做各种事情啦。</p>
 <p>但是只有框架还不够，要想对点云进行操作，和SAF功能的具体实现，还需要了解<code>CloudComapre</code>中点云的数据结构：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">CloudComapre插件编写二（数据结构）</a></p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">CloudComapre插件编写二（数据结构）</a></p>
 <p>如果你对点云数据结构虐它如虐狗，可以戳这里：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">CloudComapre插件编写三（算法实现）</a></p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">CloudComapre插件编写三（算法实现）</a></p>
 ]]></content>
     
     <summary type="html">
@@ -226,25 +226,25 @@ void doAction();
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
-      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
-      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+      <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
     
   </entry>
   
   <entry>
     <title>CloudCompare插件编写二（数据结构）</title>
-    <link href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/"/>
-    <id>http://huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/</id>
+    <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/"/>
+    <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/</id>
     <published>2017-04-27T04:35:43.000Z</published>
     <updated>2017-04-29T11:23:16.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
 <p>这是第二篇，<strong>数据结构篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="前文概要"><a href="#前文概要" class="headerlink" title="前文概要"></a>前文概要</h2><p>在上回中，我们已经实现了插件的框架，现在要在<code>doAction()</code>中写插件的具体实现。</p>
@@ -358,7 +358,7 @@ inline const ElementType* getValue(unsigned index) const
 <li>输出点云</li>
 </ol>
 <p>请戳这里：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">CloudComapre插件编写三（算法实现）</a></p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">CloudComapre插件编写三（算法实现）</a></p>
 ]]></content>
     
     <summary type="html">
@@ -373,25 +373,25 @@ inline const ElementType* getValue(unsigned index) const
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
-      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
-      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+      <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
     
   </entry>
   
   <entry>
     <title>CloudCompare插件编写三（算法实现）</title>
-    <link href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
-    <id>http://huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/</id>
+    <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
+    <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/</id>
     <published>2017-04-27T02:35:43.000Z</published>
     <updated>2017-04-29T11:23:42.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
 <p>这是第三篇，<strong>算法实现篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="前文概要"><a href="#前文概要" class="headerlink" title="前文概要"></a>前文概要</h2><p>在上回中，我们知道了点云中扫描角度的存储结构，下面我们来讲qSAF的具体实现。</p>
@@ -451,7 +451,7 @@ void ccSAFDlg::saveSettings()
     threshold_2 = doubleSpinBox_2-&gt;value();
 }
 </code></pre><p>现在界面就做好了。</p>
-<h2 id="插件doAction实现"><a href="#插件doAction实现" class="headerlink" title="插件doAction实现"></a>插件doAction实现</h2><p>至于doAction的实现，点云其中的数据结构，可以参考第二篇，<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a></p>
+<h2 id="插件doAction实现"><a href="#插件doAction实现" class="headerlink" title="插件doAction实现"></a>插件doAction实现</h2><p>至于doAction的实现，点云其中的数据结构，可以参考第二篇，<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a></p>
 <p>简单地说，我们需要：</p>
 <ol>
 <li>用<code>Scan Angle Rank</code>，通过<code>getScalarFieldIndexByName()</code>获得扫描角度在标量域中的索引</li>
@@ -648,21 +648,21 @@ void ccSAFDlg::saveSettings()
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
-      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
-      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+      <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
     
   </entry>
   
   <entry>
     <title>QT的pro文件编写</title>
-    <link href="http://huihut.com/2017/04/26/QTProFile/"/>
-    <id>http://huihut.com/2017/04/26/QTProFile/</id>
+    <link href="https://blog.huihut.com/2017/04/26/QTProFile/"/>
+    <id>https://blog.huihut.com/2017/04/26/QTProFile/</id>
     <published>2017-04-26T10:48:31.000Z</published>
     <updated>2017-04-26T12:47:53.000Z</updated>
     
@@ -759,19 +759,19 @@ win32 {
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
-      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+      <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
     
   </entry>
   
   <entry>
     <title>C++ IO 库条件状态及EOF</title>
-    <link href="http://huihut.com/2017/04/15/CppConditionStateAndEOF/"/>
-    <id>http://huihut.com/2017/04/15/CppConditionStateAndEOF/</id>
+    <link href="https://blog.huihut.com/2017/04/15/CppConditionStateAndEOF/"/>
+    <id>https://blog.huihut.com/2017/04/15/CppConditionStateAndEOF/</id>
     <published>2017-04-15T04:12:24.000Z</published>
     <updated>2017-04-17T11:15:41.000Z</updated>
     
@@ -1016,17 +1016,17 @@ if(infile.is_open())
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>Centos 7 挂载 NTFS 分区</title>
-    <link href="http://huihut.com/2017/03/29/Centos7NTFS/"/>
-    <id>http://huihut.com/2017/03/29/Centos7NTFS/</id>
+    <link href="https://blog.huihut.com/2017/03/29/Centos7NTFS/"/>
+    <id>https://blog.huihut.com/2017/03/29/Centos7NTFS/</id>
     <published>2017-03-29T12:02:35.000Z</published>
     <updated>2017-03-30T07:03:22.000Z</updated>
     
@@ -1107,17 +1107,17 @@ sudo yum install ntfs-3g
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+      <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Mac下QT编译输出路径错误：ld unknown option ...</title>
-    <link href="http://huihut.com/2017/03/26/MacQTCompilerOutputPathError/"/>
-    <id>http://huihut.com/2017/03/26/MacQTCompilerOutputPathError/</id>
+    <link href="https://blog.huihut.com/2017/03/26/MacQTCompilerOutputPathError/"/>
+    <id>https://blog.huihut.com/2017/03/26/MacQTCompilerOutputPathError/</id>
     <published>2017-03-25T18:30:47.000Z</published>
     <updated>2017-03-25T18:38:43.000Z</updated>
     
@@ -1180,19 +1180,19 @@ DESTDIR = $$PWD/../../Release/libs
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
-      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+      <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
     
   </entry>
   
   <entry>
     <title>Centos 7 设置开机自动联网</title>
-    <link href="http://huihut.com/2017/03/25/Centos7Networking/"/>
-    <id>http://huihut.com/2017/03/25/Centos7Networking/</id>
+    <link href="https://blog.huihut.com/2017/03/25/Centos7Networking/"/>
+    <id>https://blog.huihut.com/2017/03/25/Centos7Networking/</id>
     <published>2017-03-25T02:59:48.000Z</published>
     <updated>2017-03-25T07:11:29.000Z</updated>
     
@@ -1235,17 +1235,17 @@ sudo vim /etc/sysconfig/network-scripts/ifcfg-enp4s0
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+      <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Shadowsocks-Qt5 For Centos 7</title>
-    <link href="http://huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/"/>
-    <id>http://huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/</id>
+    <link href="https://blog.huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/"/>
+    <id>https://blog.huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/</id>
     <published>2017-03-25T02:41:40.000Z</published>
     <updated>2017-03-25T07:16:01.000Z</updated>
     
@@ -1332,19 +1332,19 @@ sudo yum install -y shadowsocks-qt5
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Shadowsocks" scheme="http://huihut.com/tags/Shadowsocks/"/>
+      <category term="Shadowsocks" scheme="https://blog.huihut.com/tags/Shadowsocks/"/>
     
-      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+      <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>CloudCompare功能概要</title>
-    <link href="http://huihut.com/2017/03/21/CloudCompareFunction/"/>
-    <id>http://huihut.com/2017/03/21/CloudCompareFunction/</id>
+    <link href="https://blog.huihut.com/2017/03/21/CloudCompareFunction/"/>
+    <id>https://blog.huihut.com/2017/03/21/CloudCompareFunction/</id>
     <published>2017-03-21T11:28:31.000Z</published>
     <updated>2017-04-06T10:04:02.000Z</updated>
     
@@ -1541,19 +1541,19 @@ sudo yum install -y shadowsocks-qt5
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
-      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
   </entry>
   
   <entry>
     <title>Linux Notes</title>
-    <link href="http://huihut.com/2017/03/15/LinuxNotes/"/>
-    <id>http://huihut.com/2017/03/15/LinuxNotes/</id>
+    <link href="https://blog.huihut.com/2017/03/15/LinuxNotes/"/>
+    <id>https://blog.huihut.com/2017/03/15/LinuxNotes/</id>
     <published>2017-03-14T16:52:30.000Z</published>
     <updated>2017-03-25T07:13:49.000Z</updated>
     
@@ -1604,17 +1604,17 @@ sudo yum install -y shadowsocks-qt5
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+      <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Makefile 问题及解决</title>
-    <link href="http://huihut.com/2017/03/13/MakefileIssue/"/>
-    <id>http://huihut.com/2017/03/13/MakefileIssue/</id>
+    <link href="https://blog.huihut.com/2017/03/13/MakefileIssue/"/>
+    <id>https://blog.huihut.com/2017/03/13/MakefileIssue/</id>
     <published>2017-03-12T21:59:10.000Z</published>
     <updated>2017-03-25T07:14:33.000Z</updated>
     
@@ -1644,17 +1644,17 @@ sudo yum install -y shadowsocks-qt5
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Makefile" scheme="http://huihut.com/tags/Makefile/"/>
+      <category term="Makefile" scheme="https://blog.huihut.com/tags/Makefile/"/>
     
   </entry>
   
   <entry>
     <title>并行笔记</title>
-    <link href="http://huihut.com/2017/03/13/ParallelComputingNotes/"/>
-    <id>http://huihut.com/2017/03/13/ParallelComputingNotes/</id>
+    <link href="https://blog.huihut.com/2017/03/13/ParallelComputingNotes/"/>
+    <id>https://blog.huihut.com/2017/03/13/ParallelComputingNotes/</id>
     <published>2017-03-12T21:51:09.000Z</published>
     <updated>2017-03-25T07:15:12.000Z</updated>
     
@@ -1737,17 +1737,17 @@ sudo yum install -y shadowsocks-qt5
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Parallel" scheme="http://huihut.com/tags/Parallel/"/>
+      <category term="Parallel" scheme="https://blog.huihut.com/tags/Parallel/"/>
     
   </entry>
   
   <entry>
     <title>iTerm2 + OhMyZsh + agnoster + Powerline + solarized = 漂亮的Mac终端</title>
-    <link href="http://huihut.com/2017/03/11/FancyMacTerminal/"/>
-    <id>http://huihut.com/2017/03/11/FancyMacTerminal/</id>
+    <link href="https://blog.huihut.com/2017/03/11/FancyMacTerminal/"/>
+    <id>https://blog.huihut.com/2017/03/11/FancyMacTerminal/</id>
     <published>2017-03-11T06:59:45.000Z</published>
     <updated>2017-04-02T10:38:01.000Z</updated>
     
@@ -1844,17 +1844,17 @@ colorscheme solarized
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Mac" scheme="http://huihut.com/tags/Mac/"/>
+      <category term="Mac" scheme="https://blog.huihut.com/tags/Mac/"/>
     
   </entry>
   
   <entry>
     <title>Markdown 简易入门教程</title>
-    <link href="http://huihut.com/2017/01/25/MarkdownTutorial/"/>
-    <id>http://huihut.com/2017/01/25/MarkdownTutorial/</id>
+    <link href="https://blog.huihut.com/2017/01/25/MarkdownTutorial/"/>
+    <id>https://blog.huihut.com/2017/01/25/MarkdownTutorial/</id>
     <published>2017-01-24T17:45:50.000Z</published>
     <updated>2017-04-16T17:34:02.000Z</updated>
     
@@ -2376,17 +2376,17 @@ _   底线
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Markdown" scheme="http://huihut.com/tags/Markdown/"/>
+      <category term="Markdown" scheme="https://blog.huihut.com/tags/Markdown/"/>
     
   </entry>
   
   <entry>
     <title>Git Notes</title>
-    <link href="http://huihut.com/2017/01/24/GitNotes/"/>
-    <id>http://huihut.com/2017/01/24/GitNotes/</id>
+    <link href="https://blog.huihut.com/2017/01/24/GitNotes/"/>
+    <id>https://blog.huihut.com/2017/01/24/GitNotes/</id>
     <published>2017-01-24T04:39:42.000Z</published>
     <updated>2017-04-08T14:24:33.000Z</updated>
     
@@ -2605,17 +2605,17 @@ git config branch.master.merge refs/heads/master
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Git" scheme="http://huihut.com/tags/Git/"/>
+      <category term="Git" scheme="https://blog.huihut.com/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>Python Notes</title>
-    <link href="http://huihut.com/2017/01/22/PythonNotes/"/>
-    <id>http://huihut.com/2017/01/22/PythonNotes/</id>
+    <link href="https://blog.huihut.com/2017/01/22/PythonNotes/"/>
+    <id>https://blog.huihut.com/2017/01/22/PythonNotes/</id>
     <published>2017-01-22T04:33:18.000Z</published>
     <updated>2017-04-02T10:39:27.000Z</updated>
     
@@ -2917,17 +2917,17 @@ This is two
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Python" scheme="http://huihut.com/tags/Python/"/>
+      <category term="Python" scheme="https://blog.huihut.com/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>PyCharm自动安装pymysql包失败</title>
-    <link href="http://huihut.com/2017/01/21/PyCharmInstallPymysqlFail/"/>
-    <id>http://huihut.com/2017/01/21/PyCharmInstallPymysqlFail/</id>
+    <link href="https://blog.huihut.com/2017/01/21/PyCharmInstallPymysqlFail/"/>
+    <id>https://blog.huihut.com/2017/01/21/PyCharmInstallPymysqlFail/</id>
     <published>2017-01-21T13:41:07.000Z</published>
     <updated>2017-04-02T10:39:16.000Z</updated>
     
@@ -2972,17 +2972,17 @@ This is two
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Python" scheme="http://huihut.com/tags/Python/"/>
+      <category term="Python" scheme="https://blog.huihut.com/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>搬瓦工Shadowsocks安装及配置多用户(服务端)</title>
-    <link href="http://huihut.com/2016/12/03/BandwagonShadowsocksServer/"/>
-    <id>http://huihut.com/2016/12/03/BandwagonShadowsocksServer/</id>
+    <link href="https://blog.huihut.com/2016/12/03/BandwagonShadowsocksServer/"/>
+    <id>https://blog.huihut.com/2016/12/03/BandwagonShadowsocksServer/</id>
     <published>2016-12-03T06:44:21.000Z</published>
     <updated>2017-03-25T07:10:33.000Z</updated>
     
@@ -3157,10 +3157,10 @@ pip install shadowsocks
     
     </summary>
     
-      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Shadowsocks" scheme="http://huihut.com/tags/Shadowsocks/"/>
+      <category term="Shadowsocks" scheme="https://blog.huihut.com/tags/Shadowsocks/"/>
     
   </entry>
   
