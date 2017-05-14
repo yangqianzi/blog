@@ -3,13 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[QT构建错误]]></title>
-      <url>%2F2017%2F05%2F15%2FQTErrorExpected%2F</url>
-      <content type="text"><![CDATA[QT构建错误：error: expected ‘;’ at end of declaration list In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_io/AsciiFilter.cpp:18: In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_io/AsciiFilter.h:21: In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_io/FileIOFilter.h:22: In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccHObject.h:22: In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccObject.h:22: In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccSerializableObject.h:22: In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccLog.h:29: In file included from /Users/xx/Applications/Qt5.8.0/5.8/clang_64/lib/QtCore.framework/Headers/QString:1: In file included from /Users/xx/Applications/Qt5.8.0/5.8/clang_64/lib/QtCore.framework/Headers/qstring.h:50: /Users/xx/Applications/Qt5.8.0/5.8/clang_64/lib/QtCore.framework/Headers/qrefcount.h:54:22: error: expected &apos;;&apos; at end of declaration list inline bool ref() Q_DECL_NOTHROW { ^ ; qt5 keg-onlybrew unlink qt brew link --force qt5 cmake -DCMAKE_PREFIX_PATH:STRING=/usr/local/opt/qt5/lib/cmake/ .. make install brew unlink qt5 brew link qt Github . Build fails on OS X, seems to be related to Qt5 brew unlink qtbrew unlink qt]]></content>
-    </entry>
-
-    
-    <entry>
       <title><![CDATA[hexo 构建静态文件无法生成 index.html 等文件]]></title>
       <url>%2F2017%2F05%2F13%2FHexoNPMERR%2F</url>
       <content type="text"><![CDATA[hexo g 无法生成 index构建情况如下图： 但是一些文件没有生成，如 index.html 文件。 查看 npm 安装各 hexo 插件的情况npm ls --depth 0 hexo 的一些插件未安装插件npm ERR! missing npm ERR! missing hexo-generator-archive… 解决逐一安装缺失的包 npm install hexo-generator-archive --save ... 安装完后重新构建即可解决。]]></content>
