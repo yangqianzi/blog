@@ -1,0 +1,3167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>HuiHut</title>
+  <subtitle>Menghui&#39;s Blog</subtitle>
+  <link href="//atom.xml" rel="self"/>
+  
+  <link href="http://huihut.com/"/>
+  <updated>2017-05-13T12:29:00.000Z</updated>
+  <id>http://huihut.com/</id>
+  
+  <author>
+    <name>Menghui Xie</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo 构建静态文件无法生成 index.html 等文件</title>
+    <link href="http://huihut.com/2017/05/13/HexoNPMERR/"/>
+    <id>http://huihut.com/2017/05/13/HexoNPMERR/</id>
+    <published>2017-05-13T12:28:58.000Z</published>
+    <updated>2017-05-13T12:29:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="hexo-g-无法生成-index"><a href="#hexo-g-无法生成-index" class="headerlink" title="hexo g 无法生成 index"></a>hexo g 无法生成 index</h2><p>构建情况如下图：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/ganningZHexoNoIndex" alt=""></p>
+<p>但是一些文件没有生成，如 <code>index.html</code> 文件。</p>
+<a id="more"></a>
+<h2 id="查看-npm-安装各-hexo-插件的情况"><a href="#查看-npm-安装各-hexo-插件的情况" class="headerlink" title="查看 npm 安装各 hexo 插件的情况"></a>查看 npm 安装各 hexo 插件的情况</h2><pre><code>npm ls --depth 0
+</code></pre><h2 id="hexo-的一些插件未安装插件"><a href="#hexo-的一些插件未安装插件" class="headerlink" title="hexo 的一些插件未安装插件"></a>hexo 的一些插件未安装插件</h2><p><strong>npm ERR! missing npm ERR! missing hexo-generator-archive…</strong></p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/ganningZHexoNPMls.png" alt=""></p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>逐一安装缺失的包</p>
+<pre><code>npm install hexo-generator-archive --save
+...
+</code></pre><p>安装完后重新构建即可解决。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;hexo-g-无法生成-index&quot;&gt;&lt;a href=&quot;#hexo-g-无法生成-index&quot; class=&quot;headerlink&quot; title=&quot;hexo g 无法生成 index&quot;&gt;&lt;/a&gt;hexo g 无法生成 index&lt;/h2&gt;&lt;p&gt;构建情况如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ojlsgreog.bkt.clouddn.com/ganningZHexoNoIndex&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;但是一些文件没有生成，如 &lt;code&gt;index.html&lt;/code&gt; 文件。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Git" scheme="http://huihut.com/tags/Git/"/>
+    
+      <category term="Hexo" scheme="http://huihut.com/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CloudCompare插件编写一（插件框架）</title>
+    <link href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
+    <id>http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/</id>
+    <published>2017-04-27T10:11:53.000Z</published>
+    <updated>2017-04-29T11:23:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文唠叨了些CloudComapre这个开源软件的插件编写。</p>
+<p>虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！</p>
+<p>所以这是一个完整插件的入门教程，我们要写的插件是qSAF(Scan Angle Filter)，这是可以过滤给定范围内点的扫描角度的插件。</p>
+<p>下面分三篇来介绍，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+<p>这是第一篇，<strong>插件框架篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
+<p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
+<h2 id="CloudComapre"><a href="#CloudComapre" class="headerlink" title="CloudComapre"></a>CloudComapre</h2><p>CloudComapre是一个开源的3D点云和网格的处理软件，开可以处理各类点云格式的数据。</p>
+<blockquote>
+<ul>
+<li>官网：<a href="http://www.cloudcompare.org/" target="_blank" rel="external">http://www.cloudcompare.org/</a></li>
+<li>Github：<a href="https://github.com/cloudcompare/cloudcompare" target="_blank" rel="external">https://github.com/cloudcompare/cloudcompare</a></li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<p><img src="http://www.cloudcompare.org/images/snapshot2_small.jpg" alt=""></p>
+<h2 id="CloudComapre插件编写"><a href="#CloudComapre插件编写" class="headerlink" title="CloudComapre插件编写"></a>CloudComapre插件编写</h2><h3 id="使用qDummyPlugin插件模板创建自己的插件"><a href="#使用qDummyPlugin插件模板创建自己的插件" class="headerlink" title="使用qDummyPlugin插件模板创建自己的插件"></a>使用qDummyPlugin插件模板创建自己的插件</h3><p>首先在Github上git下CloudComapre的源码，</p>
+<p>再到 <code>CloudComapre/plugins/qDummyPlugin</code> 下</p>
+<p>这个<code>qDummyPlugin</code>就是个插件的模板，用它来写自己的插件。</p>
+<p>我们把这个模板插件文件夹拷贝一份，改为自己的插件名<code>qSAF</code>（当然，你也可以改为其他你喜欢的，以下不做累述）</p>
+<p>现在<code>qSAF</code>里面有如下几个文件</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/qSAFFile.jpg" alt="qSAFFile.jpg"></p>
+<p>我们需要做的是<strong>把里面的<code>qDummyPlugin</code>及类似的名字改为自己的<code>qSAF</code></strong>。</p>
+<p><strong>注意：文件名和文件里面内容都要修改！</strong></p>
+<p>如：</p>
+<p>原本<code>CMakeLists.txt</code>文件里面是这样的：</p>
+<pre><code>cmake_minimum_required(VERSION 3.0)
+
+#REPLACE ALL &apos;DUMMY&apos; OCCURENCES BY YOUR PLUGIN NAME
+#AND ADAPT THE CODE BELOW TO YOUR OWN NEEDS!
+
+option( INSTALL_QDUMMY_PLUGIN &quot;Check to install qDUMMY plugin&quot; OFF )
+
+# CloudCompare &apos;DUMMY&apos; plugin
+if (INSTALL_QDUMMY_PLUGIN)
+    project( QDUMMY_PLUGIN )
+
+    #load necessary libraries (see qPCV for an example)
+    #add_subdirectory (LIB1)
+
+    #if the plugin is an &apos;OpenGL filter&apos;, uncomment the line below
+    #set( CC_OPENGL_FILTER ON BOOL)
+    include( ../CMakePluginTpl.cmake )
+
+    #set dependencies to necessary libraries (see qPCV for an example)
+    #target_link_libraries( ${PROJECT_NAME} LIB1 )
+    #include_directories( ${LIB1_INCLUDE_DIR} )
+endif()
+</code></pre><p>修改后的<code>CMakeLists.txt</code>文件里面是这样的：</p>
+<pre><code>cmake_minimum_required(VERSION 3.0)
+
+option( INSTALL_QSAF_PLUGIN &quot;Check to install qSAF plugin&quot; OFF )
+
+if (INSTALL_QSAF_PLUGIN)
+
+    #CloudCompare ‘SAF’ plugin
+
+    project( QSAF_PLUGIN )
+
+    include( ../CMakePluginTpl.cmake )
+
+endif()
+</code></pre><p>剩下的<code>qSAF.h</code>、<code>qSAF.cpp</code>和<code>qSAF.qrc</code>就不一一列出了</p>
+<p>修改后变成这样：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/qSAFFile2.jpg" alt="qSAFFile2"></p>
+<h3 id="使用qmake构建pro文件"><a href="#使用qmake构建pro文件" class="headerlink" title="使用qmake构建pro文件"></a>使用qmake构建pro文件</h3><p>在终端进入到你的插件的<code>qSAF</code>目录，执行：</p>
+<pre><code>qmake -project -r CMakeLists.txt
+</code></pre><p>就会在<code>qSAF</code>目录下构建一个项目的pro文件。</p>
+<h3 id="导入工程到QT"><a href="#导入工程到QT" class="headerlink" title="导入工程到QT"></a>导入工程到QT</h3><p>现在把CloudComapre导入到QT，</p>
+<p>在<code>CloudComapre-plugins-plugins.pro</code>中，加上自己的插件：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/QTqSAFPluginsPro.jpg" alt=""></p>
+<p>保存刷新后就会在项目上看到了。</p>
+<h3 id="pro文件编写"><a href="#pro文件编写" class="headerlink" title="pro文件编写"></a>pro文件编写</h3><p>由于qmake自动生成的pro文件不适合我们要写的插件，所以要自己修改pro文件。</p>
+<p>pro文件的编写可以参考：</p>
+<p><a href="http://huihut.com/2017/04/26/QTProFile/">QT的pro文件编写</a></p>
+<p>里面的常规pro文件就是qSAF的。</p>
+<p>里面的路径可以不用修改，具体看你项目的Release生成的位置，</p>
+<p><strong><em>特别注意：指定生成路径中的libs和plugins要正确</em></strong></p>
+<h3 id="完成模板插件框架"><a href="#完成模板插件框架" class="headerlink" title="完成模板插件框架"></a>完成模板插件框架</h3><p>没错！这就完成了，你的插件已经做出来了！现在可以Run一下或者Debug一下看看啦~</p>
+<p>选中点云，使用<code>qSAF</code>，会这样：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/qSAFShoudNotBeUsedAsIs.jpg" alt=""></p>
+<p>莫慌！这是正常现象，因为你的<code>qSAF</code>具体实现还没有写呢！</p>
+<h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><h4 id="1-编译出错"><a href="#1-编译出错" class="headerlink" title="1. 编译出错"></a>1. 编译出错</h4><p>可能原因：</p>
+<ul>
+<li><code>qSAF.h</code>、<code>qSAF.cpp</code>和<code>qSAF.qrc</code>这三个文件里面的<strong><code>qDummyPlugin</code>及类似的名字要改为自己的<code>qSAF</code></strong>，如果改错或没改，可能报错。</li>
+<li>自己写的代码有错，这个视情况而定</li>
+</ul>
+<h4 id="2-运行的CloudComapre插件上没有你编写的插件的快捷方式"><a href="#2-运行的CloudComapre插件上没有你编写的插件的快捷方式" class="headerlink" title="2. 运行的CloudComapre插件上没有你编写的插件的快捷方式"></a>2. 运行的CloudComapre插件上没有你编写的插件的快捷方式</h4><p>可能原因</p>
+<ul>
+<li>插件的生成路径出错了，自己插件的pro文件中的plugins指定生成路径要正确。</li>
+</ul>
+<h3 id="个性化插件"><a href="#个性化插件" class="headerlink" title="个性化插件"></a>个性化插件</h3><p>现在来个性化一下我们的插件</p>
+<p>在<code>qSAF.h</code>中：</p>
+<pre><code>// 设置插件的唯一ID
+Q_PLUGIN_METADATA(IID &quot;cccorp.cloudcompare.plugin.qSAF&quot;)
+
+// 设置插件名字
+virtual QString getName() const override { return &quot;SAF&quot;; }
+
+// 设置插件的描述
+virtual QString getDescription() const override { return &quot;Filter the scanning angle in a range of points&quot;; }
+
+// 设置插件图标，这个要在 qSAF.cpp 里设置图标路径
+virtual QIcon getIcon() const override;
+
+// 设置插件要执行的操作（重点）
+void doAction();
+</code></pre><h3 id="插件doAction"><a href="#插件doAction" class="headerlink" title="插件doAction()"></a>插件doAction()</h3><p>我们编写插件是要做些事情，在<code>CloudComapre</code>插件中就是在doAction()中实现按下插件<code>SAF</code>后要做的事。</p>
+<p>这个函数在<code>qSAF.cpp</code>中，你会发现复制的模板插件的<code>doAction()</code>是这样的（把<code>qDummyPlugin</code>改为<code>qSAF</code>啦）：</p>
+<pre><code>void qSAF::doAction()
+{
+    //m_app should have already been initialized by CC when plugin is loaded!
+    //(--&gt; pure internal check)
+    assert(m_app);
+    if (!m_app)
+        return;
+
+    /*** HERE STARTS THE ACTION ***/
+
+    //put your code here
+    //--&gt; you may want to start by asking parameters (with a custom dialog, etc.)
+
+    //This is how you can output messages
+    m_app-&gt;dispToConsole(&quot;[qSAF] Hello world!&quot;,ccMainAppInterface::STD_CONSOLE_MESSAGE); //a standard message is displayed in the console
+    m_app-&gt;dispToConsole(&quot;[qSAF] Warning: qSAF plugin shouldn&apos;t be used as is!&quot;,ccMainAppInterface::WRN_CONSOLE_MESSAGE); //a warning message is displayed in the console
+    m_app-&gt;dispToConsole(&quot;qSAF plugin shouldn&apos;t be used as is!&quot;,ccMainAppInterface::ERR_CONSOLE_MESSAGE); //an error message is displayed in the console AND an error box will pop-up!
+
+    /*** HERE ENDS THE ACTION ***/
+
+}
+</code></pre><p>我们要做的就是在</p>
+<pre><code>/*** HERE STARTS THE ACTION ***/
+</code></pre><p>下面写自己的插件代码。</p>
+<p>刚才你看的错误信息就是这句：</p>
+<pre><code>m_app-&gt;dispToConsole(&quot;qSAF plugin shouldn&apos;t be used as is!&quot;,ccMainAppInterface::ERR_CONSOLE_MESSAGE); 
+</code></pre><p>这是控制台输出的错误信息。</p>
+<p>错误信息(<code>ERR_CONSOLE_MESSAGE</code>)同时在控制台和窗体形式出现，而其他标准信息(<code>STD_CONSOLE_MESSAGE</code>)、警告信息(<code>WRN_CONSOLE_MESSAGE</code>)，则只在控制台显示。</p>
+<p>现在删掉<code>/*** HERE STARTS THE ACTION ***/</code>下面的，改为自己的一句：</p>
+<pre><code>m_app-&gt;dispToConsole(&quot;[qSAF] 程序是从错误开始的！&quot;,ccMainAppInterface::ERR_CONSOLE_MESSAGE);
+</code></pre><p>结果如下：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/qSAFStartFromError.jpg" alt=""></p>
+<h2 id="插件框架完成"><a href="#插件框架完成" class="headerlink" title="插件框架完成"></a>插件框架完成</h2><p>现在已经完成了插件框架的编写啦。</p>
+<p>其实只要使用<code>CloudComapre</code>提供的插件模板<code>qDummyPlugin</code>，改成自己的就可以啦。</p>
+<p>现在可以发挥你的想象力，在<code>doAction()</code>里面随心所欲地做各种事情啦。</p>
+<p>但是只有框架还不够，要想对点云进行操作，和SAF功能的具体实现，还需要了解<code>CloudComapre</code>中点云的数据结构：</p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">CloudComapre插件编写二（数据结构）</a></p>
+<p>如果你对点云数据结构虐它如虐狗，可以戳这里：</p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">CloudComapre插件编写三（算法实现）</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文唠叨了些CloudComapre这个开源软件的插件编写。&lt;/p&gt;
+&lt;p&gt;虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！&lt;/p&gt;
+&lt;p&gt;所以这是一个完整插件的入门教程，我们要写的插件是qSAF(Scan Angle Filter)，这是可以过滤给定范围内点的扫描角度的插件。&lt;/p&gt;
+&lt;p&gt;下面分三篇来介绍，分别是&lt;a href=&quot;http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这是第一篇，&lt;strong&gt;插件框架篇&lt;/strong&gt;，你可以根据本文改成自己的插件，待卿临幸。&lt;/p&gt;
+&lt;p&gt;qSAF源码：&lt;a href=&quot;https://github.com/huihut/qSAF&quot;&gt;Github . qSAF&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;CloudComapre&quot;&gt;&lt;a href=&quot;#CloudComapre&quot; class=&quot;headerlink&quot; title=&quot;CloudComapre&quot;&gt;&lt;/a&gt;CloudComapre&lt;/h2&gt;&lt;p&gt;CloudComapre是一个开源的3D点云和网格的处理软件，开可以处理各类点云格式的数据。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;官网：&lt;a href=&quot;http://www.cloudcompare.org/&quot;&gt;http://www.cloudcompare.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Github：&lt;a href=&quot;https://github.com/cloudcompare/cloudcompare&quot;&gt;https://github.com/cloudcompare/cloudcompare&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+    
+      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+    
+      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CloudCompare插件编写二（数据结构）</title>
+    <link href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/"/>
+    <id>http://huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/</id>
+    <published>2017-04-27T04:35:43.000Z</published>
+    <updated>2017-04-29T11:23:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+<p>这是第二篇，<strong>数据结构篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
+<p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
+<h2 id="前文概要"><a href="#前文概要" class="headerlink" title="前文概要"></a>前文概要</h2><p>在上回中，我们已经实现了插件的框架，现在要在<code>doAction()</code>中写插件的具体实现。</p>
+<h2 id="插件需求"><a href="#插件需求" class="headerlink" title="插件需求"></a>插件需求</h2><p>我们要做的是一个qSAF(Scan Angle Filter)插件，它可以过滤给定范围内点的扫描角度。</p>
+<p>也就是用户输入两个角度值，如<code>20</code>度、<code>70</code>度，</p>
+<p>过滤输出每个点的扫描角度在大于等于<code>20</code>度、小于等于<code>70</code>度的范围的点云。</p>
+<a id="more"></a>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>要实现这个功能，我们需要有一个界面，可以让<strong>用户输入两个角度</strong>，然后获取两个角度值，接着<strong>遍历每个点</strong>，获取<strong>每个点的扫描角度</strong>，然后获得角度在<strong>大于等于<code>20</code>度、小于等于<code>70</code>度范围</strong>的点云，显示输出。</p>
+<p>简单地说，就是要：</p>
+<ol>
+<li>输入界面</li>
+<li>遍历角度</li>
+<li>输出点云</li>
+</ol>
+<p><code>1. 输入界面</code>是QT基础；<code>3. 输出点云</code>是CC套路；只有<code>2. 遍历角度</code>有点纠结。</p>
+<p>因此本文第二篇主要介绍<code>2. 遍历角度</code>，即介绍点云中点的数据结构。</p>
+<p><strong><em>注意：不同类型文件的数据结构不同，本文以激光雷达文件(<code>.las</code>)来做介绍。</em></strong></p>
+<h2 id="las文件的读入"><a href="#las文件的读入" class="headerlink" title="las文件的读入"></a>las文件的读入</h2><p>首先，我们从宇宙的起源开始说起……</p>
+<p>额，还是从<code>.las</code>文件的读入开始说起吧~</p>
+<p><code>.las</code>文件的读入首先进过<code>FileIOFilter</code>这个类，判断是雷达文件(<code>.las</code>)后，进入<code>LASFilter</code>类，并从它的<code>loadFile()</code>函数读入。</p>
+<p>先看下<code>loadFile()</code>函数声明：</p>
+<pre><code>virtual CC_FILE_ERROR loadFile(QString filename, ccHObject&amp; container, LoadParameters&amp; parameters) override;
+</code></pre><p>特别注意三个传入参数！我就是忽视了这里才找了好久。。。</p>
+<ul>
+<li><code>QString filename</code> 是点云文件名（包括路径）</li>
+<li><code>ccHObject&amp; container</code> 是一个实体（ccHObject），可以添加点云（ccPointCloud）</li>
+<li><code>LoadParameters&amp; parameters</code> 是选择读入文件后提示要勾选雷达的哪些信息</li>
+</ul>
+<p>然后看下<code>loadFile()</code>函数体</p>
+<p><code>.las</code>文件首先从io流读入，再使用<code>liblas</code>这个外部库存储：</p>
+<pre><code>liblas::Reader reader(liblas::ReaderFactory().CreateWithStream(ifs));
+</code></pre><p>这里说下<code>liblas</code>：</p>
+<p><code>liblas</code>是用于读取和编写非常常见的LAS LiDAR格式的C/C++库，我们使用它来做对LAS的直接读取。</p>
+<p>官网如下：</p>
+<blockquote>
+<p><a href="https://www.liblas.org/" target="_blank" rel="external">https://www.liblas.org/</a></p>
+</blockquote>
+<p>然后把<code>liblas</code>读入的文件进行各种处理和封装，最终封装成<code>ccPointCloud</code></p>
+<pre><code>ccPointCloud* loadedCloud = 0;
+
+int sfIndex = loadedCloud-&gt;addScalarField(field-&gt;sf);
+...
+loadedCloud-&gt;setName(chunkName);
+...
+loadedCloud-&gt;setMetaData(LAS_SCALE_X_META_DATA, QVariant(lasScale.x));
+...
+loadedCloud-&gt;addPoint(P);
+...
+</code></pre><p>然后通过：</p>
+<pre><code>container.addChild(loadedCloud);
+</code></pre><p>添加到<code>ccHObject</code>中</p>
+<p>所以：<strong>点云的信息，都是存储在ccPointCloud中的！</strong></p>
+<p>而<strong>扫描角度存储在<code>ccPointCloud</code>的标量域中(<code>ccScalarField</code>)</strong></p>
+<h2 id="ccPointCloud"><a href="#ccPointCloud" class="headerlink" title="ccPointCloud"></a>ccPointCloud</h2><p>前面已经说了很多<code>ccPointCloud</code>了，它就是CloudCompare中存储点云的类。</p>
+<p>我们看看它的说明</p>
+<pre><code>//! A 3D cloud and its associated features (color, normals, scalar fields, etc.)
+/** A point cloud can have multiple features:
+    - colors (RGB)
+    - normals (compressed)
+    - scalar fields
+    - an octree strucutre
+    - per-point visibility information (to hide/display subsets of points)
+    - other children objects (meshes, calibrated pictures, etc.)
+**/
+</code></pre><p>我要的扫描角度就在<code>scalar fields</code></p>
+<p>然而在<code>ccPointCloud</code>没有直接的方法获得众多标量域中的扫描角度</p>
+<p>终于在它的父类<code>ChunkedPointCloud</code>中发现了</p>
+<h2 id="ChunkedPointCloud"><a href="#ChunkedPointCloud" class="headerlink" title="ChunkedPointCloud"></a>ChunkedPointCloud</h2><p><code>ccPointCloud</code>的父类<code>ChunkedPointCloud</code>中有如下两个函数：</p>
+<pre><code># 通过标量域名字获得其在标量域数组中的索引
+int ChunkedPointCloud::getScalarFieldIndexByName(const char* name) const
+
+# 通过索引获得特定标量域的指针
+ScalarField* ChunkedPointCloud::getScalarField(int index) const
+</code></pre><p>通过这两个函数就可以获得指向扫描角度的指针了，要想访问扫描角度中每个点的值，需要使用<code>ScalarField</code>父类<code>GenericChunkedArray</code>的方法</p>
+<h2 id="GenericChunkedArray"><a href="#GenericChunkedArray" class="headerlink" title="GenericChunkedArray"></a>GenericChunkedArray</h2><pre><code># 通过每个点的索引访问特定标量域的每个的的值
+inline const ElementType* getValue(unsigned index) const
+</code></pre><h2 id="LASOpenDlg"><a href="#LASOpenDlg" class="headerlink" title="LASOpenDlg"></a>LASOpenDlg</h2><p>标量域中扫描角度的名字可以在<code>LASOpenDlg.h</code>中找到</p>
+<pre><code>&quot;Scan Angle Rank&quot;
+</code></pre><h2 id="整理下思路"><a href="#整理下思路" class="headerlink" title="整理下思路"></a>整理下思路</h2><ol>
+<li>用<code>Scan Angle Rank</code>，通过<code>getScalarFieldIndexByName()</code>获得扫描角度在标量域中的索引</li>
+<li>用索引，通过<code>getScalarField()</code>获得扫描角度标量域指针</li>
+<li>用指针，通过<code>getValue()</code>获得每个点的值</li>
+</ol>
+<p>这样就获取到了每个点的扫描角度值，然后：</p>
+<ol>
+<li>比较扫描角度值与用户输入区间的大小，把合适的值存储起来</li>
+<li>把合适值封装成点云实体</li>
+<li>显示在界面上</li>
+</ol>
+<p>上面整理的思路在下篇实现，现在我们已经知道怎么获取点云中扫描角度的值了，那其他信息呢？</p>
+<h2 id="点云其他信息的获取"><a href="#点云其他信息的获取" class="headerlink" title="点云其他信息的获取"></a>点云其他信息的获取</h2><p>看下在QT的调试信息：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/ccPointCloudDataStructure.jpg" alt=""></p>
+<p>我们可以发现，其实点云的信息都能在<code>ccPointCloud</code>中获取，比如点容量、点数量、点坐标、标量域、颜色值等。</p>
+<p>其中，标量域<code>vector</code>中有9项信息，存储的标量域顺序为：</p>
+<ul>
+<li>[0] Point Source ID</li>
+<li>[1] Scan Angle Rank</li>
+<li>[2] Flightline Edge</li>
+<li>[3] Scan Direction</li>
+<li>[4] Number of Returns</li>
+<li>[5] Return Number</li>
+<li>[6] Time</li>
+<li>[7] Intensity</li>
+<li>[8] Classification</li>
+</ul>
+<p>至于如何获取每种数据，都有相应的方法实现，不是在<code>ccPointCloud</code>，就是在它的父类中，耐心点总能找到的~</p>
+<h2 id="下篇概要"><a href="#下篇概要" class="headerlink" title="下篇概要"></a>下篇概要</h2><p>下篇是算法实现篇，主要说了qSAF插件的具体实现，包括上面说的：</p>
+<ol>
+<li>输入界面</li>
+<li>遍历角度</li>
+<li>输出点云</li>
+</ol>
+<p>请戳这里：</p>
+<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">CloudComapre插件编写三（算法实现）</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是&lt;a href=&quot;http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这是第二篇，&lt;strong&gt;数据结构篇&lt;/strong&gt;，你可以根据本文改成自己的插件，待卿临幸。&lt;/p&gt;
+&lt;p&gt;qSAF源码：&lt;a href=&quot;https://github.com/huihut/qSAF&quot;&gt;Github . qSAF&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前文概要&quot;&gt;&lt;a href=&quot;#前文概要&quot; class=&quot;headerlink&quot; title=&quot;前文概要&quot;&gt;&lt;/a&gt;前文概要&lt;/h2&gt;&lt;p&gt;在上回中，我们已经实现了插件的框架，现在要在&lt;code&gt;doAction()&lt;/code&gt;中写插件的具体实现。&lt;/p&gt;
+&lt;h2 id=&quot;插件需求&quot;&gt;&lt;a href=&quot;#插件需求&quot; class=&quot;headerlink&quot; title=&quot;插件需求&quot;&gt;&lt;/a&gt;插件需求&lt;/h2&gt;&lt;p&gt;我们要做的是一个qSAF(Scan Angle Filter)插件，它可以过滤给定范围内点的扫描角度。&lt;/p&gt;
+&lt;p&gt;也就是用户输入两个角度值，如&lt;code&gt;20&lt;/code&gt;度、&lt;code&gt;70&lt;/code&gt;度，&lt;/p&gt;
+&lt;p&gt;过滤输出每个点的扫描角度在大于等于&lt;code&gt;20&lt;/code&gt;度、小于等于&lt;code&gt;70&lt;/code&gt;度的范围的点云。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+    
+      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+    
+      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CloudCompare插件编写三（算法实现）</title>
+    <link href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
+    <id>http://huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/</id>
+    <published>2017-04-27T02:35:43.000Z</published>
+    <updated>2017-04-29T11:23:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
+<p>这是第三篇，<strong>算法实现篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
+<p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
+<h2 id="前文概要"><a href="#前文概要" class="headerlink" title="前文概要"></a>前文概要</h2><p>在上回中，我们知道了点云中扫描角度的存储结构，下面我们来讲qSAF的具体实现。</p>
+<h2 id="UI界面"><a href="#UI界面" class="headerlink" title="UI界面"></a>UI界面</h2><p>新建QT设计器界面类，命名为<code>ccSAFDlg</code>，在<code>ccSAFDlg.ui</code>文件设计简单的界面。</p>
+<p>因为我们只需要一个范围，一个确认取消键，所以我把它弄成这样子：</p>
+<a id="more"></a>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/SAFDlg.ui.jpg" alt=""></p>
+<p><code>doubleSpinBox</code>要设置范围：<code>0.00</code>到<code>90.00</code>，默认值分别设为<code>20.00</code>和<code>70.00</code>。</p>
+<p><code>ccSAFDlg.h</code>：</p>
+<pre><code>#ifndef CCSAFDLG_H
+#define CCSAFDLG_H
+
+#include &quot;ui_SAFDlg.h&quot;
+#include &lt;QDialog&gt;
+
+namespace Ui {
+class ccSAFDlg;
+}
+
+class ccSAFDlg : public QDialog, public Ui::ccSAFDlg
+{
+    Q_OBJECT
+
+public:
+    explicit ccSAFDlg(QWidget *parent = 0);
+
+protected slots:
+
+    //! Saves (temporarily) the dialog paramters on acceptation
+    void saveSettings();
+};
+
+#endif // CCSAFDLG_H
+</code></pre><p><code>ccSAFDlg.cpp</code>：</p>
+<pre><code>#include &quot;ccSAFDlg.h&quot;
+
+//定义两个静态阈值，并初始化
+static double threshold_1 = 20;
+static double threshold_2 = 70;
+
+ccSAFDlg::ccSAFDlg(QWidget *parent) : QDialog(parent), Ui::ccSAFDlg()
+{
+    setupUi(this);
+
+    //关联信号槽
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(saveSettings()));
+
+    //初始化设置阈值
+    doubleSpinBox_1-&gt;setValue(threshold_1);
+    doubleSpinBox_2-&gt;setValue(threshold_2);
+}
+
+void ccSAFDlg::saveSettings()
+{
+    //OK后重新赋值
+    threshold_1 = doubleSpinBox_1-&gt;value();
+    threshold_2 = doubleSpinBox_2-&gt;value();
+}
+</code></pre><p>现在界面就做好了。</p>
+<h2 id="插件doAction实现"><a href="#插件doAction实现" class="headerlink" title="插件doAction实现"></a>插件doAction实现</h2><p>至于doAction的实现，点云其中的数据结构，可以参考第二篇，<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a></p>
+<p>简单地说，我们需要：</p>
+<ol>
+<li>用<code>Scan Angle Rank</code>，通过<code>getScalarFieldIndexByName()</code>获得扫描角度在标量域中的索引</li>
+<li>用索引，通过<code>getScalarField()</code>获得扫描角度标量域指针</li>
+<li>用指针，通过<code>getValue()</code>获得每个点的值</li>
+<li>比较扫描角度值与用户输入区间的大小，把合适的值存储起来</li>
+<li>把合适值封装成点云实体</li>
+<li>显示在界面上</li>
+</ol>
+<p>大体的算法思路上是没有问题的，但是有个纠结的地方，就是是否使用进度条。</p>
+<p>实测SAF处理一个雷达文件，</p>
+<ul>
+<li>使用进度条耗时：129.1s</li>
+<li>不用进度条耗时：3.5s</li>
+</ul>
+<p>这种压倒性的差距让我果断砍掉真·进度条，没错！我使用假·进度条，就是不会动的进度条。</p>
+<p>这样短时间的处理使用假·进度条，既不会降低处理速度，也不会降低用户体验~</p>
+<p>下面就是完整代码，注释中有真·进度条的实现（<code>[进度条]</code>），但不推荐使用</p>
+<pre><code>void qSAF::doAction()
+{
+    //当插件加载时，m_app应该已经被CC初始化了
+    assert(m_app);
+    if (!m_app)
+        return;
+
+    //获取选择的实体
+    const ccHObject::Container&amp; selectedEntities = m_app-&gt;getSelectedEntities();
+    //获取选择的实体数量
+    size_t selNum = selectedEntities.size();
+    //确保只选择一个实体
+    if (selNum != 1)
+    {
+        m_app-&gt;dispToConsole(&quot;[SAF] Select only one cloud!&quot;, ccMainAppInterface::ERR_CONSOLE_MESSAGE);
+        return;
+    }
+
+    ccHObject* ent = selectedEntities[0];
+    assert(ent);
+    //确保选择的实体是POINT_CLOUD类型
+    if (!ent || !ent-&gt;isA(CC_TYPES::POINT_CLOUD))
+    {
+        m_app-&gt;dispToConsole(&quot;[SAF] Select a real point cloud!&quot;, ccMainAppInterface::ERR_CONSOLE_MESSAGE);
+        return;
+    }
+
+    //从选择的实体中转换成ccPointCloud*类型
+    ccPointCloud* pc = static_cast&lt;ccPointCloud*&gt;(ent);
+
+    //获取点云的数量m_count
+    unsigned count = pc-&gt;size();
+
+    //初始化阈值变量
+    static double threshold_1 = 20;
+    static double threshold_2 = 70;
+    double threshold_temp = 0;
+
+    //显示插件ui窗体
+    {
+        ccSAFDlg safDlg(m_app-&gt;getMainWindow());
+        safDlg.doubleSpinBox_1-&gt;setValue(threshold_1);
+        safDlg.doubleSpinBox_2-&gt;setValue(threshold_2);
+
+        if(!safDlg.exec())
+        {
+            return;
+        }
+
+        //存储阈值
+        threshold_1 = safDlg.doubleSpinBox_1-&gt;value();
+        threshold_2 = safDlg.doubleSpinBox_2-&gt;value();
+    }
+
+    //显示进度条窗体
+    QProgressDialog pDlg;
+    pDlg.setWindowTitle(&quot;SAF&quot;);
+    pDlg.setLabelText(QString(&quot;Scan Angle Filter\nfrom %1 to %2&quot;).arg(threshold_1).arg(threshold_2));
+    //[进度条]设置进度条总范围
+    //pDlg.setRange(0, count);
+    pDlg.setCancelButton(0);
+    pDlg.show();
+    QApplication::processEvents();
+
+    QElapsedTimer timer;
+    //计时开始
+    timer.start();
+
+    ScalarType scanAngle;
+
+    CCLib::ReferenceCloud rangeAnglerc(pc);
+
+    //确保 threshold_1 小于 threshold_2
+    if(threshold_1 &gt; threshold_2)
+    {
+        threshold_temp = threshold_1;
+        threshold_1 = threshold_2;
+        threshold_2 = threshold_temp;
+    }
+
+    //[进度条]进度条的取消SAF按钮
+    //bool wasCancelled = false;
+
+    //获取 Scan Angle Rank 的索引
+    int scanAngleSFIndex = pc-&gt;getScalarFieldIndexByName(&quot;Scan Angle Rank&quot;);
+
+    //[重点]遍历每个点的操作
+    for(unsigned i = 0; i &lt; count; ++i)
+    {
+        //获取每个点的扫描角度
+        scanAngle = pc-&gt;getScalarField(scanAngleSFIndex)-&gt;getValue(i);
+
+        //取扫描角度的绝对值
+        if(scanAngle &lt; 0)
+        {
+            scanAngle = -scanAngle;
+        }
+
+        //如果扫描角度在给定的阈值范围，则添加它的索引到参考云
+        if(threshold_1 &lt;= scanAngle &amp;&amp; scanAngle &lt;= threshold_2)
+        {
+            rangeAnglerc.addPointIndex(i);
+        }
+
+//        //[进度条]重置进度条
+//        pDlg.setValue(i);
+//        QCoreApplication::processEvents();
+
+//        //[进度条]取消SAF处理
+//        if (pDlg.wasCanceled())
+//        {
+//            wasCancelled = true;
+//            break;
+//        }
+    }
+
+    //把 ReferenceCloud 类型克隆成 ccPointCloud 类型
+    ccPointCloud* rangeAnglepc = pc-&gt;partialClone(&amp;rangeAnglerc);
+
+    //判断rangeAnglepc是否为空，即所选范围内是否有点
+    if(!rangeAnglepc)
+    {
+        m_app-&gt;dispToConsole(&quot;[SAF] Failed to extract the range angle subset.&quot;, ccMainAppInterface::ERR_CONSOLE_MESSAGE);
+        return;
+    }
+    //计算SAF后点数所占的百分比和SAF过程所花的时间
+    m_app-&gt;dispToConsole(QString(&quot;[SAF] %1% of scan angle points are filtered&quot;).arg((rangeAnglerc.size() * 100.0) / count, 0, &apos;f&apos;, 2), ccMainAppInterface::STD_CONSOLE_MESSAGE);
+    m_app-&gt;dispToConsole(QString(&quot;[SAF] Timing: %1 s.&quot;).arg(timer.elapsed() / 1000.0, 0, &apos;f&apos;, 1), ccMainAppInterface::STD_CONSOLE_MESSAGE);
+
+    //关闭进度条
+    pDlg.close();
+    QApplication::processEvents();
+
+//        //[进度条]取消SAF    
+//    if (wasCancelled)
+//    {
+//        m_app-&gt;dispToConsole(&quot;[SAF] SAF was cancelled&quot;, ccMainAppInterface::STD_CONSOLE_MESSAGE);
+//        return;
+//    }
+
+    //隐藏原始点云
+    pc-&gt;setEnabled(false);
+
+    //添加新的一组DB实体
+    ccHObject* cloudContainer = new ccHObject(pc-&gt;getName() + QString(&quot;_saf&quot;));
+
+    //设置新点云并添加到实体
+    rangeAnglepc-&gt;setVisible(true);
+    rangeAnglepc-&gt;setName(&quot;SAF Point Cloud&quot;);
+    cloudContainer-&gt;addChild(rangeAnglepc);
+
+    //添加实体到DB树
+    m_app-&gt;addToDB(cloudContainer);
+
+    //刷新
+    m_app-&gt;refreshAll();
+  }
+</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/SAFDemo.jpg" width="99%"></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>经过了三篇的学习，终于实现了个完整的插件。</p>
+<p>回顾我们学习的路线：<strong>插件框架</strong> -&gt; <strong>数据结构</strong> -&gt; <strong>算法实现</strong></p>
+<p>我们不仅从中学会了CC插件的编写，也学到了QT的pro文件编写、QT界面设计、CC运作流程、点云数据结构等。</p>
+<p>而我在学习这个插件编写的过程收获更多，因为我是看代码两个月，写代码两小时，Debug两天（差不多啦~不要纠结为什么222~）</p>
+<p>看代码的过程是非常痛苦的，CC里面大量的模板编程思想，接口设计思想，还有去他继承谁爸爸的爸爸……</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/biaoqing1.gif" alt=""></p>
+<p>但是期间确实学到很多，以此作为分享，望共勉！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是&lt;a href=&quot;http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这是第三篇，&lt;strong&gt;算法实现篇&lt;/strong&gt;，你可以根据本文改成自己的插件，待卿临幸。&lt;/p&gt;
+&lt;p&gt;qSAF源码：&lt;a href=&quot;https://github.com/huihut/qSAF&quot;&gt;Github . qSAF&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前文概要&quot;&gt;&lt;a href=&quot;#前文概要&quot; class=&quot;headerlink&quot; title=&quot;前文概要&quot;&gt;&lt;/a&gt;前文概要&lt;/h2&gt;&lt;p&gt;在上回中，我们知道了点云中扫描角度的存储结构，下面我们来讲qSAF的具体实现。&lt;/p&gt;
+&lt;h2 id=&quot;UI界面&quot;&gt;&lt;a href=&quot;#UI界面&quot; class=&quot;headerlink&quot; title=&quot;UI界面&quot;&gt;&lt;/a&gt;UI界面&lt;/h2&gt;&lt;p&gt;新建QT设计器界面类，命名为&lt;code&gt;ccSAFDlg&lt;/code&gt;，在&lt;code&gt;ccSAFDlg.ui&lt;/code&gt;文件设计简单的界面。&lt;/p&gt;
+&lt;p&gt;因为我们只需要一个范围，一个确认取消键，所以我把它弄成这样子：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+    
+      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+    
+      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QT的pro文件编写</title>
+    <link href="http://huihut.com/2017/04/26/QTProFile/"/>
+    <id>http://huihut.com/2017/04/26/QTProFile/</id>
+    <published>2017-04-26T10:48:31.000Z</published>
+    <updated>2017-04-26T12:47:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="常规pro文件"><a href="#常规pro文件" class="headerlink" title="常规pro文件"></a>常规pro文件</h2><p>下面是CloudCompare中一个自己写的插件的pro文件，</p>
+<p>pro文件编写可按照如下方式写。</p>
+<a id="more"></a>
+<pre><code># 添加QT的模块
+QT  +=  widgets \
+    opengl
+
+# 指明让qmake生成哪种makefile文件，app表示应用程序，lib表示库
+TEMPLATE = lib
+
+# 指明生成的库的名字
+TARGET = qSAF
+
+# 指明编译依赖路径
+DEPENDPATH += .\
+
+# 包含头文件路径
+INCLUDEPATH += .\
+            $$PWD/../
+
+# 工程的头文件路径
+HEADERS += qSAF.h \
+           ../ccStdPluginInterface.h \
+           ../ccPluginInterface.h \
+           ../ccMainAppInterface.h \
+        ccSAFDlg.h
+
+# 工程的源文件路径
+SOURCES += qSAF.cpp ../ccStdPluginInterface.cpp \
+        ccSAFDlg.cpp
+
+# 工程的资源文件路径
+RESOURCES += qSAF.qrc
+
+#CC (CloudCompare核心算法库路径)
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Release/libs/ -lCC_CORE_LIB
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Release/libs/ -lCC_CORE_LIB
+else:unix: LIBS += -L$$PWD/../../../Release/libs/ -lCC_CORE_LIB
+
+# 包含CC的头文件路径
+INCLUDEPATH += $$PWD/../../CC/include
+# 包含CC的依赖路径
+DEPENDPATH += $$PWD/../../CC
+
+#qCC_db (CloudCompare数据库路径)
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Release/libs/ -lQCC_DB_LIB
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Release/libs/ -lQCC_DB_LIB
+else:unix: LIBS += -L$$PWD/../../../Release/libs/ -lQCC_DB_LIB
+
+INCLUDEPATH += $$PWD/../../libs/qCC_db
+DEPENDPATH += $$PWD/../../libs/qCC_db
+
+# 工程的ui文件路径
+FORMS += \
+        SAFDlg.ui
+
+# Mac系统下，则执行括号内的代码
+macx
+{
+# 编译时候指定libs查找位置
+QMAKE_LFLAGS_RELEASE += -Wl,-rpath,$$PWD/../../../Release/libs -Wl
+QMAKE_LFLAGS_DEBUG += -Wl,-rpath,$$PWD/../../../Release/libs -Wl
+
+#指定生成路径
+DESTDIR = $$PWD/../../../Release/CloudCompare.app/Contents/plugins
+}
+
+# Mac外的其他Unix系统下(Linux)，则执行括号内的代码
+unix:!macx{
+# linux only
+
+# 编译时候指定libs查找位置
+QMAKE_LFLAGS_RELEASE += -Wl,-rpath=$$PWD/../../../Release/libs -Wl,-Bsymbolic
+QMAKE_LFLAGS_DEBUG += -Wl,-rpath=$$PWD/../../../Release/libs -Wl,-Bsymbolic
+
+#指定生成路径
+DESTDIR = $$PWD/../../../Release/plugins
+}
+
+# Windows系统下，则执行括号内的代码
+win32 {
+# windows only
+
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;常规pro文件&quot;&gt;&lt;a href=&quot;#常规pro文件&quot; class=&quot;headerlink&quot; title=&quot;常规pro文件&quot;&gt;&lt;/a&gt;常规pro文件&lt;/h2&gt;&lt;p&gt;下面是CloudCompare中一个自己写的插件的pro文件，&lt;/p&gt;
+&lt;p&gt;pro文件编写可按照如下方式写。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+    
+      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++ IO 库条件状态及EOF</title>
+    <link href="http://huihut.com/2017/04/15/CppConditionStateAndEOF/"/>
+    <id>http://huihut.com/2017/04/15/CppConditionStateAndEOF/</id>
+    <published>2017-04-15T04:12:24.000Z</published>
+    <updated>2017-04-17T11:15:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文本文件判空问题"><a href="#文本文件判空问题" class="headerlink" title="文本文件判空问题"></a>文本文件判空问题</h2><p>对于空文本文件的判断问题引起了我对 IO 库中条件状态和 EOF 的探究。</p>
+<p>就是这段程序：</p>
+<pre><code>int vehicle_number;
+fstream infile;
+infile.open(&quot;vehicle.txt&quot;, ios::in);
+if(infile.is_open())
+{
+    while(!infile.eof())
+    {
+        infile &gt;&gt; vehicle_number;
+        ......
+
+    }
+    infile.close();
+}
+</code></pre><p>它可以打开空文本文件并运行到 <code>while(!infile.eof())</code> 循环里面。由于是空文本文件，它进入里面会造成一些问题，所以需要对文件进行判空。</p>
+<a id="more"></a>
+<h2 id="EOF"><a href="#EOF" class="headerlink" title="EOF"></a>EOF</h2><p>EOF（End Of File） 常用于：</p>
+<ul>
+<li>文件结束标志</li>
+<li>函数出错的返回值</li>
+</ul>
+<p>在 C++ IO 库中可用作：</p>
+<ul>
+<li>条件状态的判定</li>
+</ul>
+<p>现在让我们看看 IO 库中的描述。</p>
+<h2 id="IO-库条件状态"><a href="#IO-库条件状态" class="headerlink" title="IO 库条件状态"></a>IO 库条件状态</h2><p>【表一】IO 库条件状态</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strm::iostate</td>
+<td>strm是一种IO类型。iostream是一种机器相关的整型提供了表达条件状态的完整功能</td>
+</tr>
+<tr>
+<td>strm::badbit</td>
+<td>strm::badbit用来指出流已崩溃</td>
+</tr>
+<tr>
+<td>strm::failbit</td>
+<td>strm::failbit用来指出一个IO操作失败了</td>
+</tr>
+<tr>
+<td>strm::eofbit</td>
+<td>strm::eofbit用来指出流达到了文件结束</td>
+</tr>
+<tr>
+<td>strm::goodbit</td>
+<td>strm::goodbit用来指出流未处于错误状态。此值保证为零</td>
+</tr>
+<tr>
+<td>s.eof()</td>
+<td>流 s 的 eofbit 置位，则返回 true</td>
+</tr>
+<tr>
+<td>s.fail()</td>
+<td>流 s 的 failbit 或 badbit 置位，则返回 true</td>
+</tr>
+<tr>
+<td>s.bad()</td>
+<td>流 s 的 badbit 置位，则返回 true</td>
+</tr>
+<tr>
+<td>s.good()</td>
+<td>若流 s 处于有效状态，则返回 true</td>
+</tr>
+<tr>
+<td>s.clear()</td>
+<td>将流 s 中的所有条件状态位复位，将流的状态设置为有效。返回void</td>
+</tr>
+<tr>
+<td>s.clear(flag)</td>
+<td>根据给定的 flags 标志位，将流 s 中对于条件状态位复位。 flag 的类型是strm::iostate。返回 void</td>
+</tr>
+<tr>
+<td>s.setstate(flag)</td>
+<td>根据给定的 flags 标志位，将流 s 中对于条件状态位置位。 flag 的类型是strm::iostate。返回 void</td>
+</tr>
+<tr>
+<td>s.rdstate()</td>
+<td>返回流 s 的当前条件，返回值类型为 strm::iostate</td>
+</tr>
+</tbody>
+</table>
+<p>【表二】四种条件状态</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+<th>数值</th>
+<th>good()</th>
+<th>eof()</th>
+<th>bad()</th>
+<th>fail()</th>
+<th>rdstate()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ios::goodbit</td>
+<td>流状态完全正常</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>goodbit</td>
+</tr>
+<tr>
+<td>ios::eofbit</td>
+<td>已达到文件结束</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>eofbit</td>
+</tr>
+<tr>
+<td>ios::badbit</td>
+<td>输入（输出）流出现非致命错误，可挽回</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>badbit</td>
+</tr>
+<tr>
+<td>ios::failbit</td>
+<td>输入（输出）流出现致命错误，不可挽回</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>failbit</td>
+</tr>
+</tbody>
+</table>
+<p>我们先看【表一】的关于 EOF 的这两行：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strm::eofbit</td>
+<td>strm::eofbit用来指出流达到了文件结束</td>
+</tr>
+<tr>
+<td>s.eof()</td>
+<td>流 s 的 eofbit 置位，则返回 true</td>
+</tr>
+</tbody>
+</table>
+<p>这里指出当流读到文件结束时，<code>eofbit</code> 置 <code>1</code> ，用于标识读取到文件的末尾。</p>
+<p>而 <code>eof()</code> 是当 <code>eofbit</code> 置位（置 <code>1</code>）时才返回，并不是读到文件末尾就返回。</p>
+<p><strong>所以使用 <code>eof()</code> 读取文件，读到结束标志 <code>EOF</code> 时不会立刻返回 <code>true</code>，只是 <code>eofbit</code> 置位，下次调用 <code>eof()</code> 才返回 <code>true</code>。</strong></p>
+<h2 id="文本文件判空问题的解释"><a href="#文本文件判空问题的解释" class="headerlink" title="文本文件判空问题的解释"></a>文本文件判空问题的解释</h2><p>现在就可以解释最初的问题了，让我们回过头看看。</p>
+<p>当程序第一次运行到 <code>while(!infile.eof())</code> 时，<code>infile.eof()</code> 读到文件末尾的 <code>EOF</code>，但并不是立刻返回 <code>true</code>，只是 <code>eofbit</code> 置位，所以 <code>infile.eof()</code> 还是 <code>false</code> 的状态，所以会进入 <code>while</code> 循环。</p>
+<h2 id="文本文件判空问题的解决"><a href="#文本文件判空问题的解决" class="headerlink" title="文本文件判空问题的解决"></a>文本文件判空问题的解决</h2><ul>
+<li><p>把流对象状态当做条件使用</p>
+<pre><code>if(infile.is_open())
+{
+    while(infile &gt;&gt; vehicle_number)
+    {
+        ......
+    }
+}
+</code></pre></li>
+<li><p>使用 <code>peek()</code></p>
+<p>  <code>istream::peek()</code> 用于读取并返回流的下一个字符（返回值为 <code>char</code> 类型），但并不读取该字符到输入流中，即流指针依然指向原来位置，并不后移。</p>
+<pre><code>if(infile.is_open())
+{
+       while(infile.peek() != EOF)
+    {
+        infile &gt;&gt; vehicle_number;
+        ......
+    }
+}
+</code></pre></li>
+</ul>
+<h2 id="重复读入非空文本文件最后一个字符问题"><a href="#重复读入非空文本文件最后一个字符问题" class="headerlink" title="重复读入非空文本文件最后一个字符问题"></a>重复读入非空文本文件最后一个字符问题</h2><p>经过上面的解释，我们已经知道了文本文件如何判空。但由于 EOF 的锅，若用 <code>while(!infile.eof())</code> 还会导致重复读入非空文本文件最后一个字符的问题。</p>
+<p>看下面这段代码：</p>
+<pre><code>char c;
+fstream infile;
+infile.open(&quot;test.txt&quot;, ios::in);
+
+if(infile.is_open())
+{
+    while(!infile.eof())
+    {
+        infile &gt;&gt; c;
+        cout &lt;&lt; c;
+    }
+}
+infile.close();
+</code></pre><p>和文本文件判空问题的代码相似，只是读入字符存储到 <code>char</code> 类型变量中，并把其输出。</p>
+<p>然后我们在 <code>test.txt</code> 中保存 <code>abc</code> 这三个字符。</p>
+<p>运行的结果是：</p>
+<pre><code>abcc
+</code></pre><p>即 <code>while(!infile.eof())</code> 重复执行了最后一趟，多输入了字符 <code>c</code> 。</p>
+<p>这个问题和文本文件判空问题的解决办法一样，都是使用 <code>peek()</code> 或者把流对象当做 <code>while</code> 的条件来解决。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>使用 <code>eof()</code> 读取文件，读到结束标志 <code>EOF</code> 时不会立刻返回 <code>true</code>，只是 <code>eofbit</code> 置位，下次调用 <code>eof()</code> 才返回 <code>true</code>。</li>
+<li>只有一个流处于无错状态时，我们才可以对它读写数据。因此代码通常应该在使用一个流之前检查它是否处于良好状态。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文本文件判空问题&quot;&gt;&lt;a href=&quot;#文本文件判空问题&quot; class=&quot;headerlink&quot; title=&quot;文本文件判空问题&quot;&gt;&lt;/a&gt;文本文件判空问题&lt;/h2&gt;&lt;p&gt;对于空文本文件的判断问题引起了我对 IO 库中条件状态和 EOF 的探究。&lt;/p&gt;
+&lt;p&gt;就是这段程序：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int vehicle_number;
+fstream infile;
+infile.open(&amp;quot;vehicle.txt&amp;quot;, ios::in);
+if(infile.is_open())
+{
+    while(!infile.eof())
+    {
+        infile &amp;gt;&amp;gt; vehicle_number;
+        ......
+
+    }
+    infile.close();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;它可以打开空文本文件并运行到 &lt;code&gt;while(!infile.eof())&lt;/code&gt; 循环里面。由于是空文本文件，它进入里面会造成一些问题，所以需要对文件进行判空。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos 7 挂载 NTFS 分区</title>
+    <link href="http://huihut.com/2017/03/29/Centos7NTFS/"/>
+    <id>http://huihut.com/2017/03/29/Centos7NTFS/</id>
+    <published>2017-03-29T12:02:35.000Z</published>
+    <updated>2017-03-30T07:03:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="NTFS-3G"><a href="#NTFS-3G" class="headerlink" title="NTFS-3G"></a>NTFS-3G</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 NTFS-3G 实现，可以挂载 NTFS，还可以挂载 HFS+ 等，以下是在 Centos 7 下安装 NTFS-3G 及挂载 NTFS 分区</p>
+<pre><code>wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+
+sudo yum update
+
+sudo yum install ntfs-3g
+</code></pre><h2 id="查看分区"><a href="#查看分区" class="headerlink" title="查看分区"></a>查看分区</h2><pre><code>fdisk -l
+</code></pre><a id="more"></a>
+<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><pre><code># d、e、f改成你想要挂的盘符名字
+mkdir /mnt/windows/d
+mkdir /mnt/windows/e
+mkdir /mnt/windows/f
+
+# d、e、f改成你想要挂的盘符名字，sdb3这些改为要挂的分区
+mount -t ntfs-3g /dev/sdb3 /mnt/windows/d
+mount -t ntfs-3g /dev/sdb4 /mnt/windows/e
+mount -t ntfs-3g /dev/sdb5 /mnt/windows/f
+</code></pre><h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><pre><code>umount /mnt
+</code></pre><h2 id="设置开机自动挂载"><a href="#设置开机自动挂载" class="headerlink" title="设置开机自动挂载"></a>设置开机自动挂载</h2><pre><code>sudo vim /etc/fstab
+
+#只读式挂载：
+/dev/sda1 /mnt/windows/c ntfs-3g ro,umask=0222,defaults 0 0
+
+#读写式挂载：
+/dev/sda1 /mnt/windows/c ntfs-3g rw,umask=0000,defaults 0 0
+#或者： 
+/dev/sda1 /mnt/windows/c ntfs-3g defaults 0 0
+</code></pre><h2 id="设置后开机无法启动（无法挂载）"><a href="#设置后开机无法启动（无法挂载）" class="headerlink" title="设置后开机无法启动（无法挂载）"></a>设置后开机无法启动（无法挂载）</h2><p>网上很多教程都是如上几步就好了~</p>
+<p>然而我的无法开机。</p>
+<p>如下图：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/centosNTFSError.jpeg" alt=""></p>
+<p>这样应该需要输入root密码，用root账户登录修复模式，</p>
+<p>然后 <code>vim /etc/fstab</code> 删除刚刚添加的东西，</p>
+<p><code>reboot</code> 就能进入系统了</p>
+<p>所以之前之前忙活的都没用了？</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/biaoqing1.gif" alt=""></p>
+<p>后来试了下原来</p>
+<pre><code>mount -t ntfs-3g /dev/sdb3 /mnt/windows/d
+</code></pre><p>这句本身就无法挂载！</p>
+<p>然后可以通过</p>
+<pre><code>sudo mount -o ro /dev/sdb3 /mnt/windows/d
+</code></pre><p>挂载，但是只能通过终端访问，就是下面这个👇</p>
+<h2 id="其他问题无法挂载的解决办法"><a href="#其他问题无法挂载的解决办法" class="headerlink" title="其他问题无法挂载的解决办法"></a>其他问题无法挂载的解决办法</h2><p>实现了只能在终端访问</p>
+<pre><code>#创建挂载点
+mkdir /mnt/windows/d
+mkdir /mnt/windows/e
+mkdir /mnt/windows/f
+
+#挂载分区
+sudo mount -o ro /dev/sdb3 /mnt/windows/d
+sudo mount -o ro /dev/sdb4 /mnt/windows/e
+sudo mount -o ro /dev/sdb5 /mnt/windows/f
+
+#添加上面挂载分区到这里面
+sudo vim /etc/rc.d/rc.local 
+
+#更改权限
+chmod +x /etc/rc.d/rc.local
+</code></pre><h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><p><a href="http://www.cnblogs.com/gbyukg/archive/2011/11/02/2232343.html" target="_blank" rel="external">http://www.cnblogs.com/gbyukg/archive/2011/11/02/2232343.html</a></p>
+<p><a href="http://www.jianshu.com/p/f578b575fcaa" target="_blank" rel="external">http://www.jianshu.com/p/f578b575fcaa</a></p>
+<p><a href="http://askubuntu.com/questions/462381/cant-mount-ntfs-drive-the-disk-contains-an-unclean-file-system" target="_blank" rel="external">http://askubuntu.com/questions/462381/cant-mount-ntfs-drive-the-disk-contains-an-unclean-file-system</a></p>
+<p><a href="https://www.techbrown.com/mount-ntfs-file-system-centos-7-rhel-7.shtml" target="_blank" rel="external">https://www.techbrown.com/mount-ntfs-file-system-centos-7-rhel-7.shtml</a>  </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;NTFS-3G&quot;&gt;&lt;a href=&quot;#NTFS-3G&quot; class=&quot;headerlink&quot; title=&quot;NTFS-3G&quot;&gt;&lt;/a&gt;NTFS-3G&lt;/h1&gt;&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;使用 NTFS-3G 实现，可以挂载 NTFS，还可以挂载 HFS+ 等，以下是在 Centos 7 下安装 NTFS-3G 及挂载 NTFS 分区&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+
+sudo yum update
+
+sudo yum install ntfs-3g
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;查看分区&quot;&gt;&lt;a href=&quot;#查看分区&quot; class=&quot;headerlink&quot; title=&quot;查看分区&quot;&gt;&lt;/a&gt;查看分区&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;fdisk -l
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下QT编译输出路径错误：ld unknown option ...</title>
+    <link href="http://huihut.com/2017/03/26/MacQTCompilerOutputPathError/"/>
+    <id>http://huihut.com/2017/03/26/MacQTCompilerOutputPathError/</id>
+    <published>2017-03-25T18:30:47.000Z</published>
+    <updated>2017-03-25T18:38:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ERROR-ld-unknown-option-rpath"><a href="#ERROR-ld-unknown-option-rpath" class="headerlink" title="ERROR: ld unknown option rpath"></a>ERROR: ld unknown option rpath</h2><p>Mac指定qmake的生成路径时，用 <code>-Wl,-rpath,$$PWD/..</code> 而不是 <code>-Wl,-rpath=$$PWD/..</code> 如下：</p>
+<pre><code>macx{
+# linux only
+
+# 编译时候指定libs查找位置
+QMAKE_LFLAGS_RELEASE += -Wl,-rpath,$$PWD/../../Release/libs -Wl
+QMAKE_LFLAGS_DEBUG += -Wl,-rpath,$$PWD/../../Release/libs -Wl
+
+# 指定生成路径
+DESTDIR = $$PWD/../../Release
+}
+</code></pre><p>Linux则用 <code>-Wl,-rpath=$$PWD/..</code></p>
+<pre><code>unix:!macx{
+# linux only
+
+# 编译时候指定libs查找位置
+QMAKE_LFLAGS_RELEASE += -Wl,-rpath=$$PWD/../../Release/libs -Wl,-Bsymbolic
+QMAKE_LFLAGS_DEBUG += -Wl,-rpath=$$PWD/../../Release/libs -Wl,-Bsymbolic
+
+# 指定生成路径
+DESTDIR = $$PWD/../../Release/libs
+
+}
+</code></pre><a id="more"></a>
+<h2 id="ERROR-ld-unknown-option-Bsymbolic"><a href="#ERROR-ld-unknown-option-Bsymbolic" class="headerlink" title="ERROR: ld unknown option Bsymbolic"></a>ERROR: ld unknown option Bsymbolic</h2><p>Mac 不支持<code>-Bsymbolic</code>，所以不能这样：</p>
+<pre><code>QMAKE_LFLAGS_RELEASE += -Wl,-rpath,$$PWD/../../Release/libs -Wl,-Bsymbolic
+</code></pre><p>应该删去<code>-Bsymbolic</code>，如下：</p>
+<pre><code>QMAKE_LFLAGS_RELEASE += -Wl,-rpath,$$PWD/../../Release/libs -Wl
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;ERROR-ld-unknown-option-rpath&quot;&gt;&lt;a href=&quot;#ERROR-ld-unknown-option-rpath&quot; class=&quot;headerlink&quot; title=&quot;ERROR: ld unknown option rpath&quot;&gt;&lt;/a&gt;ERROR: ld unknown option rpath&lt;/h2&gt;&lt;p&gt;Mac指定qmake的生成路径时，用 &lt;code&gt;-Wl,-rpath,$$PWD/..&lt;/code&gt; 而不是 &lt;code&gt;-Wl,-rpath=$$PWD/..&lt;/code&gt; 如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;macx{
+# linux only
+
+# 编译时候指定libs查找位置
+QMAKE_LFLAGS_RELEASE += -Wl,-rpath,$$PWD/../../Release/libs -Wl
+QMAKE_LFLAGS_DEBUG += -Wl,-rpath,$$PWD/../../Release/libs -Wl
+
+# 指定生成路径
+DESTDIR = $$PWD/../../Release
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux则用 &lt;code&gt;-Wl,-rpath=$$PWD/..&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;unix:!macx{
+# linux only
+
+# 编译时候指定libs查找位置
+QMAKE_LFLAGS_RELEASE += -Wl,-rpath=$$PWD/../../Release/libs -Wl,-Bsymbolic
+QMAKE_LFLAGS_DEBUG += -Wl,-rpath=$$PWD/../../Release/libs -Wl,-Bsymbolic
+
+# 指定生成路径
+DESTDIR = $$PWD/../../Release/libs
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+    
+      <category term="QT" scheme="http://huihut.com/tags/QT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos 7 设置开机自动联网</title>
+    <link href="http://huihut.com/2017/03/25/Centos7Networking/"/>
+    <id>http://huihut.com/2017/03/25/Centos7Networking/</id>
+    <published>2017-03-25T02:59:48.000Z</published>
+    <updated>2017-03-25T07:11:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>ls /etc/sysconfig/network-scripts/
+
+# 找到ifcfg-e`npxxx`，如我的是`rk-scripts`
+
+sudo vim /etc/sysconfig/network-scripts/ifcfg-enp4s0
+
+# 一般文件里面有下面这些 
+TYPE=Ethernet
+BOOTPROTO=dhcp
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=enp4s0
+UUID=4d0c8a3a-50bf-497a-9b04-f5fba085ef08
+DEVICE=enp4s0
+ONBOOT=no
+
+# 把`ONBOOT=no`该为`  ONBOOT=yes`，保存即可。
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;ls /etc/sysconfig/network-scripts/
+
+# 找到ifcfg-e`npxxx`，如我的是`rk-scripts`
+
+sudo vim /etc/sysconfig/network-scripts/ifcfg-enp4s0
+
+# 
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Shadowsocks-Qt5 For Centos 7</title>
+    <link href="http://huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/"/>
+    <id>http://huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/</id>
+    <published>2017-03-25T02:41:40.000Z</published>
+    <updated>2017-03-25T07:16:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>If you use the traditional <code>yum</code> package management tool, </p>
+<p>you need to download the appropriate version of the <code>repo</code> file from the <a href="https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/" target="_blank" rel="external">Copr</a> to <code>/etc/yum.repos.d/</code>, </p>
+<p>and then install through <code>yum</code>.</p>
+<p>As follows:</p>
+<pre><code># Centos 7
+wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo
+
+sudo mv librehat-shadowsocks-epel-7.repo /etc/yum.repos.d/
+
+sudo yum update
+sudo yum install -y shadowsocks-qt5
+</code></pre><a id="more"></a>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p> Explanation of the fields:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td>the address your server listens</td>
+</tr>
+<tr>
+<td>server_port</td>
+<td>server port</td>
+</tr>
+<tr>
+<td>local_address</td>
+<td>the address your local listens</td>
+</tr>
+<tr>
+<td>local_port</td>
+<td>local port</td>
+</tr>
+<tr>
+<td>password</td>
+<td>password used for encryption</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>in seconds</td>
+</tr>
+<tr>
+<td>method</td>
+<td>default: “aes-256-cfb”, see Encryption</td>
+</tr>
+<tr>
+<td>fast_open</td>
+<td>use TCP_FASTOPEN, true / false</td>
+</tr>
+<tr>
+<td>workers</td>
+<td>number of workers, available on Unix/Linux</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p>Go to <code>Settings</code>-<code>Network</code>-<code>Network proxy</code>, <strong>turn on proxy</strong>.</p>
+<p>Use the <code>sock</code> proxy</p>
+<p>local_address:    the address your local listens (default:<code>1080</code>)</p>
+<p>local_port:    local portocal (default:<code>127.0.0.1</code>)</p>
+<p>Have fun!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Install&quot;&gt;&lt;a href=&quot;#Install&quot; class=&quot;headerlink&quot; title=&quot;Install&quot;&gt;&lt;/a&gt;Install&lt;/h2&gt;&lt;p&gt;If you use the traditional &lt;code&gt;yum&lt;/code&gt; package management tool, &lt;/p&gt;
+&lt;p&gt;you need to download the appropriate version of the &lt;code&gt;repo&lt;/code&gt; file from the &lt;a href=&quot;https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/&quot;&gt;Copr&lt;/a&gt; to &lt;code&gt;/etc/yum.repos.d/&lt;/code&gt;, &lt;/p&gt;
+&lt;p&gt;and then install through &lt;code&gt;yum&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Centos 7
+wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo
+
+sudo mv librehat-shadowsocks-epel-7.repo /etc/yum.repos.d/
+
+sudo yum update
+sudo yum install -y shadowsocks-qt5
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Shadowsocks" scheme="http://huihut.com/tags/Shadowsocks/"/>
+    
+      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CloudCompare功能概要</title>
+    <link href="http://huihut.com/2017/03/21/CloudCompareFunction/"/>
+    <id>http://huihut.com/2017/03/21/CloudCompareFunction/</id>
+    <published>2017-03-21T11:28:31.000Z</published>
+    <updated>2017-04-06T10:04:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="File"><a href="#File" class="headerlink" title="File"></a>File</h2><ul>
+<li>open：打开</li>
+<li>save：保存</li>
+<li>Global Shift settings：设置最大绝对坐标，最大实体对角线</li>
+<li>Primitive Factory：对点云进行原始加工，改变原始点云的形状</li>
+<li>3D mouse：对3D鼠标（如3Dconnexion）的支持</li>
+<li>Close all：关闭所有打开的实体</li>
+<li>Quit：退出</li>
+</ul>
+<a id="more"></a>
+<h2 id="Edit："><a href="#Edit：" class="headerlink" title="Edit："></a>Edit：</h2><ul>
+<li>Clone：克隆选中的点云</li>
+<li>Merge：合并两个或者多个实体。可以合并点云（原始云会被删除）；可以合并网格（原始网不会修改，CC会创建一个新的网格结构）</li>
+<li>Subsample：采集原始点云的子样本，可以用随机、立体、基于八叉树的方式采集，子样本会保持原始点云的标量、颜色、法线等性质。</li>
+<li>Apply Transformation：可以对选中的实体做变换（4*4矩阵、轴线角，欧拉角）</li>
+<li>Multiply / Scale：让选中实体的坐标倍增。</li>
+<li>Translate / Rotate (Interactive Transformation Tool)：可以相对于另外一个实体或者坐标系移动选中的实体</li>
+<li>Segment (Interactive Segmentation Tool)：通过画2D多边形分隔选中的实体</li>
+<li>Crop：分割一个或多个在3D-Box里面的点云。</li>
+<li>Edit global shift and scale：进行全局变换和和比例缩放。</li>
+<li>Toggle (recursive)：用于控制键盘的快捷键。</li>
+<li>Delete：删除选中的实体。</li>
+<li>Colors &gt; Set Unique：为所选实体设置唯一一个的颜色</li>
+<li>Colors &gt; Colorize：为所选实体着色，具体表现为分别用所选颜色乘以当前颜色的RGB而得到新的颜色</li>
+<li>Colors &gt; Levels：通过调整颜色的柱形图变色，类似于Photoshop的Levels方法</li>
+<li>Colors &gt; Height Ramp：为所选实体设置颜色渐变（线形、梯形、环形）</li>
+<li>Colors &gt; Convert to Scalar Field：将当前的 RGB 颜色字段转换为一个或几个标量字段</li>
+<li>Colors &gt; Interpolate from another entity：在所选实体中插入另外一个实体的颜色</li>
+<li>Colors &gt; Clear：移除所选实体的颜色域</li>
+<li>Normals &gt; Compute：计算所选实体的法线</li>
+<li>Normals &gt; Invert：反转所选实体的法线</li>
+<li>Normals &gt; Orient Normals &gt; With Minimum Spanning Tree：用同样的方法重新定位点云的全部法线（最小生成树）</li>
+<li>Normals &gt; Orient Normals &gt; With Fast Marching：用同样的方法重新定位点云的全部法线（快速行进法）</li>
+<li>Normals &gt; Convert to &gt; HSV：将云的法线转换到 HSV 颜色字段</li>
+<li>Normals &gt; Convert to &gt; Dip and Dip direction SFs：转换点云的法线到两个标量域</li>
+<li>Normals &gt; Clear：为选定的实体移除法线</li>
+<li>Octree &gt; Compute：强制计算给定实体的八叉树</li>
+<li>Octree &gt; Resample：通过代替每个八叉树单元内的所有点来重新取样</li>
+<li>Mesh &gt; Delaunay 2.5D (XY plane)：计算点云在xy平面上的2.5D三角剖分（Delaunay 2.5D triangulation，德洛内2.5D三角算法）</li>
+<li>Mesh &gt; Delaunay 2.5D (best fit plane)：计算点云在最佳平面的2.5D三角剖分（Delaunay 2.5D triangulation，德洛内2.5D三角算法）</li>
+<li>Mesh &gt; Convert texture/material to RGB：将选定网格的网格材料和纹理信息转换为逐个点的 RGB 字段</li>
+<li>Mesh &gt; Sample points：在一个网格中随机取样</li>
+<li>Mesh &gt; Smooth (Laplacian)：平滑一个网格（Laplacian smoothing，拉普拉斯平滑算法）</li>
+<li>Mesh &gt; Subdivide：细分网格，此算法递归细分网格三角形，直到他们的表面细分到用户指定值之下。</li>
+<li>Mesh &gt; Measure surface：测量网格的总体表面积和每个三角形的平均表面积，在控制台输出</li>
+<li>Mesh &gt; Measure volume：测量闭合网格的体积，在控制台输出</li>
+<li>Mesh &gt; Flag vertices：检查网格的基本特性，为每个网格样本做标志：0 = normal，1 = border，2 = non-manifold</li>
+<li>Mesh &gt; Scalar field &gt; Smooth：平滑网格顶点相关联的标量场。此方法与高斯滤波（Gaussian Filter）相反。运用qPCV插件后，此方法特别有用</li>
+<li>Mesh &gt; Scalar field &gt; Enhance：增强与网格顶点相关联的标量场。运用qPCV插件后，此方法特别有用</li>
+<li>Sensors &gt; Edit：修改指定传感器内外在参数</li>
+<li>Sensors &gt; Ground Based Lidar &gt; Create：创建’Ground Based Lidar’ (= TLS)传感器实体，附加到所选的点云</li>
+<li>Sensors &gt; Ground Based Lidar &gt; Show Depth Buffer：显示选中的Ground Based Lidar的深度</li>
+<li>Sensors &gt; Ground Based Lidar &gt; Export Depth Buffer：以ASCII文件的形式导出选中的Ground Based Lidar传感器的深度图</li>
+<li>Sensors &gt; Camera Sensor &gt; Create：创建影像传感器</li>
+<li>Sensors &gt; Camera Sensor &gt; Project uncertainty：输出影像模块不确定的点云，输出不确定的x、y、z、3D信息</li>
+<li>Sensors &gt; Camera Sensor &gt; Compute points visibility (with octree)：统计选中影像传感器选中的点云。0=NOT VISIBLE，1=VISIBLE</li>
+<li>Sensors &gt; View from sensor：更改当前的 3D 视图影像设置以匹配选定的传感器的设置 （用泡沫视图模式）</li>
+<li>Sensors &gt; Compute ranges：计算全部点（对于任何点云）相对于指定传感器的范围</li>
+<li>Sensors &gt; Compute scattering angles：计算全部点（对于任何有法线的云）相对于选中传感器分散的角度</li>
+<li>Scalar fields &gt; Show histogram：对当前选中的实体显示有效标量域的柱形图</li>
+<li>Scalar fields &gt; Compute statistical parameters：计算统计分布（高斯分布、威布尔分布）</li>
+<li>Scalar fields &gt; Gradient：计算标量域的梯度</li>
+<li>Scalar fields &gt; Gaussian filter：通过应用一个立体高斯滤镜，平滑一个标量域</li>
+<li>Scalar fields &gt; Bilateral filter：用双边滤镜平滑一个标量域</li>
+<li>Scalar fields &gt; Filter by Value：用标量值筛选选定的云</li>
+<li>Scalar fields &gt; Convert to RGB：将有效的标量场转化为RGB颜色域</li>
+<li>Scalar fields &gt; Convert to random RGB：将有效的标量场转化为随机的RGB颜色域</li>
+<li>Scalar fields &gt; Rename：对选中实体重命名有效的标量域</li>
+<li>Scalar fields &gt; Add constant SF：用一个常数添加一个标量域</li>
+<li>Scalar fields &gt; Add point indexes as SF：用点索引的方式为所选点云创建一个新的标量域</li>
+<li>Scalar fields &gt; Export coordinate(s) to SF(s)：导出坐标到标量域</li>
+<li>Scalar fields &gt; Set SF as coordinate(s)：为选中的点云设置标量域的坐标</li>
+<li>Scalar fields &gt; Arithmetic：可以对在同一个点云的两个标量域进行标准运算（+，-，*，/），或者对单个标量域进行函数运算</li>
+<li>Scalar fields &gt; Color Scales Manager：色阶管理，可以管理和创建新色域</li>
+<li>Scalar fields &gt; Delete：对选中的实体删除有效的标量域</li>
+<li>Scalar fields &gt; Delete all (!)：对选中的实体删除全部的有效标量域</li>
+</ul>
+<h2 id="Tools："><a href="#Tools：" class="headerlink" title="Tools："></a>Tools：</h2><ul>
+<li>Level：可以选择三个点确定一个平面来操作</li>
+<li>Point picking：可以选择一个、两个、三个点来得到各种信息，如点的坐标、RGB、标量值、距离、角度等信息（尤其是两点间的距离）</li>
+<li>Point list picking：可以选择多个点创建一个点列表，可以输出为一个文件、一个新点云、一个折线</li>
+<li>Clean &gt; Noise filter：类似于qPCL插件的S.O.R.滤镜，但又更多功能</li>
+<li>Projection &gt; Unroll：展开圆柱或圆锥体的点云成一个平面</li>
+<li>Projection &gt; Rasterize：栅格化点云（转化为2.5D网格），然后可以导出为一个新点云或者一个光栅图像</li>
+<li>Projection &gt; Contour plot to mesh：可以把一组折线转化为网格，输出边缘轮廓线</li>
+<li>Projection &gt; Export coordinate(s) to SF(s)：导出坐标到标量域</li>
+<li>Registration &gt; Match bounding-box centers：调整所有选中的实体，让它们的中心在一个地方</li>
+<li>Registration &gt; Match scales：匹配所有选中实体的规模</li>
+<li>Registration &gt; Align (point pairs picking)：在两个实体中挑选至少三个对应的点来对齐两个实体</li>
+<li>Registration &gt; Fine registration (ICP)：自动精确地融合两个实体。前提是：①两个云大体上相融；②表现为同样的对象或者至少有同样的形状</li>
+<li>Distances &gt; Cloud/Cloud dist. (cloud-to-cloud distance)：计算两个点云之间的距离</li>
+<li>Distances &gt; Cloud/Mesh dist. (cloud-to-mesh distance)：计算点云和网格之间的距离</li>
+<li>Distances &gt; Closest Point Set：计算两个点云之间最近的点的集合</li>
+<li>Statistics &gt; Local Statistical Test：可以以标量域的局部统计为基础进行分割和过滤点云</li>
+<li>Statistics &gt; Compute Stat. Params：计算统计分布（高斯分布、威布尔分布）</li>
+<li>Segmentation &gt; Label Connected Components：设置最小距离，把所选的云分割成更小的部分，每一部分相互连接</li>
+<li>Segmentation &gt; Cross Section：用户可以定义一个裁剪框，可调整框的范围和方向，来裁剪点云。可以用来：①在一个或多个维度重复分割过程；②获取多边形的轮廓</li>
+<li>Segmentation &gt; Extract Sections：可以在一个点云的顶部画或者导入多边形来提取截面和轮廓</li>
+<li>Fit &gt; Plane：匹配点云中的一个平面和输出各种信息，如拟合 RMS、 垂直平面、地质的倾角、倾角方向值等</li>
+<li>Fit &gt; Sphere：适配点云中的一个球体</li>
+<li>Fit &gt; 2D Polygon：适配点云中的二维多边形</li>
+<li>Fit &gt; Quadric：适配点云中的2.5D曲面</li>
+<li>Other &gt; Density：估量一个点云的密度</li>
+<li>Other &gt; Curvature：估量一个点云的曲率</li>
+<li>Other &gt; Roughness：估量一个点云的粗糙程度</li>
+<li>Other &gt; Remove duplicate points：通过设置两点之间最小距离来删除重复的点</li>
+</ul>
+<h2 id="Display："><a href="#Display：" class="headerlink" title="Display："></a>Display：</h2><ul>
+<li>Full screen：全屏</li>
+<li>Refresh：刷新，强制刷新有效的3D视图的内容（OpenGL图形重绘）</li>
+<li>Toggle Centered Perspective：在正交视图和对象中心视图模式中切换</li>
+<li>Toggle Viewer Based Perspective：在正交视图和透视图中切换</li>
+<li>Lock rotation about vert. axis：锁定围绕Z轴的影像旋转</li>
+<li>Enter bubble-view mode：进入泡沫视图模式</li>
+<li>Render to File：可以渲染当前的3D视图成一个图像文件（支持多数标准文件格式），还可以缩放以适应更大分辨率的屏幕</li>
+<li>Display settings：对各种显示进行设置：颜色和材质、色阶、标签、其他</li>
+<li>Camera settings：影像设置</li>
+<li>Save viewport as object：保存当前3D视图的可视体的参数（影像位置和方、透视状态）为一个可视实体，这个实体自动地添加DB树的根</li>
+<li>Adjust zoom：调整缩放比例</li>
+<li>Test Frame Rate：测试帧速率，让有效的3D视图在一个较短时间旋转从而估量平均帧数，结果在控制台显示</li>
+<li>Lights &gt; Toggle Sun Light：切换太阳光</li>
+<li>Lights &gt; Toggle Custom Light：切换自定义的光</li>
+<li>Shaders and Filters &gt; Remove filter：禁用任何活动的着色器或者OpenGL过滤器</li>
+<li>Active scalar field &gt; Toggle color scale：为所选活动的实体切换色阶</li>
+<li>Active scalar field &gt; Show previous SF：改变当前所选对象的标量域，激活先前的标量域</li>
+<li>Active scalar field &gt; Show next SF：改变当前所选对象的标量域，激活下一个的标量域</li>
+<li>Console：控制台（显示/隐藏）</li>
+<li>Toolbars：工具栏，包括主工具栏、标量域、视图、插件、GL滤镜</li>
+<li>Reset all GUI elements：退出钱自动存储当前GUI信息（位置和工具栏的可见性等），可以恢复原始配置</li>
+</ul>
+<h2 id="Plugins："><a href="#Plugins：" class="headerlink" title="Plugins："></a>Plugins：</h2><h4 id="Standard-plugins："><a href="#Standard-plugins：" class="headerlink" title="Standard plugins："></a>Standard plugins：</h4><ul>
+<li>qHPR (Hidden Point Removal)：如果点云是闭合曲面，则可以过滤（删除）掉通过当前3D影像不能看到的云</li>
+<li>qPCL (Point Cloud Library Wrapper)：有PCL库一些方法的接口，主要包括：①计算法线和曲率②异常点和噪声点的去除③平滑点云（移动最小二乘法）</li>
+<li>qPCV (ShadeVis / Ambient Occlusion)：计算点云的明亮度，类似于光线来自于对象周围的半球或球体（可以自定义光线距离）</li>
+<li>qPoissonRecon (Poisson Surface Reconstruction)：Poisson表面重建，用三角网络生成算法构建的简单的表面</li>
+<li>qRansacSD (RANSAC Shape Detection)：随机抽样一致形状检测，运用自动形状检测算法的简单接口</li>
+<li>qSRA (Surface of Revolution Analysis)：计算一个点云和一个假定旋转平面之间的距离（旋转平面用2D轮廓定义），距离计算好后，用户可以创建一个偏差的2D图或者圆柱或圆锥的投影</li>
+<li>qCANUPO (Point Cloud Classification)：可自动对点云进行分类，也可以手动分类</li>
+<li>qM3C2 (Robust C2C Distances Computation)：用独特的方法计算两个点云之间的有向（稳健）距离</li>
+<li>qCork (Boolean Operations on Meshes)：可以执行网格中的布尔操作（也称CSG = 构造实体几何），它基于Cork库</li>
+<li>qAnimation：动画渲染插件</li>
+<li>qFacets：可以从点云中自动提取二维切面，以它们的垂直距离分开</li>
+<li>qCSF (Cloth Simulation Filter)：基于布模拟滤波算法，能实现地面点与非地面点的分离，去除非地面点</li>
+<li>qCompass：简单地实现点云中地质结构的它的轨迹的数字化</li>
+<li>qBroom (qVirtualBroom)：高效地扫描和清理</li>
+<li>qHoughNormals：计算法法线</li>
+<li>qGMMREG：对小型实体的非刚性云的匹配</li>
+<li>qLAS_FWF：这个插件可以读写标准雷达文件，可以在命令模式下打开LAS 1.3+文件</li>
+<li>qPoissonRecon：可以让输入的点云颜色映射到成网格（快速直接地分配到颜色接近输入点颜色的网格顶点）</li>
+</ul>
+<h4 id="OpenGL-‘shaders’-plugins："><a href="#OpenGL-‘shaders’-plugins：" class="headerlink" title="OpenGL ‘shaders’ plugins："></a>OpenGL ‘shaders’ plugins：</h4><ul>
+<li>qEDL (Eye Dome Lighting)：实时底纹滤镜，用来在空白的点云或者网格中增强少量特质（除了几何信息外，它不依赖于其他信息）</li>
+<li>qSSAO (Screen Space Ambient Occlusion)：实时底纹滤镜，与环境相似的遮挡</li>
+<li>qBlur：一个简单的模糊处理滤镜，主要用于开发人员的演示</li>
+</ul>
+<h4 id="Deprecated"><a href="#Deprecated" class="headerlink" title="Deprecated"></a>Deprecated</h4><ul>
+<li>qKinect (Point Cloud Acquisition with a Kinect)：可以用Kinect设备获取（有色的）点云</li>
+</ul>
+<h2 id="3D-Views："><a href="#3D-Views：" class="headerlink" title="3D Views："></a>3D Views：</h2><ul>
+<li>New：创建3D视图</li>
+<li>Close：关闭3D视图</li>
+<li>Close All：关闭所有3D视图</li>
+<li>Tile：共享的所有 3D 视图之间的显示空间</li>
+<li>Cascade：用串联的方式重新排列所有 3D 视图</li>
+<li>Next：激活顺序创建的下一个3D视图</li>
+<li>Previous：激活顺序创建的上一个3D视图</li>
+</ul>
+<h2 id="Help："><a href="#Help：" class="headerlink" title="Help："></a>Help：</h2><ul>
+<li>Help：<a href="http://www.cloudcompare.org/doc" target="_blank" rel="external">帮助文档</a></li>
+<li>About：CloudCompare版本信息</li>
+<li>About Plugins：插件信息</li>
+</ul>
+<h2 id="Thanks："><a href="#Thanks：" class="headerlink" title="Thanks："></a>Thanks：</h2><ul>
+<li><a href="http://www.danielgm.net/cc/" target="_blank" rel="external">CloudCompare Documentation</a></li>
+<li><a href="http://www.cloudcompare.org/doc/wiki" target="_blank" rel="external">CloudCompare Wiki</a></li>
+<li><a href="https://www.wikipedia.org/" target="_blank" rel="external">Wikipedia</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;File&quot;&gt;&lt;a href=&quot;#File&quot; class=&quot;headerlink&quot; title=&quot;File&quot;&gt;&lt;/a&gt;File&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;open：打开&lt;/li&gt;
+&lt;li&gt;save：保存&lt;/li&gt;
+&lt;li&gt;Global Shift settings：设置最大绝对坐标，最大实体对角线&lt;/li&gt;
+&lt;li&gt;Primitive Factory：对点云进行原始加工，改变原始点云的形状&lt;/li&gt;
+&lt;li&gt;3D mouse：对3D鼠标（如3Dconnexion）的支持&lt;/li&gt;
+&lt;li&gt;Close all：关闭所有打开的实体&lt;/li&gt;
+&lt;li&gt;Quit：退出&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://huihut.com/tags/C/"/>
+    
+      <category term="CloudCompare" scheme="http://huihut.com/tags/CloudCompare/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux Notes</title>
+    <link href="http://huihut.com/2017/03/15/LinuxNotes/"/>
+    <id>http://huihut.com/2017/03/15/LinuxNotes/</id>
+    <published>2017-03-14T16:52:30.000Z</published>
+    <updated>2017-03-25T07:13:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>删除文件</li>
+</ul>
+<pre><code>rm xxx(文件名)
+</code></pre><ul>
+<li>删除文件夹（<code>-r</code>：向下递归；<code>-f</code>：强制删除）</li>
+</ul>
+<pre><code>rm -rf xxx(文件夹路径)
+</code></pre><ul>
+<li>从网上下载文件</li>
+</ul>
+<pre><code>wget http;//…… .tar.gz
+</code></pre><ul>
+<li>登录服务器</li>
+</ul>
+<pre><code>ssh [-p port] username@servername
+</code></pre><ul>
+<li>上传本地文件到服务器</li>
+</ul>
+<pre><code>scp [-P port] /path/filename username@servername:/path   
+</code></pre><ul>
+<li>上传目录到服务器</li>
+</ul>
+<pre><code>scp [-P port] -r local_dir username@servername:remote_dir
+</code></pre><ul>
+<li>从服务器上下载文件</li>
+</ul>
+<pre><code>scp [-P port] username@servername:/path/filename /var/www/local_dir
+</code></pre><ul>
+<li>从服务器下载整个目录</li>
+</ul>
+<pre><code>scp [-P port] -r username@servername:/var/www/remote_dir  /var/www/local_dir
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;删除文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;rm xxx(文件名)
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;删除文件夹（&lt;code&gt;-r&lt;/code&gt;：向下递归；&lt;code&gt;-f&lt;/code&gt;：强制删除）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Linux" scheme="http://huihut.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Makefile 问题及解决</title>
+    <link href="http://huihut.com/2017/03/13/MakefileIssue/"/>
+    <id>http://huihut.com/2017/03/13/MakefileIssue/</id>
+    <published>2017-03-12T21:59:10.000Z</published>
+    <updated>2017-03-25T07:14:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>makefile文件的clean出错</p>
+<a id="more"></a>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean1.png" alt=""></p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p><code>clean</code>下面的那句命令没有缩进，应该用<code>[Tab]</code>缩进</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean3.png" alt=""></p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean4.png" alt=""></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>利用 <a href="https://www.google.com/" target="_blank" rel="external">Google</a>、<a href="http://stackoverflow.com/" target="_blank" rel="external">stackoverflow</a> 等含金量高的问题解决平台</li>
+<li>注意语法规范</li>
+</ul>
+<hr>
+<h2 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean2.png" alt=""></p>
+<h3 id="解决-1"><a href="#解决-1" class="headerlink" title="解决"></a>解决</h3><p><code>newhello:hello.o hello_fn.o</code> 中的<code>newhello</code>应该写成<code>hello</code>，应该与<code>hello.c</code>中的名字一样</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_Clean3.png" alt=""></p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/MakefileError_helloc2.png" alt=""></p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>注意编译运行的文件名</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题一&quot;&gt;&lt;a href=&quot;#问题一&quot; class=&quot;headerlink&quot; title=&quot;问题一&quot;&gt;&lt;/a&gt;问题一&lt;/h2&gt;&lt;p&gt;makefile文件的clean出错&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Makefile" scheme="http://huihut.com/tags/Makefile/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并行笔记</title>
+    <link href="http://huihut.com/2017/03/13/ParallelComputingNotes/"/>
+    <id>http://huihut.com/2017/03/13/ParallelComputingNotes/</id>
+    <published>2017-03-12T21:51:09.000Z</published>
+    <updated>2017-03-25T07:15:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="并行计算（Parallel-Computing）"><a href="#并行计算（Parallel-Computing）" class="headerlink" title="并行计算（Parallel Computing）"></a>并行计算（Parallel Computing）</h2><p><strong>并行计算</strong>（平行计算）是相对于串行计算来说的。</p>
+<p>它是一种一次可执行多个指令的算法，目的是提高计算速度，及通过扩大问题求解规模，解决大型而复杂的计算问题。</p>
+<p>所谓并行计算可分为时间上的并行（流水线技术）和空间上的并行（多个处理器并发的执行计算）。 </p>
+<p><strong>基本思想</strong>是用多个处理器来协同求解同一问题，即将被求解的问题分解成若干个部分，各部分均由一个独立的处理机来并行计算。</p>
+<ul>
+<li>用于多核处理器</li>
+<li>缓存算法</li>
+</ul>
+<a id="more"></a>
+<h2 id="并行算法（parallel-algorithms）"><a href="#并行算法（parallel-algorithms）" class="headerlink" title="并行算法（parallel algorithms）"></a>并行算法（parallel algorithms）</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><p>串行算法（serial algorithms）一般只有一种模型，即为随机存取机器模型（random access machine model）</p>
+</li>
+<li><p>并行算法及并行空间，有许多其他模型。如：动态多线程模型（dynamic multithreading），适用于多核机器中，为内存共享的编程而设计，不适用于分布式编程</p>
+</li>
+<li><p>衍生（spawn）：衍生的代码可以跟着父程序同时执行</p>
+</li>
+<li><p>同步（sync）：等待所有子程序完成，才执行这条指令</p>
+</li>
+<li><p>调度:把动态的、不断延伸的程序，映射到可用的处理器上</p>
+</li>
+<li><p>多线程计算，并行指令流，它其实是个有向无环图（DAG）</p>
+</li>
+</ul>
+<h3 id="并行时间"><a href="#并行时间" class="headerlink" title="并行时间"></a>并行时间</h3><p>设：Tp：任意程序运算在p个处理器上的运行时间</p>
+<p>T1；功（work），串行运行时间</p>
+<p>T∞：关键路径长度，DAG中最长路径</p>
+<ul>
+<li><p>Tp ≥ T1/p</p>
+</li>
+<li><p>Tp ≥ T∞</p>
+</li>
+</ul>
+<p>T1/Tp = Θ(p) —— 线性加速</p>
+<p>T1/Tp ＞ Θ(p) —— 超级线性加速 （对于这个模型不可能，其他有可能通过类似缓存的机制实现）</p>
+<p>P^ = T1/Tp —— 并行度，是能达到的最大速度，用功除以最短路径长度，是关键路径上可以并行完成的平均分量的功</p>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>调度的目的是：将计分配到p个处理器上，通常在实时操作系统上</p>
+<h3 id="贪心调度"><a href="#贪心调度" class="headerlink" title="贪心调度"></a>贪心调度</h3><p>在每一步做地尽可能多</p>
+<ol>
+<li>第一种：完整步骤：p个线程则用p个处理器</li>
+<li>第二种：不完整步骤：多于p个线程运行p个线程；少于p个线程就全部线程运行</li>
+</ol>
+<p>一个贪婪算法执行任意计算G，若功为T1，关键路径为T∞，p个处理器</p>
+<p>Tp ≤ T1/p + T∞</p>
+<ul>
+<li>T1/p：完整步骤</li>
+<li>T∞：不完整步骤</li>
+</ul>
+<p>贪心算法是线性加速度：P^ = T1/T∞</p>
+<h2 id="Cilk"><a href="#Cilk" class="headerlink" title="Cilk"></a>Cilk</h2><p>Cilk —— 英特尔Cilk语言，多用于并行编程的语言</p>
+<pre><code>cilk int fib(int n) {
+    if (n &lt; 2) {
+        return n;
+    }
+    else {
+        int x, y;
+
+        x = spawn fib(n - 1);
+        y = spawn fib(n - 2);
+
+        sync;
+
+        return x + y;
+    }
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;并行计算（Parallel-Computing）&quot;&gt;&lt;a href=&quot;#并行计算（Parallel-Computing）&quot; class=&quot;headerlink&quot; title=&quot;并行计算（Parallel Computing）&quot;&gt;&lt;/a&gt;并行计算（Parallel Computing）&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;并行计算&lt;/strong&gt;（平行计算）是相对于串行计算来说的。&lt;/p&gt;
+&lt;p&gt;它是一种一次可执行多个指令的算法，目的是提高计算速度，及通过扩大问题求解规模，解决大型而复杂的计算问题。&lt;/p&gt;
+&lt;p&gt;所谓并行计算可分为时间上的并行（流水线技术）和空间上的并行（多个处理器并发的执行计算）。 &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基本思想&lt;/strong&gt;是用多个处理器来协同求解同一问题，即将被求解的问题分解成若干个部分，各部分均由一个独立的处理机来并行计算。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于多核处理器&lt;/li&gt;
+&lt;li&gt;缓存算法&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Parallel" scheme="http://huihut.com/tags/Parallel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iTerm2 + OhMyZsh + agnoster + Powerline + solarized = 漂亮的Mac终端</title>
+    <link href="http://huihut.com/2017/03/11/FancyMacTerminal/"/>
+    <id>http://huihut.com/2017/03/11/FancyMacTerminal/</id>
+    <published>2017-03-11T06:59:45.000Z</published>
+    <updated>2017-04-02T10:38:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="唠叨一下"><a href="#唠叨一下" class="headerlink" title="唠叨一下"></a>唠叨一下</h2><p>自从装了黑苹果后一直用着 Mac 自带的终端（Terminal），相比 Windows 的终端根本无法同台竞技！毕竟 Mac 是基于 Unix 嘛~ 对开发友好太多了。</p>
+<p>就是下面这个家伙了👇</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/mac_terminal_white.jpg" alt=""></p>
+<p>本来没觉得什么，直到我看到它👇</p>
+<a id="more"></a>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/iterm2_black.png" alt=""></p>
+<p>颜值碾压，有木有！</p>
+<p>所以就着手折腾了……</p>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>iTerm是一个非常好的终端模拟器，官网地址：<a href="http://iterm2.com/" target="_blank" rel="external">http://iterm2.com/</a>，需要下载它。</p>
+<h2 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h2><p>zsh 是一款强大的虚拟终端，是 Oh My Zsh 的爸爸，所以需要先装它。</p>
+<p>在命令行输入：</p>
+<pre><code>zsh --version
+</code></pre><p>如果输入zsh的当前版本号就说明装好了，一般Mac自带有的</p>
+<p>如果没装则需要输入：</p>
+<pre><code>brew install zsh zsh-completions
+</code></pre><p>这是用Homebrew装，需要Mac上有Homebrew，它的网站：<a href="https://brew.sh/" target="_blank" rel="external">https://brew.sh/</a></p>
+<h2 id="Oh-My-Zsh"><a href="#Oh-My-Zsh" class="headerlink" title="Oh My Zsh"></a>Oh My Zsh</h2><p>Oh My Zsh 是基于 zsh 的一个扩展工具集，它提供了丰富的扩展功能</p>
+<p>它可以通过<code>curl</code>或者<code>wget</code>来安装</p>
+<ul>
+<li>via curl</li>
+</ul>
+<pre><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</code></pre><ul>
+<li>via wget</li>
+</ul>
+<pre><code>sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;
+</code></pre><p>装好之后就可以换到 agnoster 主题，就是之前看到的那张颜值主题，Oh My Zsh 一般自带有这个主题。</p>
+<p>可以看看它的默认主题：</p>
+<pre><code>ls ~/.oh-my-zsh/themes
+</code></pre><p>需要修改主题只需：</p>
+<pre><code>vim ~/.zshrc
+</code></pre><p>然后把里面 <code>ZSH_THEME</code> 的值改为 <code>ZSH_THEME=&quot;agnoster&quot;</code>，保存退出</p>
+<p>（<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes#agnoster" target="_blank" rel="external">点击这里</a>还有各种主题，任君翻牌~）</p>
+<p>应用配置：</p>
+<pre><code>chsh -s /bin/zsh
+</code></pre><p>重启 iTerm2</p>
+<p>然后你会惊喜地发现……</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/iTerm2_noPowerline.jpg" alt=""></p>
+<p>和颜值主题并不一样！</p>
+<p>难道官方坑爹？</p>
+<p>震惊！oh-my-zsh 竟然做出这种事！</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/biaoqing1.gif" alt=""></p>
+<p>嘛~ 原来少了 Powerline 的字符集</p>
+<h2 id="Powerline"><a href="#Powerline" class="headerlink" title="Powerline"></a>Powerline</h2><p>Git 下来安装：</p>
+<pre><code>git clone git@github.com:powerline/fonts.git
+cd fonts
+./install.sh
+</code></pre><p>然后到 iterm2 配置，设置字体为<code>Roboto Mono for Powerline</code>：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/powerline.jpg" alt=""></p>
+<p>这样就可以有颜值图的效果了~</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/iterm2_end.jpg" alt=""></p>
+<p>然而终端下的 vim 编辑器还是一种颜色~</p>
+<p>作为一个追求完美的 geek 怎能容许此等瑕疵呢！</p>
+<p>所以就继续捣鼓 solarized 配色。</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/biaoqing2.gif" alt=""></p>
+<h2 id="solarized"><a href="#solarized" class="headerlink" title="solarized"></a>solarized</h2><p>Solarized 是个很牛逼的配色项目，主流OS、IDE、Editor都有它影子。</p>
+<pre><code># git下Solarized 的源码
+git clone git://github.com/altercation/solarized.git
+
+# 进入文件夹
+cd solarized/vim-colors-solarized/colors
+
+#下面可能要管理员权限
+sudo mkdir -p ~/.vim/colors
+sudo cp solarized.vim ~/.vim/colors/
+
+# 创建.vimrc文件
+sudo vim ~/.vimrc
+
+# 把下面这三行复制进去
+syntax enable
+set background=dark
+colorscheme solarized
+</code></pre><p>然后保存 .vimrc, 退出</p>
+<p>之后打开用 vim 打开文件就是这种效果了：</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/iterm_vim_black.jpg" alt=""></p>
+<h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><blockquote>
+<p><a href="http://iterm2.com/" target="_blank" rel="external">iTerm2</a></p>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">robbyrussell/oh-my-zsh</a></p>
+<p><a href="https://github.com/powerline/fonts" target="_blank" rel="external">powerline/fonts</a></p>
+<p><a href="https://github.com/altercation/solarized" target="_blank" rel="external">altercation/solarized</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;唠叨一下&quot;&gt;&lt;a href=&quot;#唠叨一下&quot; class=&quot;headerlink&quot; title=&quot;唠叨一下&quot;&gt;&lt;/a&gt;唠叨一下&lt;/h2&gt;&lt;p&gt;自从装了黑苹果后一直用着 Mac 自带的终端（Terminal），相比 Windows 的终端根本无法同台竞技！毕竟 Mac 是基于 Unix 嘛~ 对开发友好太多了。&lt;/p&gt;
+&lt;p&gt;就是下面这个家伙了👇&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ojlsgreog.bkt.clouddn.com/mac_terminal_white.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;本来没觉得什么，直到我看到它👇&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Mac" scheme="http://huihut.com/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 简易入门教程</title>
+    <link href="http://huihut.com/2017/01/25/MarkdownTutorial/"/>
+    <id>http://huihut.com/2017/01/25/MarkdownTutorial/</id>
+    <published>2017-01-24T17:45:50.000Z</published>
+    <updated>2017-04-16T17:34:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>自己整理的 Markdown 简介、编辑器推荐、语法、特征等，是 Markdown 的简易入门教程</p>
+<a id="more"></a>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><p><a href="#overview">概述</a></p>
+<ul>
+<li><a href="#summary">简介</a></li>
+<li><a href="#doc">官方文档</a></li>
+<li><a href="#editor">Markdown编辑器</a></li>
+</ul>
+</li>
+<li><p><a href="#primary">初级语法</a></p>
+<ul>
+<li><a href="#MarkdownHeader">标题</a></li>
+<li><a href="#bolditalic">粗体和斜体</a></li>
+<li><a href="#paragraph">段落和换行</a></li>
+<li><a href="#hr">分隔线</a></li>
+<li><a href="#blockquote">引言</a></li>
+<li><a href="#list">列表</a><ul>
+<li><a href="#disorderlist">无序列表</a></li>
+<li><a href="#sorderlist">有序列表</a></li>
+</ul>
+</li>
+<li><a href="#code">代码</a><ul>
+<li><a href="#linecode">行内代码块</a></li>
+<li><a href="#paragraphcode">段落代码块</a></li>
+</ul>
+</li>
+<li><a href="#link">链接</a><ul>
+<li><a href="#urllink">网址链接</a></li>
+<li><a href="#picturelink">图片链接</a><ul>
+<li><a href="#picturelinksize">指定图片宽高</a></li>
+<li><a href="#picturelinkchain">用图床获取外链</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="#Advanced">进阶语法</a></p>
+<ul>
+<li><a href="#label">标签</a></li>
+<li><a href="#content">目录</a></li>
+<li><a href="#table">表格</a></li>
+<li><a href="#footnote">脚注</a></li>
+<li><a href="#formula">公式</a></li>
+<li><a href="#flowsheet">流程图</a></li>
+<li><a href="#sequencemap">序列图</a></li>
+</ul>
+</li>
+<li><p><a href="#others">其他</a></p>
+<ul>
+<li><a href="#html">兼容HTML</a></li>
+<li><a href="#autoescape">特殊字符自动转换</a></li>
+<li><a href="#backslash">反斜杠</a></li>
+<li><a href="#autolink">自动链接</a></li>
+</ul>
+</li>
+<li><p><a href="#reference">感谢</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="overview">概述</h2>
+
+<h3 id="summary">简介</h3>
+
+<p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia等网站，如各大博客平台：WordPress、Drupal、简书等。</p>
+<h3 id="doc">官方文档</h3>
+
+
+<blockquote>
+<p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Markdown: Syntax</a></p>
+<p><a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">Markdown 语法说明 (简体中文版)</a></p>
+</blockquote>
+<h3 id="editor">Markdown编辑器</h3>
+
+<ul>
+<li><p>在线编辑器</p>
+<ul>
+<li><p><a href="http://dillinger.io/" target="_blank" rel="external">dillinger</a>——漂亮强大，支持md, html, pdf 文件导出。  </p>
+<p>  <img src="http://www.williamlong.info/upload/4319_1.jpg" alt="dillinger"></p>
+</li>
+<li><p><a href="http://www.jianshu.com/" target="_blank" rel="external">简书</a>——非常漂亮的博客平台，可以自动备份，直接拖入图片。  </p>
+<p>  <img src="http://www.williamlong.info/upload/4319_3.jpg" alt="简书"></p>
+</li>
+</ul>
+</li>
+<li><p>Windows</p>
+<ul>
+<li><p><a href="http://www.markdownpad.com/" target="_blank" rel="external">MarkdownPad</a>——一款全功能的编辑器，被很多人称赞为windows 平台最好用的markdown编辑器。  </p>
+<p>  <img src="http://www.williamlong.info/upload/4319_10.jpg" alt="MarkdownPad"></p>
+</li>
+<li><p><a href="http://code52.org/DownmarkerWPF/" target="_blank" rel="external">MarkPad</a>——开源软件，可以直接在你的博客或者 GitHub 中打开、保存文档，直接将图片粘贴到 Markdown 文档中。  </p>
+<p>  <img src="http://code52.org/DownmarkerWPF/screenshot.png" alt="MarkPad"></p>
+</li>
+<li><p><a href="https://www.zybuluo.com/cmd/" target="_blank" rel="external">Cmd Markdown</a>——作业部落出品，全平台并支持Web端      </p>
+<p>  <img src="http://www.williamlong.info/upload/4319_6.jpg" alt="Cmd Markdown"></p>
+</li>
+</ul>
+</li>
+<li><p>Mac</p>
+<ul>
+<li><p><a href="http://25.io/mou/" target="_blank" rel="external">Mou</a>——简洁优雅，免费又好用，中文兼容性好。  </p>
+<p>  <img src="http://www.williamlong.info/upload/4319_14.jpg" alt="Mou"></p>
+</li>
+<li><p><a href="https://typora.io/" target="_blank" rel="external">Typora</a>——极致简洁，自定义皮肤。</p>
+<p>  <img src="http://www.williamlong.info/upload/4319_15.jpg" alt="Typora"></p>
+</li>
+<li><p><a href="https://macdown.uranusjr.com/" target="_blank" rel="external">MacDown</a>——简洁优雅，开源免费。</p>
+<p>  <img src="http://www.williamlong.info/upload/4319_16.jpg" alt="MacDown"></p>
+</li>
+<li><p><a href="https://www.ulyssesapp.com/" target="_blank" rel="external">Ulysses</a>——文字写作推荐。  </p>
+<p>  <img src="http://www.williamlong.info/upload/4319_19.jpg" alt="Ulysses"></p>
+</li>
+</ul>
+</li>
+<li><p>多平台</p>
+<ul>
+<li><p><a href="https://atom.io/" target="_blank" rel="external">Atom</a>——github出的编辑器，支持各种编程语言，可装Markdown插件。</p>
+<p>  <img src="http://www.williamlong.info/upload/4319_9.jpg" alt=""></p>
+</li>
+<li><p><a href="http://www.sublimetext.com/" target="_blank" rel="external">sublimetext</a>——专业编辑器，支持各种编程语言。</p>
+<p>  <img src="http://www.williamlong.info/upload/4319_8.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="primary">初级语法</h2>
+
+
+<h3 id="MarkdownHeader">标题</h3>
+
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/header.jpg" alt="标题"></p>
+<p>Markdown 支持两种标题的语法，类 Atx 和类 Setext 形式。</p>
+<ul>
+<li><p>Atx（注意<code>#</code>后面有个空格）</p>
+<pre><code># 一级标题
+## 二级标题
+### 三级标题
+</code></pre></li>
+<li><p>Setext（<code>-</code>与<code>=</code>数目任意，最好三个及以上，比较直观）</p>
+<pre><code>一级标题
+======
+
+二级标题
+------
+</code></pre></li>
+</ul>
+<h3 id="bolditalic">粗体和斜体</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/bolditalic.jpg" alt="bolditalic"></p>
+<ul>
+<li><p>粗体</p>
+<pre><code>**这是粗体**
+
+__这是粗体__
+</code></pre></li>
+</ul>
+<ul>
+<li><p>斜体</p>
+<pre><code>*这是斜体*
+
+_这是斜体_
+</code></pre></li>
+</ul>
+<h3 id="paragraph">段落和换行</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/paragraph.jpg" alt="paragraph"></p>
+<ul>
+<li><p>第一种写法（上图的<code>这是第一段</code>），直接敲两个回车键即可</p>
+<pre><code>这是第一段
+
+这是第二段
+</code></pre></li>
+<li><p>第二种写法（上图的<code>这是第二段</code>），在写完一段后敲两个空格，然后回车写下一段</p>
+<pre><code>这是第二段  
+这是第三段
+</code></pre></li>
+<li><p>第三种写法（上图的<code>这是第三段</code>），在写完一段后用HTML的语法：<code>&lt;br /&gt;</code>作为换行，然后写下一段</p>
+<pre><code>这是第三段&lt;br /&gt;这是第四段
+
+这是第三段&lt;br /&gt;
+这是第四段
+</code></pre></li>
+</ul>
+<h3 id="hr">分隔线</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/hr.jpg" alt="hr"></p>
+<p>可以在一行中用三个及以上的星号、减号、等于号、底线来建立分隔线，行内不能有除空格外的其他东西，注意莫被打脸。 (≖ ‿ ≖)✧</p>
+<pre><code>***
+---
+===
+___
+</code></pre><h3 id="blockquote">引言</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/blockquote.jpg" alt="blockquote"></p>
+<pre><code>&gt; 我想只用一个 “&gt;” 号来写一个多行的引用，所以在扯鸡巴蛋地码字占空间，好像差不多了吧，嗯嗯~
+
+---
+
+&gt; 还有一种写法就是每一行都用一个 “&gt;” 号
+&gt; 这样写比较美观一点
+
+---
+
+&gt; &gt; 另外一种就是嵌套引用，就像我一样，用两个“&gt;”
+</code></pre><h3 id="list">列表</h3>
+
+<h4 id="disorderlist">无序列表</h4>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/disorderlist.jpg" alt="disorderlist"></p>
+<p>无序列表可以在每行开头用星号、加号、减号来表示，也可以三者混合一起，推荐使用相同的字符，避免混乱。</p>
+<pre><code>* 一朵百合花
+* 两朵百合花
+* 三朵百合花
+</code></pre><h4 id="sorderlist">有序列表</h4>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/orderlist.jpg" alt="orderlist"></p>
+<p>有序列表用数字接着一个英文句点来表示，数字可无序，但还是推荐使用<code>1.</code>、<code>2.</code>，避免混乱。</p>
+<pre><code>1. 一朵百合花
+2. 两朵百合花
+3. 三朵百合花
+</code></pre><h3 id="code">代码</h3>
+
+<h4 id="linecode">行内代码块</h4>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/linecode.jpg" alt="linecode"></p>
+<pre><code>I am a `code`
+I am a `` ` ``
+</code></pre><h4 id="paragraphcode">段落代码块</h4>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/paragraphcode.jpg" alt="paragraphcode"></p>
+<pre><code>#### 第一种
+
+    int main()
+    {
+        printf(&quot;我是个段落代码块&quot;);
+        return 0;
+    }
+</code></pre><p>另外，可以用三个反引号和语言名，作为标记代码所使用的语言</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/paragraphcode2.jpg" alt="paragraphcode2"></p>
+<p>我的 Mou 编辑器不能识别 (ノ▼Д▼)ノ</p>
+<h3 id="link">链接</h3>
+
+<h4 id="urllink">网址链接</h4>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/urllink.jpg" alt="urllink">  </p>
+<p>网址链接有两种形式：<strong>行内式</strong>、<strong>参考式</strong>。</p>
+<p>不管是哪一种，链接文字都是用 [方括号] 来标记，双引号<code>&quot;&quot;</code>的<code>title</code>可写可不写。</p>
+<ul>
+<li><p>行内式</p>
+<pre><code>[huihut](https://huihut.github.io/)
+
+[huihut](https://huihut.github.io/ &quot;huihut&quot;)
+
+[huihut](https://huihut.github.io/ &apos;huihut&apos;)
+</code></pre></li>
+<li><p>参考式</p>
+<ul>
+<li>一般写法</li>
+</ul>
+</li>
+</ul>
+<pre><code>[huihut][1]
+[1]: https://huihut.github.io/
+</code></pre><ul>
+<li>隐式链接标记——可省略id，只需要[text]与下面[方括号]内容相同即可</li>
+</ul>
+<pre><code>[Google][]
+[Google]: http://google.com/
+</code></pre><ul>
+<li><p>拓展</p>
+<ul>
+<li><p>这里的链接辨别标签可以有字母、数字、空白和标点符号，但是并不区分大小写，因此下面两个链接是一样的：</p>
+<pre><code>[text][a]
+[text][A]
+</code></pre></li>
+<li><p>链接 title 可以用双引号、单引号、圆括号包起来，因此，下面这三种链接的定义都是相同：</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>[1]: https://huihut.github.io/  &quot;title&quot;
+[1]: https://huihut.github.io/  &apos;title&apos;
+[1]: https://huihut.github.io/  (title)
+</code></pre><p><strong>特别注意</strong>：Markdown.pl 1.0.1 会忽略单引号包起来的链接 title</p>
+<h4 id="picturelink">图片链接</h4>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/picturelink.jpg" alt="picturelink"> </p>
+<p>图片链接与上面的网址链接类似，同样有两种形式：行内式和参考式，只不过图片链接在前面加上一个感叹号<code>!</code>，在此不做累述。</p>
+<ul>
+<li><p>行内式</p>
+<pre><code>![huihut](http://ojlsgreog.bkt.clouddn.com/H_ya.png)
+</code></pre></li>
+<li><p>参考式</p>
+<pre><code>![谷歌][1]
+</code></pre></li>
+</ul>
+<pre><code>[1]: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png &quot;Google&quot;
+</code></pre><h5 id="picturelinksize">指定图片宽高</h5>
+
+<ul>
+<li><p>Markdown 一般不支持指定图片的宽高，若要指定宽高可以使用普通的 <code>&lt;img&gt;</code> 标签</p>
+<pre><code>&lt;img src=&quot;./xxx.png&quot; width = &quot;100&quot; height = &quot;100&quot; alt=&quot;title&quot; align=center /&gt;
+</code></pre><p>  如果需要居中可以在外围包围<code>div</code>标签</p>
+<pre><code>&lt;div  align=&quot;center&quot;&gt;    
+&lt;img src=&quot;xxx.png&quot; width = &quot;100&quot; height = &quot;100&quot; alt=&quot;title&quot; align=center /&gt;
+&lt;/div&gt;
+</code></pre></li>
+<li><p>使用支持指定图片大小的 Markdown 编辑器，如 Mou</p>
+<pre><code>![](xxx.png =100x100)
+</code></pre></li>
+</ul>
+<h5 id="picturelinkchain">用图床获取外链</h5>
+
+<p>网上有许多图床，这里推荐两个 <strong>七牛图床</strong> 和 <strong>极简图床</strong>。</p>
+<ul>
+<li><p><a href="https://www.qiniu.com/" target="_blank" rel="external">七牛图床</a> </p>
+<p>  <img src="http://ojlsgreog.bkt.clouddn.com/qiniutuchuang.jpg" width="90%" height="90%"></p>
+</li>
+<li><p><a href="https://yotuku.cn/" target="_blank" rel="external">极简图床</a></p>
+<p>  <img src="http://ojlsgreog.bkt.clouddn.com/jijiantuchuang.jpg" width="90%" height="90%"></p>
+</li>
+</ul>
+<h2 id="Advanced">进阶语法</h2>
+
+<h3 id="label">标签</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/label.jpg" alt="label"></p>
+<ul>
+<li><p>方法一</p>
+<pre><code>title: Markdown 简易入门教程
+date: 2017-01-25 1:45:50
+tags: Markdown
+categories: 技术
+</code></pre></li>
+<li><p>方法三</p>
+<pre><code>tags:
+- Markdown
+- 语言
+categories:
+- 技术
+</code></pre></li>
+<li><p>方法三</p>
+<pre><code>tags: [Markdown,语言]
+categories: [技术]
+</code></pre></li>
+</ul>
+<h3 id="content">目录</h3>
+
+<ul>
+<li><p>方法一</p>
+<p>  <img src="http://ojlsgreog.bkt.clouddn.com/content.jpg" alt=""></p>
+<p>  这种目录其实是用 <strong>HTML</strong> 加 <strong>Markdown的链接</strong> 实现，分为两个部分，<strong>目录部分</strong>和<strong>标题部分</strong>。</p>
+<ul>
+<li><p>目录部分——实质是链接，链接的<code>[地址]</code>填需要跳转到的标题的<code>id</code>属性（自定义）。</p>
+<pre><code>[跳到标题一](#title1)
+</code></pre></li>
+<li><p>标题部分——实质是HTML的标题标签，标签里面的<code>id</code>属性等于待跳转的目录的<code>[地址]</code>。</p>
+<pre><code>&lt;h1 id=&quot;title1&quot;&gt;标题一&lt;/h1&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>方法二</p>
+<p>  <img src="http://ojlsgreog.bkt.clouddn.com/content2.jpg" alt="content2"></p>
+<p>  这种方法非常简单，就是直接添加 <code>[TOC]</code>，标题1~6样式的内容会被提取出来作为目录，然而有些编辑器不能使用这功能，如 Mou 不能使用。我是在有道云笔记的 Markdown 中截图的。</p>
+<pre><code>[TOC]
+
+# 标题一
+……
+## 标题二
+……
+### 标题三
+</code></pre><p>  这里有个jQuery插件，貌似可以让Markdown生成目录：</p>
+<p>  <a href="https://github.com/i5ting/i5ting_ztree_toc" target="_blank" rel="external">https://github.com/i5ting/i5ting_ztree_toc</a></p>
+</li>
+</ul>
+<h3 id="table">表格</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/table.jpg" alt="table"></p>
+<ul>
+<li><p>表格一般这样子写，这应该是最简单的写法了</p>
+<pre><code>id    |   name   |   score
+---   |   ---    |   ---
+001   |   Mark   |   90
+002   |   Ford   |   80
+003   |   Alan   |   95
+</code></pre></li>
+<li><p>还有就是对齐了，用<code>:</code>对齐，<code>:</code>写在在<code>---</code>的左边就是左对齐，右边就是右对齐，两边都写就是居中。</p>
+<pre><code>|long_long_id|long_long_name|long_long_score|
+|    ---     |    :---:     |     ---:      |
+|    001     |     Mark     |      90       |
+|    002     |     Ford     |      80       |
+|    003     |     Alan     |      95       |
+</code></pre></li>
+</ul>
+<h3 id="footnote">脚注</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/footnote.jpg" alt="footnote"></p>
+<pre><code>这是脚注一[^1]
+
+[^1]: 脚注一
+</code></pre><h3 id="formula">公式</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/formula.jpg" alt="formula"></p>
+<ul>
+<li><p>方法一：使用Google Chart</p>
+<pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}&quot; style=&quot;border:none;&quot;&gt;
+</code></pre></li>
+<li><p>方法二：使用forkosh</p>
+<pre><code>&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}&quot; style=&quot;border:none;&quot;&gt;
+</code></pre></li>
+<li><p>方法三：使用codecogs</p>
+<pre><code>&lt;a href=&quot;https://www.codecogs.com/eqnedit.php?latex=x=\frac{-b\pm&amp;space;\sqrt{b^{2}-4ac}}{2a}&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://latex.codecogs.com/gif.latex?x=\frac{-b\pm&amp;space;\sqrt{b^{2}-4ac}}{2a}&quot; title=&quot;x=\frac{-b\pm \sqrt{b^{2}-4ac}}{2a}&quot; /&gt;&lt;/a&gt;
+</code></pre></li>
+<li><p>方法四：使用MathJax引擎——先加载脚本<code>&lt;script&gt;</code>，后解析公式。</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default&quot;&gt;&lt;/script&gt;
+
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+</code></pre></li>
+</ul>
+<h3 id="flowsheet">流程图</h3>
+
+<p><img src="http://cdn2.wiz.cn/wp-content/uploads/2015/11/QQ20151123-0.png" alt="flowsheet"></p>
+<p>像流程图这种复杂的功能不推荐在 Markdown 中使用，因为很多编辑器都不支持，我使用了几个编辑器都不能生成流程图，所以上图是在为知笔记官方 Markdown 新手指南中找到的。</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/flowsheetcode.jpg" alt="flowsheetcode"></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: Start</div><div class="line">e=&gt;end: End</div><div class="line">op1=&gt;operation: My Operation</div><div class="line">sub1=&gt;subroutine: My Subroutine</div><div class="line">cond=&gt;condition: Yes or No?</div><div class="line">io=&gt;inputoutput: catch something...</div><div class="line">st-&gt;op1-&gt;cond</div><div class="line">cond(yes)-&gt;io-&gt;e</div><div class="line">cond(no)-&gt;sub1(right)-&gt;op1</div></pre></td></tr></table></figure>
+</code></pre><p>更多关于流程图的语法说明：</p>
+<p><a href="https://github.com/adrai/flowchart.js" target="_blank" rel="external">https://github.com/adrai/flowchart.js</a></p>
+<h3 id="sequencemap">序列图</h3>
+
+<p><img src="http://cdn2.wiz.cn/wp-content/uploads/2015/11/QQ20151123-1.png" alt="sequencemap"></p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/sequencemapcode.jpg" alt="sequencemapcode"></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Alice-&gt;Bob: Hello Bob, how are you?</div><div class="line">Note right of Bob: Bob thinks</div><div class="line">Bob--&gt;Alice: I am good thanks!</div></pre></td></tr></table></figure>
+</code></pre><p>更多关于时序图的语法说明：</p>
+<p><a href="https://github.com/bramp/js-sequence-diagrams" target="_blank" rel="external">https://github.com/bramp/js-sequence-diagrams</a></p>
+<h2 id="others">其他语法</h2>
+
+<h3 id="html">兼容HTML</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/html.jpg" alt="html"></p>
+<p>Markdown 可以和 HTML 混编，甚至可以完全用 HTML 语法来写。要注意在 HTML 标签中的 Markdown 代码是不起作用的。</p>
+<pre><code>&lt;font color=&apos;blue&apos; style=&apos;font-size:30px&apos;&gt;蓝色&lt;/font&gt;
+
+&lt;div&gt;
+# HTML 标签里面的 Markdown 语法不起作用
+**你看我没有变粗**
+&lt;/div&gt;
+</code></pre><h3 id="autoescape">特殊字符自动转换</h3>
+
+<ul>
+<li><p>HTML 语法——在 HTML 中所有<code>&lt;</code>和<code>&amp;</code>都要转换，包括链接（URL）</p>
+<ul>
+<li>用 <code>&amp;lt;</code> 表示 <code>&lt;</code>——起始标签</li>
+<li>用 <code>&amp;amp;</code> 表示 <code>&amp;</code> ——标记 HTML 实体</li>
+</ul>
+</li>
+<li><p>Markdown 语法——Markdown 则会自动转换</p>
+</li>
+</ul>
+<h3 id="backslash">反斜杠</h3>
+
+<p>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号。如：</p>
+<p>*literal asterisks*</p>
+<p>可用</p>
+<pre><code>\*literal asterisks\*
+</code></pre><p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<pre><code>\   反斜线
+`   反引号
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
+</code></pre><h3 id="autolink">自动链接</h3>
+
+<p><img src="http://ojlsgreog.bkt.clouddn.com/autolink.jpg" alt="autolink"></p>
+<ul>
+<li><p>网址自动链接</p>
+<pre><code>&lt;https://huihut.github.io/&gt;
+</code></pre></li>
+<li><p>电子邮件自动链接</p>
+<pre><code>&lt;huihut@outlook.com&gt;
+</code></pre></li>
+</ul>
+<h2 id="reference">感谢</h2>
+
+<blockquote>
+<p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Markdown: Syntax</a></p>
+<p><a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">Markdown 语法说明 (简体中文版)</a></p>
+<p><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">Markdown——入门指南</a></p>
+<p><a href="https://www.zybuluo.com/xxliixin1993/note/125827" target="_blank" rel="external">Markdown语法手册</a></p>
+<p><a href="http://www.williamlong.info/archives/4319.html" target="_blank" rel="external">好用的Markdown编辑器一览</a></p>
+<p><a href="https://www.zhihu.com/question/23378396" target="_blank" rel="external">markdown中插入图片怎么定义图片的大小或比例？</a></p>
+<p><a href="http://www.jianshu.com/p/0b257de21eb5" target="_blank" rel="external">Markdown进阶语法整理</a></p>
+<p><a href="http://www.wiz.cn/feature-markdown.html" target="_blank" rel="external">为知笔记 Markdown 新手指南</a></p>
+<p><a href="http://blog.csdn.net/xiahouzuoxin/article/details/26478179" target="_blank" rel="external">Markdown中插入数学公式的方法</a></p>
+<p><a href="https://github.com/i5ting/i5ting_ztree_toc" target="_blank" rel="external">i5ting/i5ting_ztree_toc</a></p>
+<p><a href="http://flowchart.js.org/" target="_blank" rel="external">flowchart.js</a></p>
+<p><a href="https://github.com/adrai/flowchart.js" target="_blank" rel="external">adrai/flowchart.js</a></p>
+<p><a href="https://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">js-sequence-diagrams</a></p>
+<p><a href="https://github.com/bramp/js-sequence-diagrams" target="_blank" rel="external">bramp/js-sequence-diagrams</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自己整理的 Markdown 简介、编辑器推荐、语法、特征等，是 Markdown 的简易入门教程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Markdown" scheme="http://huihut.com/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git Notes</title>
+    <link href="http://huihut.com/2017/01/24/GitNotes/"/>
+    <id>http://huihut.com/2017/01/24/GitNotes/</id>
+    <published>2017-01-24T04:39:42.000Z</published>
+    <updated>2017-04-08T14:24:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>Windows</p>
+<p>  ① 安装 Git for Windows</p>
+<p>  <a href="https://git-for-windows.github.io/" target="_blank" rel="external">https://git-for-windows.github.io/</a></p>
+<p>  ② 使用git客户端</p>
+<p>  <a href="https://git-scm.com/download/win" target="_blank" rel="external">https://git-scm.com/download/win</a></p>
+</li>
+<li><p>Mac</p>
+<p>  ① 用图形界面git安装工具安装</p>
+<p>  <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="external">http://sourceforge.net/projects/git-osx-installer/</a></p>
+<p>  ② 用homebrew安装</p>
+<pre><code>brew install git
+</code></pre></li>
+<li><p>Fedora</p>
+<pre><code>sudo yum install git-all
+</code></pre></li>
+<li><p>Debian &amp; Ubuntu</p>
+<pre><code>sudo apt-get install git-all
+</code></pre></li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>源码编译安装</p>
+<p>  ① 安装依赖工具</p>
+<ul>
+<li><p>Fedora</p>
+<pre><code>sudo yum install dh-autoreconf curl-devel expat-devel gettext-devel \
+openssl-devel perl-devel zlib-devel
+</code></pre></li>
+<li><p>Debian &amp; Ubuntu</p>
+<pre><code>apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \
+libz-dev libssl-dev
+</code></pre><p>② 下载git源码</p>
+<p><a href="http://git-scm.com/download" target="_blank" rel="external">http://git-scm.com/download</a></p>
+<p>③ 编译安装</p>
+<p>  tar -zxf git-1.7.2.2.tar.gz<br>  cd git-1.7.2.2<br>  make prefix=/usr/local all<br>  sudo make prefix=/usr/local install</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li><p>设置本地git用户名和邮箱</p>
+<pre><code>#用户名
+git config --global user.name &quot;huihut&quot; 
+
+#邮箱
+git config --global user.email &quot;huihut@outlook.com&quot; 
+
+#检查配置是否正确
+git config --list
+</code></pre></li>
+</ul>
+<ul>
+<li><p>生成SSH key</p>
+<pre><code>ssh-keygen -t rsa -C &quot;huihut@outlook.com&quot;
+</code></pre><p>  需要确认一些信息，一般默认就行。</p>
+</li>
+<li><p>获取ssh key</p>
+<pre><code>#首先转换到git的默认的路径下，再cat
+
+cat ~/.ssh/id_rsa.pub
+
+#输出如下
+ssh-rsa AAAA....huihut@outlook.com
+</code></pre></li>
+<li><p>复制ssh-rsa…com到Github SSH keys上,如下图：</p>
+</li>
+</ul>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/githubsshkeys.png" alt=""></p>
+<h2 id="下载到本地仓库"><a href="#下载到本地仓库" class="headerlink" title="下载到本地仓库"></a>下载到本地仓库</h2><ul>
+<li><p>用克隆命令（SSH or HTTPS）</p>
+<pre><code>git clone git@github.com:huihut/huihut.github.io.git
+</code></pre></li>
+</ul>
+<p>一般推荐使用SSH，因为HTTPS一般来说<code>fetch</code>和<code>push</code>代码都需要输入账号和密码，比较麻烦，而且速度较慢；但是在某些只开放HTTP端口的公司内部就无法使用SSH协议而只能用HTTPS。</p>
+<h2 id="上传到远程仓库"><a href="#上传到远程仓库" class="headerlink" title="上传到远程仓库"></a>上传到远程仓库</h2><ul>
+<li>新建远程仓库，如：<code>huihut.github.io</code></li>
+<li><p>终端进入本地仓库文件夹，如：</p>
+<pre><code>cd /Users/xx/code/Github/huihut.github.io
+</code></pre></li>
+<li><p>初始化仓库</p>
+<pre><code>git init
+</code></pre></li>
+<li><p>将本地的仓库和远程的仓库进行关联（SSH key ）</p>
+<pre><code>git remote add origin git@github.com:huihut/huihut.github.io.git
+</code></pre></li>
+<li><p>新建文件或者修改文件</p>
+<pre><code>touch test.txt
+</code></pre></li>
+<li><p>添加新建或修改的文件到仓库</p>
+<pre><code>#添加特定文件  
+git add test.txt
+
+#添加此目录下全部文件
+git add .
+</code></pre></li>
+<li><p>将文件提交到仓库</p>
+<pre><code>git commit -m &quot;add test.txt&quot;
+</code></pre></li>
+<li><p>将本地仓库的内容推送到远程仓库</p>
+<pre><code>git push -u origin master
+</code></pre></li>
+</ul>
+<p>注意：第一次<code>push</code>的时候最好加上<code>-u</code>参数，这样git就会把本地master分支与远程的master分支关联起来，我们以后的<code>push</code>操作就不再需要加上<code>-u</code>参数了。</p>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><h3 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h3><pre><code>git branch huihut
+</code></pre><h3 id="转换分支"><a href="#转换分支" class="headerlink" title="转换分支"></a>转换分支</h3><pre><code>git checkout huihut
+</code></pre><h3 id="新建并转换分支"><a href="#新建并转换分支" class="headerlink" title="新建并转换分支"></a>新建并转换分支</h3><pre><code>git checkout -b huihut
+</code></pre><h3 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h3><pre><code># 把master分支合并到huihut分支
+git merge master huihut
+</code></pre><h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><pre><code>git branch
+</code></pre><h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><pre><code>git branch -d huihut
+</code></pre><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><ul>
+<li><p>查看工作区和版本库里面最新版本的区别</p>
+<pre><code>git diff HEAD -- readme.txt
+</code></pre></li>
+<li><p>查询状态</p>
+<pre><code>git status
+</code></pre></li>
+</ul>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><ul>
+<li><p>丢弃工作区的修改</p>
+<pre><code>git checkout -- readme.txt
+</code></pre></li>
+<li><p>清理仓库</p>
+<pre><code>find . -name &quot;.git&quot; | xargs rm -Rf
+</code></pre></li>
+</ul>
+<ul>
+<li><p>删除文件</p>
+<pre><code>rm test.txt
+</code></pre></li>
+<li><p>删除文件夹（<code>-r</code>：向下递归；<code>-f</code>：强制删除）</p>
+<pre><code>rm -rf /Users/xx/test
+</code></pre></li>
+</ul>
+<h2 id="大文件存储"><a href="#大文件存储" class="headerlink" title="大文件存储"></a>大文件存储</h2><p>Github 上传单个文件应该低于100M。上传文件超过50M会给予警告，超过100M则会不允许上传，这时可以使用<code>git lfs</code>上传。</p>
+<p><a href="https://git-lfs.github.com/" target="_blank" rel="external">git-lfs 官网</a></p>
+<h3 id="安装-Git-LFS"><a href="#安装-Git-LFS" class="headerlink" title="安装 Git-LFS"></a>安装 Git-LFS</h3><pre><code>git lfs install
+</code></pre><h3 id="跟踪大文件"><a href="#跟踪大文件" class="headerlink" title="跟踪大文件"></a>跟踪大文件</h3><ul>
+<li><p>跟踪某类型文件</p>
+<pre><code>git lfs track &quot;*.psd&quot;
+</code></pre></li>
+<li><p>跟踪多个文件</p>
+<pre><code>git lfs track &quot;aa.psd&quot; &quot;bb.pdf&quot; &quot;cc.zip&quot;
+</code></pre></li>
+</ul>
+<h3 id="确保gitattributes被跟踪"><a href="#确保gitattributes被跟踪" class="headerlink" title="确保gitattributes被跟踪"></a>确保gitattributes被跟踪</h3><pre><code>git add .gitattributes
+
+# 可以在.gitattributes查看跟踪的文件
+cat .gitattributes
+</code></pre><h3 id="接下来步骤和平常一样"><a href="#接下来步骤和平常一样" class="headerlink" title="接下来步骤和平常一样"></a>接下来步骤和平常一样</h3><pre><code>git add .
+git commit -m &quot;Add Large File&quot;
+git push origin master
+</code></pre><h2 id="常见错误："><a href="#常见错误：" class="headerlink" title="常见错误："></a>常见错误：</h2><ol>
+<li><code>error: failed to push some refs to ....</code>  </li>
+</ol>
+<p>问题的出现原因在于：git仓库中已经有一部分代码，所以它不允许你直接把你的代码覆盖上去。<br>① 方法一：强推（<code>-f</code>），视情况加<code>-u</code>  </p>
+<pre><code>git push -f -u origin master
+</code></pre><p>②方法二：先把git的东西fetch到你本地然后merge后再push</p>
+<pre><code>git fetch
+git merge
+</code></pre><p>这两句等价于  </p>
+<pre><code>git pull 
+</code></pre><p>可是，这时候又出现了如下的问题：  </p>
+<p>上面出现的 [branch “master”]是需要明确(.git/config)如下的内容  </p>
+<pre><code>[branch &quot;master&quot;]
+
+remote = origin
+
+merge = refs/heads/master
+</code></pre><p>这等于告诉git2件事:</p>
+<p>1，当你处于master branch, 默认的remote就是origin。  </p>
+<p>2，当你在master branch上使用git pull时，没有指定remote和branch，那么git就会采用默认的remote（也就是origin）来merge在master branch上所有的改变</p>
+<p>如果不想或者不会编辑config文件的话，可以在bush上输入如下命令行：</p>
+<pre><code>git config branch.master.remote origin 
+
+git config branch.master.merge refs/heads/master 
+</code></pre><p>之后再重新git pull下</p>
+<pre><code>git pull 
+</code></pre><p>最后git push你的代码（视情况加<code>-u</code> ）</p>
+<pre><code>git push -u origin master
+</code></pre><h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><blockquote>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的官方网站 . Git教程</a></p>
+<p><a href="http://www.jianshu.com/p/dcbb8baa6e36" target="_blank" rel="external">YotrolZ的博客 . 本地Git仓库和远程仓库的创建及关联</a></p>
+<p><a href="http://www.cnblogs.com/renkangke/archive/2013/05/31/conquerAndroid.html" target="_blank" rel="external">ConquerMobileApp博客 . git push用法和常见问题分析</a></p>
+<p><a href="http://www.cnblogs.com/springbarley/archive/2012/11/03/2752984.html" target="_blank" rel="external">pringbarley博客 . git常用命令</a></p>
+<p><a href="https://git-lfs.github.com/" target="_blank" rel="external">git-lfs</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Windows&lt;/p&gt;
+&lt;p&gt;  ① 安装 Git for Windows&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;https://git-for-windows.github.io/&quot;&gt;https://git-for-windows.github.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  ② 使用git客户端&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;https://git-scm.com/download/win&quot;&gt;https://git-scm.com/download/win&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mac&lt;/p&gt;
+&lt;p&gt;  ① 用图形界面git安装工具安装&lt;/p&gt;
+&lt;p&gt;  &lt;a href=&quot;http://sourceforge.net/projects/git-osx-installer/&quot;&gt;http://sourceforge.net/projects/git-osx-installer/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  ② 用homebrew安装&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install git
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fedora&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo yum install git-all
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Debian &amp;amp; Ubuntu&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install git-all
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Git" scheme="http://huihut.com/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python Notes</title>
+    <link href="http://huihut.com/2017/01/22/PythonNotes/"/>
+    <id>http://huihut.com/2017/01/22/PythonNotes/</id>
+    <published>2017-01-22T04:33:18.000Z</published>
+    <updated>2017-04-02T10:39:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Python-中文编码"><a href="#Python-中文编码" class="headerlink" title="Python 中文编码"></a>Python 中文编码</h2><p>在Python文件中如果未指定编码格式，则默认ASCII编码。此时如果输出中文字符，则会报错（SyntaxError）。</p>
+<p>解决方法为在文件开头加入以下内容：  </p>
+<p>① 写法一：</p>
+<pre><code># coding = utf-8
+</code></pre><p>② 写法二：</p>
+<pre><code># -*- coding: UTF-8 -*-
+</code></pre><a id="more"></a>
+<h2 id="Python-指定解释器路径"><a href="#Python-指定解释器路径" class="headerlink" title="Python 指定解释器路径"></a>Python 指定解释器路径</h2><ul>
+<li>若使用<code>python xx.py</code>运行Python程序，可以不写解释器路径；  </li>
+<li>若使用<code>./xx.py</code>运行Python程序，则要写解释器路径</li>
+</ul>
+<p>① 写法一：</p>
+<pre><code>#!/usr/bin/env python
+</code></pre><p><strong>推荐使用写法一。</strong><br>用写法一可以在你安装多版本Python时，取PATH中第一个Python执行；若配置了虚拟环境，也可以保证你用虚拟环境中的Python执行</p>
+<p>② 写法二：</p>
+<pre><code>#!/usr/bin/python
+</code></pre><p>默认的Python解释器的路径</p>
+<h2 id="Python-变量类型"><a href="#Python-变量类型" class="headerlink" title="Python 变量类型"></a>Python 变量类型</h2><h3 id="Python-列表"><a href="#Python-列表" class="headerlink" title="Python 列表"></a>Python 列表</h3><p>List（列表） 是 Python 中使用最频繁的数据类型。  </p>
+<ul>
+<li>列表可以完成大多数集合类的数据结构实现。它支持字符，数字，字符串甚至可以包含列表（所谓嵌套）。</li>
+<li>列表用[ ]标识。是python最通用的复合数据类型。看这段代码就明白。</li>
+<li>列表中的值得分割也可以用到变量[头下标:尾下标]，就可以截取相应的列表，从左到右索引默认0开始的，从右到左索引默认-1开始，下标可以为空表示取到头或尾。</li>
+<li><p>加号（+）是列表连接运算符，星号（*）是重复操作。如下实例：</p>
+<pre><code># coding = utf-8
+
+list = [ &apos;runoob&apos;, 786 , 2.23, &apos;john&apos;, 70.2 ]
+tinylist = [123, &apos;john&apos;]
+
+print list               # 输出完整列表
+print list[0]            # 输出列表的第一个元素
+print list[1:3]          # 输出第二个至第三个的元素 
+print list[2:]           # 输出从第三个开始至列表末尾的所有元素
+print tinylist * 2       # 输出列表两次
+print list + tinylist    # 打印组合的列表
+</code></pre></li>
+</ul>
+<p>以上实例输出结果：</p>
+<pre><code>[&apos;runoob&apos;, 786, 2.23, &apos;john&apos;, 70.2]
+runoob
+[786, 2.23]
+[2.23, &apos;john&apos;, 70.2]
+[123, &apos;john&apos;, 123, &apos;john&apos;]
+[&apos;runoob&apos;, 786, 2.23, &apos;john&apos;, 70.2, 123, &apos;john&apos;]
+</code></pre><h3 id="Python元组"><a href="#Python元组" class="headerlink" title="Python元组"></a>Python元组</h3><p>元组是另一个数据类型，类似于List（列表）。</p>
+<ul>
+<li>元组用”()”标识。内部元素用逗号隔开。但是元组不能二次赋值，相当于只读列表。</li>
+</ul>
+<pre><code># coding = utf-8
+
+tuple = ( &apos;runoob&apos;, 786 , 2.23, &apos;john&apos;, 70.2 )
+tinytuple = (123, &apos;john&apos;)
+
+print tuple               # 输出完整元组
+print tuple[0]            # 输出元组的第一个元素
+print tuple[1:3]          # 输出第二个至第三个的元素 
+print tuple[2:]           # 输出从第三个开始至列表末尾的所有元素
+print tinytuple * 2       # 输出元组两次
+print tuple + tinytuple   # 打印组合的元组
+</code></pre><p>以上实例输出结果：</p>
+<pre><code>(&apos;runoob&apos;, 786, 2.23, &apos;john&apos;, 70.2)
+runoob
+(786, 2.23)
+(2.23, &apos;john&apos;, 70.2)
+(123, &apos;john&apos;, 123, &apos;john&apos;)
+(&apos;runoob&apos;, 786, 2.23, &apos;john&apos;, 70.2, 123, &apos;john&apos;)
+</code></pre><p>以下是元组无效的，因为元组是不允许更新的。而列表是允许更新的：</p>
+<pre><code># coding = utf-8
+
+tuple = ( &apos;runoob&apos;, 786 , 2.23, &apos;john&apos;, 70.2 )
+list = [ &apos;runoob&apos;, 786 , 2.23, &apos;john&apos;, 70.2 ]
+tuple[2] = 1000    # 元组中是非法应用
+list[2] = 1000     # 列表中是合法应用
+</code></pre><h3 id="Python-元字典"><a href="#Python-元字典" class="headerlink" title="Python 元字典"></a>Python 元字典</h3><p>字典(dictionary)是除列表以外python之中最灵活的内置数据结构类型。列表是有序的对象结合，字典是无序的对象集合。</p>
+<ul>
+<li>两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取。</li>
+<li><p>字典用”{ }”标识。字典由索引(key)和它对应的值value组成。</p>
+<pre><code># coding = utf-8
+
+dict = {}
+dict[&apos;one&apos;] = &quot;This is one&quot;
+dict[2] = &quot;This is two&quot;
+
+tinydict = {&apos;name&apos;: &apos;john&apos;,&apos;code&apos;:6734, &apos;dept&apos;: &apos;sales&apos;}
+
+print dict[&apos;one&apos;]          # 输出键为&apos;one&apos; 的值
+print dict[2]              # 输出键为 2 的值
+print tinydict             # 输出完整的字典
+print tinydict.keys()      # 输出所有键
+print tinydict.values()    # 输出所有值
+</code></pre></li>
+</ul>
+<p>输出结果为：</p>
+<pre><code>This is one
+This is two
+{&apos;dept&apos;: &apos;sales&apos;, &apos;code&apos;: 6734, &apos;name&apos;: &apos;john&apos;}
+[&apos;dept&apos;, &apos;code&apos;, &apos;name&apos;]
+[&apos;sales&apos;, 6734, &apos;john&apos;]
+</code></pre><h2 id="Python-运算符"><a href="#Python-运算符" class="headerlink" title="Python 运算符"></a>Python 运算符</h2><h3 id="Python算术运算符"><a href="#Python算术运算符" class="headerlink" title="Python算术运算符"></a>Python算术运算符</h3><p>以下假设变量a为2，变量b为3：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>**</td>
+<td>幂 - 返回x的y次幂</td>
+<td>a**b 为2的3次方，输出结果 8</td>
+</tr>
+<tr>
+<td>//</td>
+<td>取整除 - 返回商的整数部分</td>
+<td>a//b 输出结果 0 , b//a 输出结果 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：Python中没有<code>++</code>和<code>--</code>的自增/减运算符</strong><br><strong>拓展：为什么Python、Ruby中没有自增/减运算符？</strong>  </p>
+<ul>
+<li>在Python中有<code>a += 1</code>，没有<code>a++</code>。</li>
+<li><code>a += 1</code>改变了变量，表达式新建了个对象，把<code>a+1</code>的结果存在这个对象中，然后将引用a指向该对象，使得变量a改变。</li>
+<li><code>a++</code>改变了对象本身（直接对对象进行<code>++</code>），这个对象指的是内存中存放基本类型的数据的地址所指的内容。</li>
+<li>在 Python 中，数值对象是一种不可变类型。在创建对象之后，其值就不能再被改变。</li>
+</ul>
+<h3 id="Python比较运算符"><a href="#Python比较运算符" class="headerlink" title="Python比较运算符"></a>Python比较运算符</h3><p>以下假设变量a为10，变量b为20：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于 - 比较两个对象是否不相等</td>
+<td>(a &lt;&gt; b) 返回 true。这个运算符类似 != </td>
+</tr>
+</tbody>
+</table>
+<h3 id="Python赋值运算符"><a href="#Python赋值运算符" class="headerlink" title="Python赋值运算符"></a>Python赋值运算符</h3><p>以下假设变量a为10，变量b为20：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>**=</td>
+<td>幂赋值运算符</td>
+<td>c <strong>= a 等效于 c = c </strong> a</td>
+</tr>
+<tr>
+<td>//=</td>
+<td>取整除赋值运算符</td>
+<td>c //= a 等效于 c = c // a</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Python逻辑运算符"><a href="#Python逻辑运算符" class="headerlink" title="Python逻辑运算符"></a>Python逻辑运算符</h3><p>Python语言支持逻辑运算符，以下假设变量 a 为 10, b为 20:</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>逻辑表达式</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>and</td>
+<td>x and y</td>
+<td>布尔”与” - 如果 x 为 False，x and y 返回 False，否则它返回 y 的计算值。</td>
+<td>(a and b) 返回 20。</td>
+</tr>
+<tr>
+<td>or</td>
+<td>x or y</td>
+<td>布尔”或”    - 如果 x 是非 0，它返回 x 的值，否则它返回 y 的计算值。</td>
+<td>(a or b) 返回 10。</td>
+</tr>
+<tr>
+<td>not</td>
+<td>not x</td>
+<td>布尔”非” - 如果 x 为 True，返回 False 。如果 x 为 False，它返回 True。</td>
+<td>not(a and b) 返回 False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Python成员运算符"><a href="#Python成员运算符" class="headerlink" title="Python成员运算符"></a>Python成员运算符</h3><p>除了以上的一些运算符之外，Python还支持成员运算符，测试实例中包含了一系列的成员，包括字符串，列表或元组。</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in</td>
+<td>如果在指定的序列中找到值返回 True，否则返回 False。</td>
+<td>x 在 y 序列中 , 如果 x 在 y 序列中返回 True。</td>
+</tr>
+<tr>
+<td>not in</td>
+<td>如果在指定的序列中没有找到值返回 True，否则返回 False。</td>
+<td>x 不在 y 序列中 , 如果 x 不在 y 序列中返回 True。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Python运算符优先级"><a href="#Python运算符优先级" class="headerlink" title="Python运算符优先级"></a>Python运算符优先级</h3><p>以下表格列出了从最高到最低优先级的所有运算符：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>**</td>
+<td>指数 (最高优先级)</td>
+</tr>
+<tr>
+<td>~ + -</td>
+<td>按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)</td>
+</tr>
+<tr>
+<td>* / % //</td>
+<td>乘，除，取模和取整除</td>
+</tr>
+<tr>
+<td>+ -</td>
+<td>加法减法</td>
+</tr>
+<tr>
+<td>&lt;&lt; &gt;&gt;</td>
+<td>左移，右移运算符</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>位 ‘AND’</td>
+</tr>
+<tr>
+<td>^ &#124;</td>
+<td>位运算符</td>
+</tr>
+<tr>
+<td>&lt;= &lt; &gt; &gt;=</td>
+<td>比较运算符</td>
+</tr>
+<tr>
+<td>&lt;&gt; == !=</td>
+<td>等于运算符</td>
+</tr>
+<tr>
+<td>= %= /= //= -= += <em>= *</em>=</td>
+<td>赋值运算符</td>
+</tr>
+<tr>
+<td>is is not</td>
+<td>身份运算符</td>
+</tr>
+<tr>
+<td>in not in</td>
+<td>成员运算符</td>
+</tr>
+<tr>
+<td>not or and</td>
+<td>逻辑运算符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><blockquote>
+<p>[Python语法] <a href="http://www.runoob.com/python/python-tutorial.html" target="_blank" rel="external">http://www.runoob.com/python/python-tutorial.html</a><br>[Python教程] <a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000</a><br>[Python中为什么没有++和–（自增/减）] <a href="http://blog.csdn.net/guang09080908/article/details/47273765" target="_blank" rel="external">http://blog.csdn.net/guang09080908/article/details/47273765</a><br>[为什么 Python、Ruby 等语言弃用了自增运算符？] <a href="https://www.zhihu.com/question/20913064" target="_blank" rel="external">https://www.zhihu.com/question/20913064</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Python-中文编码&quot;&gt;&lt;a href=&quot;#Python-中文编码&quot; class=&quot;headerlink&quot; title=&quot;Python 中文编码&quot;&gt;&lt;/a&gt;Python 中文编码&lt;/h2&gt;&lt;p&gt;在Python文件中如果未指定编码格式，则默认ASCII编码。此时如果输出中文字符，则会报错（SyntaxError）。&lt;/p&gt;
+&lt;p&gt;解决方法为在文件开头加入以下内容：  &lt;/p&gt;
+&lt;p&gt;① 写法一：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# coding = utf-8
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;② 写法二：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# -*- coding: UTF-8 -*-
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Python" scheme="http://huihut.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PyCharm自动安装pymysql包失败</title>
+    <link href="http://huihut.com/2017/01/21/PyCharmInstallPymysqlFail/"/>
+    <id>http://huihut.com/2017/01/21/PyCharmInstallPymysqlFail/</id>
+    <published>2017-01-21T13:41:07.000Z</published>
+    <updated>2017-04-02T10:39:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p>在PyCharm中新建Web2Py项目后提示没有pymysql，自动安装失败，如图：  </p>
+<a id="more"></a>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/pymysqlError.jpg" alt="">  </p>
+<h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><h3 id="1-安装pip"><a href="#1-安装pip" class="headerlink" title="1. 安装pip"></a>1. 安装pip</h3><p>在终端输入</p>
+<pre><code>pip -V 
+</code></pre><p>如果显示版本路径，就说明pip已经安装了<br>如果没有安装pip则需要在终端安装  </p>
+<p>  ①使用脚本安装pip：</p>
+<ul>
+<li><p>各平台（管理员运行）：  </p>
+<pre><code>python get-pip.py
+</code></pre></li>
+</ul>
+<p>②使用包管理器安装pip：</p>
+<ul>
+<li><p>Mac：  </p>
+<pre><code>sudo easy_install pip
+</code></pre></li>
+</ul>
+<ul>
+<li><p>Debian &amp; Ubuntu:  </p>
+<pre><code>sudo apt-get install python-pip
+</code></pre></li>
+</ul>
+<ul>
+<li><p>Fedora:    </p>
+<pre><code>sudo yum install python-pip
+</code></pre></li>
+</ul>
+<h3 id="2-安装pymysql"><a href="#2-安装pymysql" class="headerlink" title="2. 安装pymysql"></a>2. 安装pymysql</h3><pre><code>pip install pymysql
+</code></pre><h3 id="3-正常情况下以上两步就行了。"><a href="#3-正常情况下以上两步就行了。" class="headerlink" title="3. 正常情况下以上两步就行了。"></a>3. 正常情况下以上两步就行了。</h3><p>然而我的项目中依然提示没有pymysql，结果发现只是Python版本选错了<br>(ノ▼Д▼)ノ<br>我pymysql是安装到Python2.7，而PyCharm项目是用Python2.6<br>所以就到<code>Preferences</code> &gt; <code>Project Interpreter</code>中调成Python2.7就行了，</p>
+<h3 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h3><blockquote>
+<p><a href="http://stackoverflow.com/questions/36956124/permision-issues-while-using-and-installing-python-packages" target="_blank" rel="external">http://stackoverflow.com/questions/36956124/permision-issues-while-using-and-installing-python-packages</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题描述：&quot;&gt;&lt;a href=&quot;#问题描述：&quot; class=&quot;headerlink&quot; title=&quot;问题描述：&quot;&gt;&lt;/a&gt;问题描述：&lt;/h2&gt;&lt;p&gt;在PyCharm中新建Web2Py项目后提示没有pymysql，自动安装失败，如图：  &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Python" scheme="http://huihut.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搬瓦工Shadowsocks安装及配置多用户(服务端)</title>
+    <link href="http://huihut.com/2016/12/03/BandwagonShadowsocksServer/"/>
+    <id>http://huihut.com/2016/12/03/BandwagonShadowsocksServer/</id>
+    <published>2016-12-03T06:44:21.000Z</published>
+    <updated>2017-03-25T07:10:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装Shadowsocks服务"><a href="#安装Shadowsocks服务" class="headerlink" title="安装Shadowsocks服务"></a>安装Shadowsocks服务</h2><p><strong>方案一：</strong>   </p>
+<p>搬瓦工VPS为我们准备了Shadowsocks的一键安装，直接在控制面板中有，非常方便。  </p>
+<ul>
+<li>只需在左边最下面选择<code>Shadowsocks Server</code>     </li>
+<li>然后选择<code>Install Shadowsocks Server</code>  </li>
+<li>等待安装完成后选择<code>Go Back</code></li>
+<li>现在可以看到加密协议默认<code>aes-256-cfb</code>,端口默认<code>443</code> ,密码随机</li>
+</ul>
+<p>如果是自己用，到这里就可以使用了，直接在客户端填好这些配置信息就好了。</p>
+<p><strong>方案二：</strong>  </p>
+<p>如果不在控制面板上安装或者是在其他没有一键安装的VPS上，可以使用命令安装。  </p>
+<p><strong>Debian/Ubuntu:</strong>  </p>
+<pre><code>apt-get install python-pip
+pip install shadowsocks 
+</code></pre><p><strong>CentOS:</strong>  </p>
+<pre><code>yum install python-setuptools &amp;&amp; easy_install pip
+pip install shadowsocks 
+</code></pre><a id="more"></a>
+<h2 id="优化Shadowsocks性能"><a href="#优化Shadowsocks性能" class="headerlink" title="优化Shadowsocks性能"></a>优化Shadowsocks性能</h2><ul>
+<li>在终端通过ssh连上vps（Windows可以用putty连，Mac直接在终端就可以了）  </li>
+<li>在终端输入<code>vi /etc/sysctl.d/local.conf</code><br>创建配置文件  </li>
+<li>按<code>i</code>插入  </li>
+<li><p>插入以下内容  </p>
+<pre><code># max open files
+fs.file-max = 1024000
+# max read buffer
+net.core.rmem_max = 67108864
+# max write buffer
+net.core.wmem_max = 67108864
+# default read buffer
+net.core.rmem_default = 65536
+# default write buffer
+net.core.wmem_default = 65536
+# max processor input queue
+net.core.netdev_max_backlog = 4096
+# max backlog
+net.core.somaxconn = 4096
+
+# resist SYN flood attacks
+net.ipv4.tcp_syncookies = 1
+# reuse timewait sockets when safe
+net.ipv4.tcp_tw_reuse = 1
+# turn off fast timewait sockets recycling
+net.ipv4.tcp_tw_recycle = 0
+# short FIN timeout
+net.ipv4.tcp_fin_timeout = 30
+# short keepalive time
+net.ipv4.tcp_keepalive_time = 1200
+# outbound port range
+net.ipv4.ip_local_port_range = 10000 65000
+# max SYN backlog
+net.ipv4.tcp_max_syn_backlog = 4096
+# max timewait sockets held by system simultaneously
+net.ipv4.tcp_max_tw_buckets = 5000
+# TCP receive buffer
+net.ipv4.tcp_rmem = 4096 87380 67108864
+# TCP write buffer
+net.ipv4.tcp_wmem = 4096 65536 67108864
+# turn on path MTU discovery
+net.ipv4.tcp_mtu_probing = 1
+
+# for high-latency network
+net.ipv4.tcp_congestion_control = hybla
+# forward ivp4
+net.ipv4.ip_forward = 1
+</code></pre></li>
+</ul>
+<ul>
+<li>然后按<code>Esc</code>退出编辑，按<code>shift</code>+<code>:</code>，输入<code>wq</code>，回车，就保存退出了。  </li>
+<li>配置生效：<code>sysctl --system</code></li>
+</ul>
+<h2 id="配置多用户"><a href="#配置多用户" class="headerlink" title="配置多用户"></a>配置多用户</h2><p>如果想多用户使用的话就需要更改配置。    </p>
+<ul>
+<li>首先通过ssh连上vps  </li>
+<li>在终端输入<code>vi /etc/shadowsocks.json</code>创建配置文件  </li>
+<li>按<code>i</code>插入  </li>
+<li><p>插入以下内容（用户数任意，注意最后一个用户密码后面没有逗号）  </p>
+<pre><code>{
+ &quot;server&quot;:&quot;my_server_ip&quot;,  #填入你的IP地址
+ &quot;local_address&quot;: &quot;127.0.0.1&quot;,
+ &quot;local_port&quot;:1080,
+  &quot;port_password&quot;: {
+      &quot;8381&quot;: &quot;foobar1&quot;,    #端口号，密码
+      &quot;8382&quot;: &quot;foobar2&quot;,
+          &quot;8383&quot;: &quot;foobar3&quot;,
+    &quot;8384&quot;: &quot;foobar4&quot;
+ },
+ &quot;timeout&quot;:300,
+ &quot;method&quot;:&quot;aes-256-cfb&quot;,
+ &quot;fast_open&quot;: false
+}
+</code></pre></li>
+</ul>
+<p>Explanation of the fields(配置说明):  </p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td>the address your server listens</td>
+</tr>
+<tr>
+<td>server_port</td>
+<td>server port</td>
+</tr>
+<tr>
+<td>local_address</td>
+<td>the address your local listens</td>
+</tr>
+<tr>
+<td>local_port</td>
+<td>local port</td>
+</tr>
+<tr>
+<td>password</td>
+<td>password used for encryption</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>in seconds</td>
+</tr>
+<tr>
+<td>method</td>
+<td>default: “aes-256-cfb”, see <a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">Encryption</a></td>
+</tr>
+<tr>
+<td>fast_open</td>
+<td>use <a href="https://github.com/shadowsocks/shadowsocks/wiki/TCP-Fast-Open" target="_blank" rel="external">TCP_FASTOPEN</a>, true / false</td>
+</tr>
+<tr>
+<td>workers</td>
+<td>number of workers, available on Unix/Linux</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>然后按<code>Esc</code>退出编辑，按<code>shift</code>+<code>:</code>，输入<code>wq</code>，回车，就保存退出了。  </li>
+<li>现在就可以启动了，有两种方式启动，前端和后端。<br>前端启动：<code>ssserver -c /etc/shadowsocks.json</code>；<br>后端启动：<code>ssserver -c /etc/shadowsocks.json -d start</code>；<br>停止：<code>ssserver -c /etc/shadowsocks.json -d stop</code>；<br>重启(修改配置要重启才生效)：<code>ssserver -c /etc/shadowsocks.json -d restart</code>   </li>
+<li>设置开机启动<br>在终端输入<code>vi /etc/rc.local</code>，<br>把里面最后的带有ssserver的一大段默认的代码删除掉，<br>再把<code>ssserver -c /etc/shadowsocks.json -d start</code>加进去，<br>按<code>wq</code>保存退出。  </li>
+<li>到此就配置好了，试试多用户运行吧！</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装Shadowsocks服务&quot;&gt;&lt;a href=&quot;#安装Shadowsocks服务&quot; class=&quot;headerlink&quot; title=&quot;安装Shadowsocks服务&quot;&gt;&lt;/a&gt;安装Shadowsocks服务&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;方案一：&lt;/strong&gt;   &lt;/p&gt;
+&lt;p&gt;搬瓦工VPS为我们准备了Shadowsocks的一键安装，直接在控制面板中有，非常方便。  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只需在左边最下面选择&lt;code&gt;Shadowsocks Server&lt;/code&gt;     &lt;/li&gt;
+&lt;li&gt;然后选择&lt;code&gt;Install Shadowsocks Server&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;等待安装完成后选择&lt;code&gt;Go Back&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;现在可以看到加密协议默认&lt;code&gt;aes-256-cfb&lt;/code&gt;,端口默认&lt;code&gt;443&lt;/code&gt; ,密码随机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果是自己用，到这里就可以使用了，直接在客户端填好这些配置信息就好了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方案二：&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;如果不在控制面板上安装或者是在其他没有一键安装的VPS上，可以使用命令安装。  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Debian/Ubuntu:&lt;/strong&gt;  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;apt-get install python-pip
+pip install shadowsocks 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;CentOS:&lt;/strong&gt;  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install python-setuptools &amp;amp;&amp;amp; easy_install pip
+pip install shadowsocks 
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="http://huihut.com/categories/CS/"/>
+    
+    
+      <category term="Shadowsocks" scheme="http://huihut.com/tags/Shadowsocks/"/>
+    
+  </entry>
+  
+</feed>
