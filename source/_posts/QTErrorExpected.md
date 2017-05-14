@@ -1,8 +1,8 @@
 ---
 
-title: QT构建错误：error: expected ';'
-subtitle: QT构建错误：error: expected ';'
-date: 2017-05-12 19:51:39
+title: QT构建错误
+subtitle: QT构建错误
+date: 2017-05-15 00:25:44
 author: 谢孟辉
 tags:
 	- QT

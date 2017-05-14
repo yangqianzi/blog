@@ -5,7 +5,7 @@
   <link href="//atom.xml" rel="self"/>
   
   <link href="https://blog.huihut.com/"/>
-  <updated>2017-05-13T12:29:00.000Z</updated>
+  <updated>2017-05-14T16:39:04.000Z</updated>
   <id>https://blog.huihut.com/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>QT构建错误</title>
+    <link href="https://blog.huihut.com/2017/05/15/QTErrorExpected/"/>
+    <id>https://blog.huihut.com/2017/05/15/QTErrorExpected/</id>
+    <published>2017-05-14T16:25:44.000Z</published>
+    <updated>2017-05-14T16:39:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="QT构建错误：error-expected-‘-’-at-end-of-declaration-list"><a href="#QT构建错误：error-expected-‘-’-at-end-of-declaration-list" class="headerlink" title="QT构建错误：error: expected ‘;’ at end of declaration list"></a>QT构建错误：error: expected ‘;’ at end of declaration list</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/QTErrorExpected.jpg" alt="QTErrorExpected"></p>
+<pre><code>In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_io/AsciiFilter.cpp:18:
+In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_io/AsciiFilter.h:21:
+In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_io/FileIOFilter.h:22:
+In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccHObject.h:22:
+In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccObject.h:22:
+In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccSerializableObject.h:22:
+In file included from ../../../../InnerEyes/CloudCompare/libs/qCC_db/ccLog.h:29:
+In file included from /Users/xx/Applications/Qt5.8.0/5.8/clang_64/lib/QtCore.framework/Headers/QString:1:
+In file included from /Users/xx/Applications/Qt5.8.0/5.8/clang_64/lib/QtCore.framework/Headers/qstring.h:50:
+/Users/xx/Applications/Qt5.8.0/5.8/clang_64/lib/QtCore.framework/Headers/qrefcount.h:54:22: error: expected &apos;;&apos; at end of     declaration list
+    inline bool ref() Q_DECL_NOTHROW {
+                     ^
+                     ;
+</code></pre><h2 id="qt5-keg-only"><a href="#qt5-keg-only" class="headerlink" title="qt5 keg-only"></a>qt5 keg-only</h2><pre><code>brew unlink qt
+brew link --force qt5
+cmake -DCMAKE_PREFIX_PATH:STRING=/usr/local/opt/qt5/lib/cmake/ ..
+make install
+brew unlink qt5
+brew link qt
+</code></pre><p><a href="https://github.com/miek/inspectrum/issues/60" target="_blank" rel="external">Github . Build fails on OS X, seems to be related to Qt5</a></p>
+<h2 id="brew-unlink-qt"><a href="#brew-unlink-qt" class="headerlink" title="brew unlink qt"></a>brew unlink qt</h2><pre><code>brew unlink qt
+</code></pre><p><img src="http://ojlsgreog.bkt.clouddn.com/QTErrorNoRule.jpg" alt="QTErrorNoRule"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;QT构建错误：error-expected-‘-’-at-end-of-declaration-list&quot;&gt;&lt;a href=&quot;#QT构建错误：error-expected-‘-’-at-end-of-declaration-list&quot; class=&quot;headerl
+    
+    </summary>
+    
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
+    
+    
+      <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo 构建静态文件无法生成 index.html 等文件</title>
@@ -1335,9 +1380,9 @@ sudo yum install -y shadowsocks-qt5
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Shadowsocks" scheme="https://blog.huihut.com/tags/Shadowsocks/"/>
-    
       <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
+    
+      <category term="Shadowsocks" scheme="https://blog.huihut.com/tags/Shadowsocks/"/>
     
   </entry>
   
@@ -2976,191 +3021,6 @@ This is two
     
     
       <category term="Python" scheme="https://blog.huihut.com/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搬瓦工Shadowsocks安装及配置多用户(服务端)</title>
-    <link href="https://blog.huihut.com/2016/12/03/BandwagonShadowsocksServer/"/>
-    <id>https://blog.huihut.com/2016/12/03/BandwagonShadowsocksServer/</id>
-    <published>2016-12-03T06:44:21.000Z</published>
-    <updated>2017-03-25T07:10:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装Shadowsocks服务"><a href="#安装Shadowsocks服务" class="headerlink" title="安装Shadowsocks服务"></a>安装Shadowsocks服务</h2><p><strong>方案一：</strong>   </p>
-<p>搬瓦工VPS为我们准备了Shadowsocks的一键安装，直接在控制面板中有，非常方便。  </p>
-<ul>
-<li>只需在左边最下面选择<code>Shadowsocks Server</code>     </li>
-<li>然后选择<code>Install Shadowsocks Server</code>  </li>
-<li>等待安装完成后选择<code>Go Back</code></li>
-<li>现在可以看到加密协议默认<code>aes-256-cfb</code>,端口默认<code>443</code> ,密码随机</li>
-</ul>
-<p>如果是自己用，到这里就可以使用了，直接在客户端填好这些配置信息就好了。</p>
-<p><strong>方案二：</strong>  </p>
-<p>如果不在控制面板上安装或者是在其他没有一键安装的VPS上，可以使用命令安装。  </p>
-<p><strong>Debian/Ubuntu:</strong>  </p>
-<pre><code>apt-get install python-pip
-pip install shadowsocks 
-</code></pre><p><strong>CentOS:</strong>  </p>
-<pre><code>yum install python-setuptools &amp;&amp; easy_install pip
-pip install shadowsocks 
-</code></pre><a id="more"></a>
-<h2 id="优化Shadowsocks性能"><a href="#优化Shadowsocks性能" class="headerlink" title="优化Shadowsocks性能"></a>优化Shadowsocks性能</h2><ul>
-<li>在终端通过ssh连上vps（Windows可以用putty连，Mac直接在终端就可以了）  </li>
-<li>在终端输入<code>vi /etc/sysctl.d/local.conf</code><br>创建配置文件  </li>
-<li>按<code>i</code>插入  </li>
-<li><p>插入以下内容  </p>
-<pre><code># max open files
-fs.file-max = 1024000
-# max read buffer
-net.core.rmem_max = 67108864
-# max write buffer
-net.core.wmem_max = 67108864
-# default read buffer
-net.core.rmem_default = 65536
-# default write buffer
-net.core.wmem_default = 65536
-# max processor input queue
-net.core.netdev_max_backlog = 4096
-# max backlog
-net.core.somaxconn = 4096
-
-# resist SYN flood attacks
-net.ipv4.tcp_syncookies = 1
-# reuse timewait sockets when safe
-net.ipv4.tcp_tw_reuse = 1
-# turn off fast timewait sockets recycling
-net.ipv4.tcp_tw_recycle = 0
-# short FIN timeout
-net.ipv4.tcp_fin_timeout = 30
-# short keepalive time
-net.ipv4.tcp_keepalive_time = 1200
-# outbound port range
-net.ipv4.ip_local_port_range = 10000 65000
-# max SYN backlog
-net.ipv4.tcp_max_syn_backlog = 4096
-# max timewait sockets held by system simultaneously
-net.ipv4.tcp_max_tw_buckets = 5000
-# TCP receive buffer
-net.ipv4.tcp_rmem = 4096 87380 67108864
-# TCP write buffer
-net.ipv4.tcp_wmem = 4096 65536 67108864
-# turn on path MTU discovery
-net.ipv4.tcp_mtu_probing = 1
-
-# for high-latency network
-net.ipv4.tcp_congestion_control = hybla
-# forward ivp4
-net.ipv4.ip_forward = 1
-</code></pre></li>
-</ul>
-<ul>
-<li>然后按<code>Esc</code>退出编辑，按<code>shift</code>+<code>:</code>，输入<code>wq</code>，回车，就保存退出了。  </li>
-<li>配置生效：<code>sysctl --system</code></li>
-</ul>
-<h2 id="配置多用户"><a href="#配置多用户" class="headerlink" title="配置多用户"></a>配置多用户</h2><p>如果想多用户使用的话就需要更改配置。    </p>
-<ul>
-<li>首先通过ssh连上vps  </li>
-<li>在终端输入<code>vi /etc/shadowsocks.json</code>创建配置文件  </li>
-<li>按<code>i</code>插入  </li>
-<li><p>插入以下内容（用户数任意，注意最后一个用户密码后面没有逗号）  </p>
-<pre><code>{
- &quot;server&quot;:&quot;my_server_ip&quot;,  #填入你的IP地址
- &quot;local_address&quot;: &quot;127.0.0.1&quot;,
- &quot;local_port&quot;:1080,
-  &quot;port_password&quot;: {
-      &quot;8381&quot;: &quot;foobar1&quot;,    #端口号，密码
-      &quot;8382&quot;: &quot;foobar2&quot;,
-          &quot;8383&quot;: &quot;foobar3&quot;,
-    &quot;8384&quot;: &quot;foobar4&quot;
- },
- &quot;timeout&quot;:300,
- &quot;method&quot;:&quot;aes-256-cfb&quot;,
- &quot;fast_open&quot;: false
-}
-</code></pre></li>
-</ul>
-<p>Explanation of the fields(配置说明):  </p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>server</td>
-<td>the address your server listens</td>
-</tr>
-<tr>
-<td>server_port</td>
-<td>server port</td>
-</tr>
-<tr>
-<td>local_address</td>
-<td>the address your local listens</td>
-</tr>
-<tr>
-<td>local_port</td>
-<td>local port</td>
-</tr>
-<tr>
-<td>password</td>
-<td>password used for encryption</td>
-</tr>
-<tr>
-<td>timeout</td>
-<td>in seconds</td>
-</tr>
-<tr>
-<td>method</td>
-<td>default: “aes-256-cfb”, see <a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">Encryption</a></td>
-</tr>
-<tr>
-<td>fast_open</td>
-<td>use <a href="https://github.com/shadowsocks/shadowsocks/wiki/TCP-Fast-Open" target="_blank" rel="external">TCP_FASTOPEN</a>, true / false</td>
-</tr>
-<tr>
-<td>workers</td>
-<td>number of workers, available on Unix/Linux</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>然后按<code>Esc</code>退出编辑，按<code>shift</code>+<code>:</code>，输入<code>wq</code>，回车，就保存退出了。  </li>
-<li>现在就可以启动了，有两种方式启动，前端和后端。<br>前端启动：<code>ssserver -c /etc/shadowsocks.json</code>；<br>后端启动：<code>ssserver -c /etc/shadowsocks.json -d start</code>；<br>停止：<code>ssserver -c /etc/shadowsocks.json -d stop</code>；<br>重启(修改配置要重启才生效)：<code>ssserver -c /etc/shadowsocks.json -d restart</code>   </li>
-<li>设置开机启动<br>在终端输入<code>vi /etc/rc.local</code>，<br>把里面最后的带有ssserver的一大段默认的代码删除掉，<br>再把<code>ssserver -c /etc/shadowsocks.json -d start</code>加进去，<br>按<code>wq</code>保存退出。  </li>
-<li>到此就配置好了，试试多用户运行吧！</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;安装Shadowsocks服务&quot;&gt;&lt;a href=&quot;#安装Shadowsocks服务&quot; class=&quot;headerlink&quot; title=&quot;安装Shadowsocks服务&quot;&gt;&lt;/a&gt;安装Shadowsocks服务&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;方案一：&lt;/strong&gt;   &lt;/p&gt;
-&lt;p&gt;搬瓦工VPS为我们准备了Shadowsocks的一键安装，直接在控制面板中有，非常方便。  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;只需在左边最下面选择&lt;code&gt;Shadowsocks Server&lt;/code&gt;     &lt;/li&gt;
-&lt;li&gt;然后选择&lt;code&gt;Install Shadowsocks Server&lt;/code&gt;  &lt;/li&gt;
-&lt;li&gt;等待安装完成后选择&lt;code&gt;Go Back&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;现在可以看到加密协议默认&lt;code&gt;aes-256-cfb&lt;/code&gt;,端口默认&lt;code&gt;443&lt;/code&gt; ,密码随机&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果是自己用，到这里就可以使用了，直接在客户端填好这些配置信息就好了。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;方案二：&lt;/strong&gt;  &lt;/p&gt;
-&lt;p&gt;如果不在控制面板上安装或者是在其他没有一键安装的VPS上，可以使用命令安装。  &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Debian/Ubuntu:&lt;/strong&gt;  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;apt-get install python-pip
-pip install shadowsocks 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;CentOS:&lt;/strong&gt;  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum install python-setuptools &amp;amp;&amp;amp; easy_install pip
-pip install shadowsocks 
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
-    
-    
-      <category term="Shadowsocks" scheme="https://blog.huihut.com/tags/Shadowsocks/"/>
     
   </entry>
   
