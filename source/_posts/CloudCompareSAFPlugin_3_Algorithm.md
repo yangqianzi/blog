@@ -15,7 +15,7 @@ categories:
 
 ## 唠叨
 
-本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是[插件框架篇](http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/)、[数据结构篇](http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/)、[算法实现篇](http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/)。
+本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是[插件框架篇](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/)、[数据结构篇](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/)、[算法实现篇](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/)。
 
 这是第三篇，**算法实现篇**，你可以根据本文改成自己的插件，待卿临幸。
 
@@ -95,7 +95,7 @@ qSAF源码：[Github . qSAF](https://github.com/huihut/qSAF)
 
 ## 插件doAction实现
 
-至于doAction的实现，点云其中的数据结构，可以参考第二篇，[数据结构篇](http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/)
+至于doAction的实现，点云其中的数据结构，可以参考第二篇，[数据结构篇](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/)
 
 简单地说，我们需要：
 

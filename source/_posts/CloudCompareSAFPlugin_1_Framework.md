@@ -21,7 +21,7 @@ categories:
 
 所以这是一个完整插件的入门教程，我们要写的插件是qSAF(Scan Angle Filter)，这是可以过滤给定范围内点的扫描角度的插件。
 
-下面分三篇来介绍，分别是[插件框架篇](http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/)、[数据结构篇](http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/)、[算法实现篇](http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/)。
+下面分三篇来介绍，分别是[插件框架篇](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/)、[数据结构篇](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/)、[算法实现篇](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/)。
 
 这是第一篇，**插件框架篇**，你可以根据本文改成自己的插件，待卿临幸。
 
@@ -136,7 +136,7 @@ CloudComapre是一个开源的3D点云和网格的处理软件，开可以处理
 
 pro文件的编写可以参考：
 
-[QT的pro文件编写](http://huihut.com/2017/04/26/QTProFile/)
+[QT的pro文件编写](https://blog.huihut.com/2017/04/26/QTProFile/)
 
 里面的常规pro文件就是qSAF的。
 
@@ -253,8 +253,8 @@ pro文件的编写可以参考：
 
 但是只有框架还不够，要想对点云进行操作，和SAF功能的具体实现，还需要了解`CloudComapre`中点云的数据结构：
 
-[CloudComapre插件编写二（数据结构）](http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/)
+[CloudComapre插件编写二（数据结构）](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/)
 
 如果你对点云数据结构虐它如虐狗，可以戳这里：
 
-[CloudComapre插件编写三（算法实现）](http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/)
+[CloudComapre插件编写三（算法实现）](https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/)

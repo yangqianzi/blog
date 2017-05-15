@@ -57,12 +57,12 @@
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/</id>
     <published>2017-04-27T10:11:53.000Z</published>
-    <updated>2017-04-29T11:23:20.000Z</updated>
+    <updated>2017-05-15T10:30:56.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文唠叨了些CloudComapre这个开源软件的插件编写。</p>
 <p>虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！</p>
 <p>所以这是一个完整插件的入门教程，我们要写的插件是qSAF(Scan Angle Filter)，这是可以过滤给定范围内点的扫描角度的插件。</p>
-<p>下面分三篇来介绍，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
+<p>下面分三篇来介绍，分别是<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
 <p>这是第一篇，<strong>插件框架篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="CloudComapre"><a href="#CloudComapre" class="headerlink" title="CloudComapre"></a>CloudComapre</h2><p>CloudComapre是一个开源的3D点云和网格的处理软件，开可以处理各类点云格式的数据。</p>
@@ -132,7 +132,7 @@ endif()
 <p>保存刷新后就会在项目上看到了。</p>
 <h3 id="pro文件编写"><a href="#pro文件编写" class="headerlink" title="pro文件编写"></a>pro文件编写</h3><p>由于qmake自动生成的pro文件不适合我们要写的插件，所以要自己修改pro文件。</p>
 <p>pro文件的编写可以参考：</p>
-<p><a href="http://huihut.com/2017/04/26/QTProFile/" target="_blank" rel="external">QT的pro文件编写</a></p>
+<p><a href="https://blog.huihut.com/2017/04/26/QTProFile/">QT的pro文件编写</a></p>
 <p>里面的常规pro文件就是qSAF的。</p>
 <p>里面的路径可以不用修改，具体看你项目的Release生成的位置，</p>
 <p><strong><em>特别注意：指定生成路径中的libs和plugins要正确</em></strong></p>
@@ -203,9 +203,9 @@ void doAction();
 <p>其实只要使用<code>CloudComapre</code>提供的插件模板<code>qDummyPlugin</code>，改成自己的就可以啦。</p>
 <p>现在可以发挥你的想象力，在<code>doAction()</code>里面随心所欲地做各种事情啦。</p>
 <p>但是只有框架还不够，要想对点云进行操作，和SAF功能的具体实现，还需要了解<code>CloudComapre</code>中点云的数据结构：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">CloudComapre插件编写二（数据结构）</a></p>
+<p><a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">CloudComapre插件编写二（数据结构）</a></p>
 <p>如果你对点云数据结构虐它如虐狗，可以戳这里：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">CloudComapre插件编写三（算法实现）</a></p>
+<p><a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">CloudComapre插件编写三（算法实现）</a></p>
 ]]></content>
     
     <summary type="html">
@@ -213,7 +213,7 @@ void doAction();
       &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文唠叨了些CloudComapre这个开源软件的插件编写。&lt;/p&gt;
 &lt;p&gt;虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！&lt;/p&gt;
 &lt;p&gt;所以这是一个完整插件的入门教程，我们要写的插件是qSAF(Scan Angle Filter)，这是可以过滤给定范围内点的扫描角度的插件。&lt;/p&gt;
-&lt;p&gt;下面分三篇来介绍，分别是&lt;a href=&quot;http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;下面分三篇来介绍，分别是&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这是第一篇，&lt;strong&gt;插件框架篇&lt;/strong&gt;，你可以根据本文改成自己的插件，待卿临幸。&lt;/p&gt;
 &lt;p&gt;qSAF源码：&lt;a href=&quot;https://github.com/huihut/qSAF&quot;&gt;Github . qSAF&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;CloudComapre&quot;&gt;&lt;a href=&quot;#CloudComapre&quot; class=&quot;headerlink&quot; title=&quot;CloudComapre&quot;&gt;&lt;/a&gt;CloudComapre&lt;/h2&gt;&lt;p&gt;CloudComapre是一个开源的3D点云和网格的处理软件，开可以处理各类点云格式的数据。&lt;/p&gt;
@@ -242,9 +242,9 @@ void doAction();
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/</id>
     <published>2017-04-27T04:35:43.000Z</published>
-    <updated>2017-04-29T11:23:16.000Z</updated>
+    <updated>2017-05-15T10:31:35.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
+    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
 <p>这是第二篇，<strong>数据结构篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="前文概要"><a href="#前文概要" class="headerlink" title="前文概要"></a>前文概要</h2><p>在上回中，我们已经实现了插件的框架，现在要在<code>doAction()</code>中写插件的具体实现。</p>
@@ -358,12 +358,12 @@ inline const ElementType* getValue(unsigned index) const
 <li>输出点云</li>
 </ol>
 <p>请戳这里：</p>
-<p><a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">CloudComapre插件编写三（算法实现）</a></p>
+<p><a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">CloudComapre插件编写三（算法实现）</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是&lt;a href=&quot;http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
+      &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这是第二篇，&lt;strong&gt;数据结构篇&lt;/strong&gt;，你可以根据本文改成自己的插件，待卿临幸。&lt;/p&gt;
 &lt;p&gt;qSAF源码：&lt;a href=&quot;https://github.com/huihut/qSAF&quot;&gt;Github . qSAF&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前文概要&quot;&gt;&lt;a href=&quot;#前文概要&quot; class=&quot;headerlink&quot; title=&quot;前文概要&quot;&gt;&lt;/a&gt;前文概要&lt;/h2&gt;&lt;p&gt;在上回中，我们已经实现了插件的框架，现在要在&lt;code&gt;doAction()&lt;/code&gt;中写插件的具体实现。&lt;/p&gt;
@@ -389,9 +389,9 @@ inline const ElementType* getValue(unsigned index) const
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/</id>
     <published>2017-04-27T02:35:43.000Z</published>
-    <updated>2017-04-29T11:23:42.000Z</updated>
+    <updated>2017-05-15T10:33:47.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/" target="_blank" rel="external">插件框架篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a>、<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/" target="_blank" rel="external">算法实现篇</a>。</p>
+    <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
 <p>这是第三篇，<strong>算法实现篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
 <p>qSAF源码：<a href="https://github.com/huihut/qSAF" target="_blank" rel="external">Github . qSAF</a></p>
 <h2 id="前文概要"><a href="#前文概要" class="headerlink" title="前文概要"></a>前文概要</h2><p>在上回中，我们知道了点云中扫描角度的存储结构，下面我们来讲qSAF的具体实现。</p>
@@ -451,7 +451,7 @@ void ccSAFDlg::saveSettings()
     threshold_2 = doubleSpinBox_2-&gt;value();
 }
 </code></pre><p>现在界面就做好了。</p>
-<h2 id="插件doAction实现"><a href="#插件doAction实现" class="headerlink" title="插件doAction实现"></a>插件doAction实现</h2><p>至于doAction的实现，点云其中的数据结构，可以参考第二篇，<a href="http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/" target="_blank" rel="external">数据结构篇</a></p>
+<h2 id="插件doAction实现"><a href="#插件doAction实现" class="headerlink" title="插件doAction实现"></a>插件doAction实现</h2><p>至于doAction的实现，点云其中的数据结构，可以参考第二篇，<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a></p>
 <p>简单地说，我们需要：</p>
 <ol>
 <li>用<code>Scan Angle Rank</code>，通过<code>getScalarFieldIndexByName()</code>获得扫描角度在标量域中的索引</li>
@@ -639,7 +639,7 @@ void ccSAFDlg::saveSettings()
     
     <summary type="html">
     
-      &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是&lt;a href=&quot;http://huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;http://huihut.com/2017/04/26/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
+      &lt;h2 id=&quot;唠叨&quot;&gt;&lt;a href=&quot;#唠叨&quot; class=&quot;headerlink&quot; title=&quot;唠叨&quot;&gt;&lt;/a&gt;唠叨&lt;/h2&gt;&lt;p&gt;本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/&quot;&gt;插件框架篇&lt;/a&gt;、&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/&quot;&gt;数据结构篇&lt;/a&gt;、&lt;a href=&quot;https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/&quot;&gt;算法实现篇&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这是第三篇，&lt;strong&gt;算法实现篇&lt;/strong&gt;，你可以根据本文改成自己的插件，待卿临幸。&lt;/p&gt;
 &lt;p&gt;qSAF源码：&lt;a href=&quot;https://github.com/huihut/qSAF&quot;&gt;Github . qSAF&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;前文概要&quot;&gt;&lt;a href=&quot;#前文概要&quot; class=&quot;headerlink&quot; title=&quot;前文概要&quot;&gt;&lt;/a&gt;前文概要&lt;/h2&gt;&lt;p&gt;在上回中，我们知道了点云中扫描角度的存储结构，下面我们来讲qSAF的具体实现。&lt;/p&gt;
