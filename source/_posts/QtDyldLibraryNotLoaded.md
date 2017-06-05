@@ -20,6 +20,8 @@ categories:
 
 无法链接动态库，考虑手动添加链接。
 
+<!-- more -->
+
 ## 找到 libhdf5.100.dylib 文件及路径
 
 ![](http://ojlsgreog.bkt.clouddn.com/hdf5-lib-dylib.jpg)
