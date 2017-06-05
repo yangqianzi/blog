@@ -3,7 +3,7 @@
 title: C++ Notes
 subtitle: C++ 的一些零碎知识点。包括成员函数、内联函数、operator操作符、静态多态、动态多态、类型识别等
 date: 2016-11-20 10:54:13
-author: 谢孟辉
+author: 修电脑的裁缝酱
 tags:
 	- C++
 categories: 

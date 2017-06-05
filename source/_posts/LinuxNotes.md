@@ -3,7 +3,7 @@
 title: Linux Notes
 subtitle: Linux的一些笔记
 date: 2017-03-15 00:52:30
-author: 谢孟辉
+author: 修电脑的裁缝酱
 tags:
 	- Linux
 categories: 

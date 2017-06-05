@@ -3,7 +3,7 @@
 title: QT 无法链接动态库 dyld library not loaded ... libhdf5.100.dylib
 subtitle: 
 date: 2017-06-05 16:14:05
-author: 谢孟辉
+author: 修电脑的裁缝酱
 tags:
 	- QT
 categories: 

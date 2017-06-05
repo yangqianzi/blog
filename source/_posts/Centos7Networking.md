@@ -3,7 +3,7 @@
 title: Centos 7 设置开机自动联网
 subtitle: Centos 7 设置开机自动联网
 date: 2017-03-25 10:59:48
-author: 谢孟辉
+author: 修电脑的裁缝酱
 tags:
 	- Linux
 categories: 

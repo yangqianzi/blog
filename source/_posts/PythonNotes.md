@@ -3,7 +3,7 @@
 title: Python Notes
 subtitle: 此文只部分列出Python与C/C++语法中的不同点
 date: 2017-01-22 12:33:18
-author: 谢孟辉
+author: 修电脑的裁缝酱
 tags:
 	- Python
 categories: 

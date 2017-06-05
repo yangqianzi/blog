@@ -3,7 +3,7 @@
 title: Git Notes
 subtitle: Git的一些常用命令，包括安装、配置、下载、上传、查询、修改、常见错误等
 date: 2017-01-24 12:39:42
-author: 谢孟辉
+author: 修电脑的裁缝酱
 tags:
 	- Git
 categories: 

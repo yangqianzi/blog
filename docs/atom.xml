@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>HuiHut</title>
-  <subtitle>Menghui&#39;s Blog</subtitle>
+  <subtitle>专业修电脑，副业补衣服。</subtitle>
   <link href="//atom.xml" rel="self"/>
   
   <link href="https://blog.huihut.com/"/>
-  <updated>2017-06-05T08:18:38.000Z</updated>
+  <updated>2017-06-05T13:31:59.000Z</updated>
   <id>https://blog.huihut.com/</id>
   
   <author>
-    <name>Menghui Xie</name>
+    <name>修电脑的裁缝酱</name>
     
   </author>
   
@@ -20,7 +20,7 @@
     <link href="https://blog.huihut.com/2017/06/05/QtDyldLibraryNotLoaded/"/>
     <id>https://blog.huihut.com/2017/06/05/QtDyldLibraryNotLoaded/</id>
     <published>2017-06-05T08:14:05.000Z</published>
-    <updated>2017-06-05T08:18:38.000Z</updated>
+    <updated>2017-06-05T13:31:59.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="qt-dyld-library-not-loaded-…-libhdf5-100-dylib"><a href="#qt-dyld-library-not-loaded-…-libhdf5-100-dylib" class="headerlink" title="qt dyld library not loaded …/libhdf5.100.dylib"></a>qt dyld library not loaded …/libhdf5.100.dylib</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/DyldLibraryNotLoaded.png" alt="DyldLibraryNotLoaded"></p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>无法链接动态库，考虑手动添加链接。</p>
@@ -56,7 +56,7 @@
     <link href="https://blog.huihut.com/2017/05/13/HexoNPMERR/"/>
     <id>https://blog.huihut.com/2017/05/13/HexoNPMERR/</id>
     <published>2017-05-13T12:28:58.000Z</published>
-    <updated>2017-05-13T12:29:00.000Z</updated>
+    <updated>2017-06-05T13:31:12.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="hexo-g-无法生成-index"><a href="#hexo-g-无法生成-index" class="headerlink" title="hexo g 无法生成 index"></a>hexo g 无法生成 index</h2><p>构建情况如下图：</p>
 <p><img src="http://ojlsgreog.bkt.clouddn.com/ganningZHexoNoIndex" alt=""></p>
@@ -93,7 +93,7 @@
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/</id>
     <published>2017-04-27T10:11:53.000Z</published>
-    <updated>2017-05-15T10:30:56.000Z</updated>
+    <updated>2017-06-05T13:30:32.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文唠叨了些CloudComapre这个开源软件的插件编写。</p>
 <p>虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！</p>
@@ -278,7 +278,7 @@ void doAction();
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/</id>
     <published>2017-04-27T04:35:43.000Z</published>
-    <updated>2017-05-15T10:31:35.000Z</updated>
+    <updated>2017-06-05T13:30:39.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
 <p>这是第二篇，<strong>数据结构篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
@@ -425,7 +425,7 @@ inline const ElementType* getValue(unsigned index) const
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/</id>
     <published>2017-04-27T02:35:43.000Z</published>
-    <updated>2017-05-15T10:33:47.000Z</updated>
+    <updated>2017-06-05T13:30:44.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
 <p>这是第三篇，<strong>算法实现篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
@@ -700,7 +700,7 @@ void ccSAFDlg::saveSettings()
     <link href="https://blog.huihut.com/2017/04/26/QTProFile/"/>
     <id>https://blog.huihut.com/2017/04/26/QTProFile/</id>
     <published>2017-04-26T10:48:31.000Z</published>
-    <updated>2017-04-26T12:47:53.000Z</updated>
+    <updated>2017-06-05T13:32:06.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="常规pro文件"><a href="#常规pro文件" class="headerlink" title="常规pro文件"></a>常规pro文件</h2><p>下面是CloudCompare中一个自己写的插件的pro文件，</p>
 <p>pro文件编写可按照如下方式写。</p>
@@ -809,7 +809,7 @@ win32 {
     <link href="https://blog.huihut.com/2017/04/15/CppConditionStateAndEOF/"/>
     <id>https://blog.huihut.com/2017/04/15/CppConditionStateAndEOF/</id>
     <published>2017-04-15T04:12:24.000Z</published>
-    <updated>2017-04-17T11:15:41.000Z</updated>
+    <updated>2017-06-05T13:30:50.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文本文件判空问题"><a href="#文本文件判空问题" class="headerlink" title="文本文件判空问题"></a>文本文件判空问题</h2><p>对于空文本文件的判断问题引起了我对 IO 库中条件状态和 EOF 的探究。</p>
 <p>就是这段程序：</p>
@@ -1064,7 +1064,7 @@ if(infile.is_open())
     <link href="https://blog.huihut.com/2017/03/29/Centos7NTFS/"/>
     <id>https://blog.huihut.com/2017/03/29/Centos7NTFS/</id>
     <published>2017-03-29T12:02:35.000Z</published>
-    <updated>2017-03-30T07:03:22.000Z</updated>
+    <updated>2017-06-05T13:30:22.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="NTFS-3G"><a href="#NTFS-3G" class="headerlink" title="NTFS-3G"></a>NTFS-3G</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 NTFS-3G 实现，可以挂载 NTFS，还可以挂载 HFS+ 等，以下是在 Centos 7 下安装 NTFS-3G 及挂载 NTFS 分区</p>
 <pre><code>wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
@@ -1155,7 +1155,7 @@ sudo yum install ntfs-3g
     <link href="https://blog.huihut.com/2017/03/26/MacQTCompilerOutputPathError/"/>
     <id>https://blog.huihut.com/2017/03/26/MacQTCompilerOutputPathError/</id>
     <published>2017-03-25T18:30:47.000Z</published>
-    <updated>2017-03-25T18:38:43.000Z</updated>
+    <updated>2017-06-05T13:31:25.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="ERROR-ld-unknown-option-rpath"><a href="#ERROR-ld-unknown-option-rpath" class="headerlink" title="ERROR: ld unknown option rpath"></a>ERROR: ld unknown option rpath</h2><p>Mac指定qmake的生成路径时，用 <code>-Wl,-rpath,$$PWD/..</code> 而不是 <code>-Wl,-rpath=$$PWD/..</code> 如下：</p>
 <pre><code>macx{
@@ -1230,7 +1230,7 @@ DESTDIR = $$PWD/../../Release/libs
     <link href="https://blog.huihut.com/2017/03/25/Centos7Networking/"/>
     <id>https://blog.huihut.com/2017/03/25/Centos7Networking/</id>
     <published>2017-03-25T02:59:48.000Z</published>
-    <updated>2017-03-25T07:11:29.000Z</updated>
+    <updated>2017-06-05T13:30:17.000Z</updated>
     
     <content type="html"><![CDATA[<pre><code>ls /etc/sysconfig/network-scripts/
 
@@ -1283,7 +1283,7 @@ sudo vim /etc/sysconfig/network-scripts/ifcfg-enp4s0
     <link href="https://blog.huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/"/>
     <id>https://blog.huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/</id>
     <published>2017-03-25T02:41:40.000Z</published>
-    <updated>2017-03-25T07:16:01.000Z</updated>
+    <updated>2017-06-05T13:32:11.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>If you use the traditional <code>yum</code> package management tool, </p>
 <p>you need to download the appropriate version of the <code>repo</code> file from the <a href="https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/" target="_blank" rel="external">Copr</a> to <code>/etc/yum.repos.d/</code>, </p>
@@ -1382,7 +1382,7 @@ sudo yum install -y shadowsocks-qt5
     <link href="https://blog.huihut.com/2017/03/21/CloudCompareFunction/"/>
     <id>https://blog.huihut.com/2017/03/21/CloudCompareFunction/</id>
     <published>2017-03-21T11:28:31.000Z</published>
-    <updated>2017-04-06T10:04:02.000Z</updated>
+    <updated>2017-06-05T13:30:27.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="File"><a href="#File" class="headerlink" title="File"></a>File</h2><ul>
 <li>open：打开</li>
@@ -1591,7 +1591,7 @@ sudo yum install -y shadowsocks-qt5
     <link href="https://blog.huihut.com/2017/03/15/LinuxNotes/"/>
     <id>https://blog.huihut.com/2017/03/15/LinuxNotes/</id>
     <published>2017-03-14T16:52:30.000Z</published>
-    <updated>2017-03-25T07:13:49.000Z</updated>
+    <updated>2017-06-05T13:31:18.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>删除文件</li>
@@ -1652,7 +1652,7 @@ sudo yum install -y shadowsocks-qt5
     <link href="https://blog.huihut.com/2017/03/13/MakefileIssue/"/>
     <id>https://blog.huihut.com/2017/03/13/MakefileIssue/</id>
     <published>2017-03-12T21:59:10.000Z</published>
-    <updated>2017-03-25T07:14:33.000Z</updated>
+    <updated>2017-06-05T13:31:30.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>makefile文件的clean出错</p>
 <a id="more"></a>
@@ -1692,7 +1692,7 @@ sudo yum install -y shadowsocks-qt5
     <link href="https://blog.huihut.com/2017/03/13/ParallelComputingNotes/"/>
     <id>https://blog.huihut.com/2017/03/13/ParallelComputingNotes/</id>
     <published>2017-03-12T21:51:09.000Z</published>
-    <updated>2017-03-25T07:15:12.000Z</updated>
+    <updated>2017-06-05T13:31:41.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="并行计算（Parallel-Computing）"><a href="#并行计算（Parallel-Computing）" class="headerlink" title="并行计算（Parallel Computing）"></a>并行计算（Parallel Computing）</h2><p><strong>并行计算</strong>（平行计算）是相对于串行计算来说的。</p>
 <p>它是一种一次可执行多个指令的算法，目的是提高计算速度，及通过扩大问题求解规模，解决大型而复杂的计算问题。</p>
@@ -1785,7 +1785,7 @@ sudo yum install -y shadowsocks-qt5
     <link href="https://blog.huihut.com/2017/03/11/FancyMacTerminal/"/>
     <id>https://blog.huihut.com/2017/03/11/FancyMacTerminal/</id>
     <published>2017-03-11T06:59:45.000Z</published>
-    <updated>2017-04-02T10:38:01.000Z</updated>
+    <updated>2017-06-05T13:31:01.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨一下"><a href="#唠叨一下" class="headerlink" title="唠叨一下"></a>唠叨一下</h2><p>自从装了黑苹果后一直用着 Mac 自带的终端（Terminal），相比 Windows 的终端根本无法同台竞技！毕竟 Mac 是基于 Unix 嘛~ 对开发友好太多了。</p>
 <p>就是下面这个家伙了👇</p>
@@ -1892,7 +1892,7 @@ colorscheme solarized
     <link href="https://blog.huihut.com/2017/01/25/MarkdownTutorial/"/>
     <id>https://blog.huihut.com/2017/01/25/MarkdownTutorial/</id>
     <published>2017-01-24T17:45:50.000Z</published>
-    <updated>2017-04-16T17:34:02.000Z</updated>
+    <updated>2017-06-05T13:31:35.000Z</updated>
     
     <content type="html"><![CDATA[<p>自己整理的 Markdown 简介、编辑器推荐、语法、特征等，是 Markdown 的简易入门教程</p>
 <a id="more"></a>
@@ -2424,7 +2424,7 @@ _   底线
     <link href="https://blog.huihut.com/2017/01/24/GitNotes/"/>
     <id>https://blog.huihut.com/2017/01/24/GitNotes/</id>
     <published>2017-01-24T04:39:42.000Z</published>
-    <updated>2017-04-08T14:24:33.000Z</updated>
+    <updated>2017-06-05T13:31:05.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
 <li><p>Windows</p>
@@ -2653,7 +2653,7 @@ git config branch.master.merge refs/heads/master
     <link href="https://blog.huihut.com/2017/01/22/PythonNotes/"/>
     <id>https://blog.huihut.com/2017/01/22/PythonNotes/</id>
     <published>2017-01-22T04:33:18.000Z</published>
-    <updated>2017-04-02T10:39:27.000Z</updated>
+    <updated>2017-06-05T13:31:53.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Python-中文编码"><a href="#Python-中文编码" class="headerlink" title="Python 中文编码"></a>Python 中文编码</h2><p>在Python文件中如果未指定编码格式，则默认ASCII编码。此时如果输出中文字符，则会报错（SyntaxError）。</p>
 <p>解决方法为在文件开头加入以下内容：  </p>
@@ -2965,7 +2965,7 @@ This is two
     <link href="https://blog.huihut.com/2017/01/21/PyCharmInstallPymysqlFail/"/>
     <id>https://blog.huihut.com/2017/01/21/PyCharmInstallPymysqlFail/</id>
     <published>2017-01-21T13:41:07.000Z</published>
-    <updated>2017-04-02T10:39:16.000Z</updated>
+    <updated>2017-06-05T13:31:46.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p>在PyCharm中新建Web2Py项目后提示没有pymysql，自动安装失败，如图：  </p>
 <a id="more"></a>

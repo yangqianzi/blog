@@ -3,7 +3,7 @@
 title: 并行笔记
 subtitle: 并行计算与并行应用的笔记
 date: 2017-03-13 05:51:09
-author: 谢孟辉
+author: 修电脑的裁缝酱
 tags:
 	- Parallel
 categories: 
