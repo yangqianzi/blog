@@ -1371,9 +1371,9 @@ sudo yum install -y shadowsocks-qt5
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
-    
       <category term="Shadowsocks" scheme="https://blog.huihut.com/tags/Shadowsocks/"/>
+    
+      <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
     
   </entry>
   
