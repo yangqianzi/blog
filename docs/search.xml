@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[QT 无法链接动态库 dyld library not loaded ... libhdf5.100.dylib]]></title>
+      <url>%2F2017%2F06%2F05%2FQtDyldLibraryNotLoaded%2F</url>
+      <content type="text"><![CDATA[qt dyld library not loaded …/libhdf5.100.dylib 分析无法链接动态库，考虑手动添加链接。 找到 libhdf5.100.dylib 文件及路径 /usr/local/opt/hdf5/lib 添加到 QT Run Environment把路径添加到Run Environment中的DYLD_LIBRARY_PATH变量的值中。 若无此变量则添加，若已有则按编辑并在后面加上路径。 Run! 补充：添加到构建设置-构建环境中如果添加到 Run Environment 中还是不行，可以添加到Build-构建设置-构建环境中。 Debug! Thanksstackoverflow . qt mac osx 10.8 dyld: library not loaded…image not found]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[hexo 构建静态文件无法生成 index.html 等文件]]></title>
       <url>%2F2017%2F05%2F13%2FHexoNPMERR%2F</url>
       <content type="text"><![CDATA[hexo g 无法生成 index构建情况如下图： 但是一些文件没有生成，如 index.html 文件。 查看 npm 安装各 hexo 插件的情况npm ls --depth 0 hexo 的一些插件未安装插件npm ERR! missing npm ERR! missing hexo-generator-archive… 解决逐一安装缺失的包 npm install hexo-generator-archive --save ... 安装完后重新构建即可解决。]]></content>

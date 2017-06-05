@@ -313,6 +313,160 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/06/05/QtDyldLibraryNotLoaded/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Menghui Xie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ojlsgreog.bkt.clouddn.com/H_white.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuiHut">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/05/QtDyldLibraryNotLoaded/" itemprop="url">
+                  QT 无法链接动态库 dyld library not loaded ... libhdf5.100.dylib
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T16:14:05+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS/" itemprop="url" rel="index">
+                    <span itemprop="name">CS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="qt-dyld-library-not-loaded-…-libhdf5-100-dylib"><a href="#qt-dyld-library-not-loaded-…-libhdf5-100-dylib" class="headerlink" title="qt dyld library not loaded …/libhdf5.100.dylib"></a>qt dyld library not loaded …/libhdf5.100.dylib</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/DyldLibraryNotLoaded.png" alt="DyldLibraryNotLoaded"></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>无法链接动态库，考虑手动添加链接。</p>
+<h2 id="找到-libhdf5-100-dylib-文件及路径"><a href="#找到-libhdf5-100-dylib-文件及路径" class="headerlink" title="找到 libhdf5.100.dylib 文件及路径"></a>找到 libhdf5.100.dylib 文件及路径</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/hdf5-lib-dylib.jpg" alt=""></p>
+<pre><code>/usr/local/opt/hdf5/lib
+</code></pre><h2 id="添加到-QT-Run-Environment"><a href="#添加到-QT-Run-Environment" class="headerlink" title="添加到 QT Run Environment"></a>添加到 QT Run Environment</h2><p>把路径添加到<code>Run Environment</code>中的<code>DYLD_LIBRARY_PATH</code>变量的值中。</p>
+<p>若无此变量则添加，若已有则按编辑并在后面加上路径。</p>
+<p>Run!</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/QTRunEnvironment.jpg" alt=""></p>
+<h2 id="补充：添加到构建设置-构建环境中"><a href="#补充：添加到构建设置-构建环境中" class="headerlink" title="补充：添加到构建设置-构建环境中"></a>补充：添加到构建设置-构建环境中</h2><p>如果添加到 <code>Run Environment</code> 中还是不行，可以添加到<code>Build</code>-<code>构建设置</code>-<code>构建环境</code>中。</p>
+<p>Debug!</p>
+<p><img src="http://ojlsgreog.bkt.clouddn.com/QtDebugEnvironment.jpg" alt=""></p>
+<h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><p><a href="http://stackoverflow.com/questions/13611740/qt-mac-osx-10-8-dyld-library-not-loaded-image-not-found" target="_blank" rel="external">stackoverflow . qt mac osx 10.8 dyld: library not loaded…image not found</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/05/13/HexoNPMERR/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1718,164 +1872,6 @@ ONBOOT=no
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Menghui Xie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://ojlsgreog.bkt.clouddn.com/H_white.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuiHut">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/25/Shadowsocks-Qt5ForCentos7/" itemprop="url">
-                  Shadowsocks-Qt5 For Centos 7
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T10:41:40+08:00">
-                2017-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CS/" itemprop="url" rel="index">
-                    <span itemprop="name">CS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>If you use the traditional <code>yum</code> package management tool, </p>
-<p>you need to download the appropriate version of the <code>repo</code> file from the <a href="https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/">Copr</a> to <code>/etc/yum.repos.d/</code>, </p>
-<p>and then install through <code>yum</code>.</p>
-<p>As follows:</p>
-<pre><code># Centos 7
-wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo
-
-sudo mv librehat-shadowsocks-epel-7.repo /etc/yum.repos.d/
-
-sudo yum update
-sudo yum install -y shadowsocks-qt5
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/Shadowsocks-Qt5ForCentos7/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1925,7 +1921,7 @@ sudo yum install -y shadowsocks-qt5
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
