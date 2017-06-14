@@ -19,9 +19,9 @@ categories:
 
 2016年8月，一个男生拿着一张转专业通知书路过广工大学城大门，驻足远望，想着：“这就是我的大学！”
 
-![](http://ojlsgreog.bkt.clouddn.com/GDUT.jpeg)
-
 <!-- more -->
+
+![](http://ojlsgreog.bkt.clouddn.com/GDUT.jpeg)
 
 ## 裁缝，我没准备
 
