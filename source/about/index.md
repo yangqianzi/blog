@@ -7,6 +7,10 @@ layout: about
 	
 ---
 
+<div  align="center">    
+<img src="http://ojlsgreog.bkt.clouddn.com/H.png" width = "100" height = "100" alt="title" align=center />
+</div>
+
 * Email: <a href="mailto:huihut@outlook.com">huihut@outlook.com</a>
 * Blog: <https://blog.huihut.com>
 * CSDN Blog: <http://blog.csdn.net/huihut>
