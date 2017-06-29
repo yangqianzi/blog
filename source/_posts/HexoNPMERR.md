@@ -5,7 +5,6 @@ subtitle: hexo 构建静态文件无法生成 index.html 等文件的问题及�
 date: 2017-05-13 20:28:58
 author: 修电脑的裁缝酱
 tags:
-	- Git
 	- Hexo
 categories: 
 	- CS

@@ -6,7 +6,6 @@ date: 2017-03-25 10:41:40
 author: 修电脑的裁缝酱
 tags:
 	- Shadowsocks
-	- Linux
 categories: 
 	- CS
 	

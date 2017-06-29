@@ -5,7 +5,6 @@ subtitle: CloudCompare功能概要
 date: 2017-03-21 19:28:31
 author: 修电脑的裁缝酱
 tags:
-	- C++
 	- CloudCompare
 categories: 
 	- CS

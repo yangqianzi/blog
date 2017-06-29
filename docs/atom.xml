@@ -197,7 +197,7 @@ dialog.setWindowModality(Qt::ApplicationModal);
     <link href="https://blog.huihut.com/2017/05/13/HexoNPMERR/"/>
     <id>https://blog.huihut.com/2017/05/13/HexoNPMERR/</id>
     <published>2017-05-13T12:28:58.000Z</published>
-    <updated>2017-06-05T13:31:12.000Z</updated>
+    <updated>2017-06-29T12:13:35.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="hexo-g-无法生成-index"><a href="#hexo-g-无法生成-index" class="headerlink" title="hexo g 无法生成 index"></a>hexo g 无法生成 index</h2><p>构建情况如下图：</p>
 <p><img src="http://ojlsgreog.bkt.clouddn.com/ganningZHexoNoIndex" alt=""></p>
@@ -222,8 +222,6 @@ dialog.setWindowModality(Qt::ApplicationModal);
     
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
-    
-      <category term="Git" scheme="https://blog.huihut.com/tags/Git/"/>
     
       <category term="Hexo" scheme="https://blog.huihut.com/tags/Hexo/"/>
     
@@ -841,7 +839,7 @@ void ccSAFDlg::saveSettings()
     <link href="https://blog.huihut.com/2017/04/26/QTProFile/"/>
     <id>https://blog.huihut.com/2017/04/26/QTProFile/</id>
     <published>2017-04-26T10:48:31.000Z</published>
-    <updated>2017-06-05T13:32:06.000Z</updated>
+    <updated>2017-06-29T12:12:25.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="常规pro文件"><a href="#常规pro文件" class="headerlink" title="常规pro文件"></a>常规pro文件</h2><p>下面是CloudCompare中一个自己写的插件的pro文件，</p>
 <p>pro文件编写可按照如下方式写。</p>
@@ -938,8 +936,6 @@ win32 {
     
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
-    
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
       <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
     
@@ -1296,7 +1292,7 @@ sudo yum install ntfs-3g
     <link href="https://blog.huihut.com/2017/03/26/MacQTCompilerOutputPathError/"/>
     <id>https://blog.huihut.com/2017/03/26/MacQTCompilerOutputPathError/</id>
     <published>2017-03-25T18:30:47.000Z</published>
-    <updated>2017-06-05T13:31:25.000Z</updated>
+    <updated>2017-06-29T12:13:24.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="ERROR-ld-unknown-option-rpath"><a href="#ERROR-ld-unknown-option-rpath" class="headerlink" title="ERROR: ld unknown option rpath"></a>ERROR: ld unknown option rpath</h2><p>Mac指定qmake的生成路径时，用 <code>-Wl,-rpath,$$PWD/..</code> 而不是 <code>-Wl,-rpath=$$PWD/..</code> 如下：</p>
 <pre><code>macx{
@@ -1360,8 +1356,6 @@ DESTDIR = $$PWD/../../Release/libs
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
-    
       <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
     
   </entry>
@@ -1371,7 +1365,7 @@ DESTDIR = $$PWD/../../Release/libs
     <link href="https://blog.huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/"/>
     <id>https://blog.huihut.com/2017/03/25/Shadowsocks-Qt5ForCentos7/</id>
     <published>2017-03-25T02:41:40.000Z</published>
-    <updated>2017-06-05T13:32:11.000Z</updated>
+    <updated>2017-06-29T12:12:52.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>If you use the traditional <code>yum</code> package management tool, </p>
 <p>you need to download the appropriate version of the <code>repo</code> file from the <a href="https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/" target="_blank" rel="external">Copr</a> to <code>/etc/yum.repos.d/</code>, </p>
@@ -1459,8 +1453,6 @@ sudo yum install -y shadowsocks-qt5
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="Linux" scheme="https://blog.huihut.com/tags/Linux/"/>
-    
       <category term="Shadowsocks" scheme="https://blog.huihut.com/tags/Shadowsocks/"/>
     
   </entry>
@@ -1470,7 +1462,7 @@ sudo yum install -y shadowsocks-qt5
     <link href="https://blog.huihut.com/2017/03/21/CloudCompareFunction/"/>
     <id>https://blog.huihut.com/2017/03/21/CloudCompareFunction/</id>
     <published>2017-03-21T11:28:31.000Z</published>
-    <updated>2017-06-05T13:30:27.000Z</updated>
+    <updated>2017-06-29T12:14:26.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="File"><a href="#File" class="headerlink" title="File"></a>File</h2><ul>
 <li>open：打开</li>
@@ -1667,8 +1659,6 @@ sudo yum install -y shadowsocks-qt5
     
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
-    
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
       <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
