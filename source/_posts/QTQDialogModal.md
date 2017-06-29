@@ -47,7 +47,7 @@ QDialog 类是对话框窗口的基类。用于创建对话窗口。
     };
     
 
-状态     |  Constant            | Value |  描述  | QDialog中的代表方法
+状态     |  Constant            | Value |  描述  | QDialog代表方法
 ---     |   ---                |  ---  |  ---   | ---
 非模态   | Qt::NonModal         |  0    | 窗口不是模态，不会阻止其他窗口的操作 | QDialog::show()
 窗口模态  | Qt::WindowModal      |  1    | 窗口对单个窗口层次结构是模态，会阻止对其所有长辈（父窗口、祖父窗口、他们的兄弟姐妹）的操作，其子窗口不会阻止 | QDialog::open()
