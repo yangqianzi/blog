@@ -69,7 +69,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HuiHut, Menghui, Blog, 谢孟辉, 修电脑的裁缝酱, 专业修电脑, 副业补衣服" />
+  <meta name="keywords" content="QT," />
 
 
 
@@ -87,15 +87,31 @@
 
 
 
-<meta name="description" content="专业修电脑, 副业补衣服">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HuiHut">
-<meta property="og:url" content="https://blog.huihut.com/tags/Hexo/index.html">
+<meta name="description" content="模态与非模态对话框模态对话框模态对话框是只能首先对其进行操作后才能操作其他窗口的对话框。实质是父线程在子线程创建这个模态对话框后，父线程阻塞，等待子线程的操作。
+非模态对话框非模态对话框则是可以同时对它和其他窗口进行操作的对话框。实质是父子进程并行运行。
+QDialog概述
+The QDialog class is the base class of dialog windows.
+
+QDialo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT QDialog 中模态与非模态对话框的研究">
+<meta property="og:url" content="https://blog.huihut.com/2017/06/29/QTQDialogModal/index.html">
 <meta property="og:site_name" content="HuiHut">
-<meta property="og:description" content="专业修电脑, 副业补衣服">
+<meta property="og:description" content="模态与非模态对话框模态对话框模态对话框是只能首先对其进行操作后才能操作其他窗口的对话框。实质是父线程在子线程创建这个模态对话框后，父线程阻塞，等待子线程的操作。
+非模态对话框非模态对话框则是可以同时对它和其他窗口进行操作的对话框。实质是父子进程并行运行。
+QDialog概述
+The QDialog class is the base class of dialog windows.
+
+QDialo">
+<meta property="og:updated_time" content="2017-06-29T12:05:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HuiHut">
-<meta name="twitter:description" content="专业修电脑, 副业补衣服">
+<meta name="twitter:title" content="QT QDialog 中模态与非模态对话框的研究">
+<meta name="twitter:description" content="模态与非模态对话框模态对话框模态对话框是只能首先对其进行操作后才能操作其他窗口的对话框。实质是父线程在子线程创建这个模态对话框后，父线程阻塞，等待子线程的操作。
+非模态对话框非模态对话框则是可以同时对它和其他窗口进行操作的对话框。实质是父子进程并行运行。
+QDialog概述
+The QDialog class is the base class of dialog windows.
+
+QDialo">
 
 
 
@@ -123,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.huihut.com/tags/Hexo/"/>
+  <link rel="canonical" href="https://blog.huihut.com/2017/06/29/QTQDialogModal/"/>
 
 
 
 
 
-  <title> 标签: Hexo | HuiHut </title>
+  <title> QT QDialog 中模态与非模态对话框的研究 | HuiHut </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -173,7 +189,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -301,46 +317,241 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Hexo
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/06/29/QTQDialogModal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="修电脑的裁缝酱">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ojlsgreog.bkt.clouddn.com/H_white.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuiHut">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                QT QDialog 中模态与非模态对话框的研究
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-29T20:05:27+08:00">
+                2017-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS/" itemprop="url" rel="index">
+                    <span itemprop="name">CS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/29/QTQDialogModal/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="模态与非模态对话框"><a href="#模态与非模态对话框" class="headerlink" title="模态与非模态对话框"></a>模态与非模态对话框</h2><h3 id="模态对话框"><a href="#模态对话框" class="headerlink" title="模态对话框"></a>模态对话框</h3><p><strong>模态对话框</strong>是只能首先对其进行操作后才能操作其他窗口的对话框。实质是父线程在子线程创建这个模态对话框后，父线程阻塞，等待子线程的操作。</p>
+<h3 id="非模态对话框"><a href="#非模态对话框" class="headerlink" title="非模态对话框"></a>非模态对话框</h3><p><strong>非模态对话框</strong>则是可以同时对它和其他窗口进行操作的对话框。实质是父子进程并行运行。</p>
+<h2 id="QDialog"><a href="#QDialog" class="headerlink" title="QDialog"></a>QDialog</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
+<p>The QDialog class is the base class of dialog windows.</p>
+</blockquote>
+<p>QDialog 类是对话框窗口的基类。用于创建对话窗口。</p>
+<h4 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h4><pre><code>class Q_WIDGETS_EXPORT QDialog : public QWidget
+</code></pre><h2 id="QT-窗口模态（Qt-WindowModality）"><a href="#QT-窗口模态（Qt-WindowModality）" class="headerlink" title="QT 窗口模态（Qt::WindowModality）"></a>QT 窗口模态（Qt::WindowModality）</h2><h3 id="模态种类"><a href="#模态种类" class="headerlink" title="模态种类"></a>模态种类</h3><pre><code>enum WindowModality {
+    NonModal,
+    WindowModal,
+    ApplicationModal
+};
+</code></pre><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>Constant</th>
+<th>Value</th>
+<th>描述</th>
+<th>QDialog中的代表方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非模态</td>
+<td>Qt::NonModal</td>
+<td>0</td>
+<td>窗口不是模态，不会阻止其他窗口的操作</td>
+<td>QDialog::show()</td>
+</tr>
+<tr>
+<td>窗口模态</td>
+<td>Qt::WindowModal</td>
+<td>1</td>
+<td>窗口对单个窗口层次结构是模态，会阻止对其所有长辈（父窗口、祖父窗口、他们的兄弟姐妹）的操作，其子窗口不会阻止</td>
+<td>QDialog::open()</td>
+</tr>
+<tr>
+<td>应用模态</td>
+<td>Qt::ApplicationModal</td>
+<td>2</td>
+<td>窗口对应用程序是模态，并阻止对所有窗口的操作</td>
+<td>QDialog::exec()</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong>：窗口模态与应用模态都属于模态，只是<code>WindowModal</code>对局部模态，<code>ApplicationModal</code>对整个程序模态。</p>
+<h3 id="设置模态"><a href="#设置模态" class="headerlink" title="设置模态"></a>设置模态</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><pre><code>class Q_WIDGETS_EXPORT QWidget : public QObject, public QPaintDevice
+{
+public:
+    void setWindowModality(Qt::WindowModality windowModality);
+}
+</code></pre><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre><code>QDialog dialog;
+dialog.setWindowModality(Qt::ApplicationModal);
+</code></pre>
+      
+    </div>
 
-      <h1 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/05/13/HexoNPMERR/" itemprop="url">
-              
-                <span itemprop="name">hexo 构建静态文件无法生成 index.html 等文件</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-13T20:28:58+08:00"
-              content="2017-05-13" >
-          05-13
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/QT/" rel="tag"># QT</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/14/ChanceLeftPerson/" rel="next" title="机会总是留给有准备的人 —— 从裁缝到码农">
+                <i class="fa fa-chevron-left"></i> 机会总是留给有准备的人 —— 从裁缝到码农
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -348,6 +559,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -367,8 +584,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ojlsgreog.bkt.clouddn.com/H_white.png"
@@ -457,6 +683,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模态与非模态对话框"><span class="nav-number">1.</span> <span class="nav-text">模态与非模态对话框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模态对话框"><span class="nav-number">1.1.</span> <span class="nav-text">模态对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非模态对话框"><span class="nav-number">1.2.</span> <span class="nav-text">非模态对话框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QDialog"><span class="nav-number">2.</span> <span class="nav-text">QDialog</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">2.0.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承关系"><span class="nav-number">2.0.2.</span> <span class="nav-text">继承关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QT-窗口模态（Qt-WindowModality）"><span class="nav-number">3.</span> <span class="nav-text">QT 窗口模态（Qt::WindowModality）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模态种类"><span class="nav-number">3.1.</span> <span class="nav-text">模态种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置模态"><span class="nav-number">3.2.</span> <span class="nav-text">设置模态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">3.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">3.2.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -564,6 +806,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

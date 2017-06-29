@@ -313,6 +313,202 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/06/29/QTQDialogModal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="修电脑的裁缝酱">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ojlsgreog.bkt.clouddn.com/H_white.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuiHut">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/29/QTQDialogModal/" itemprop="url">
+                  QT QDialog 中模态与非模态对话框的研究
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-29T20:05:27+08:00">
+                2017-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS/" itemprop="url" rel="index">
+                    <span itemprop="name">CS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模态与非模态对话框"><a href="#模态与非模态对话框" class="headerlink" title="模态与非模态对话框"></a>模态与非模态对话框</h2><h3 id="模态对话框"><a href="#模态对话框" class="headerlink" title="模态对话框"></a>模态对话框</h3><p><strong>模态对话框</strong>是只能首先对其进行操作后才能操作其他窗口的对话框。实质是父线程在子线程创建这个模态对话框后，父线程阻塞，等待子线程的操作。</p>
+<h3 id="非模态对话框"><a href="#非模态对话框" class="headerlink" title="非模态对话框"></a>非模态对话框</h3><p><strong>非模态对话框</strong>则是可以同时对它和其他窗口进行操作的对话框。实质是父子进程并行运行。</p>
+<h2 id="QDialog"><a href="#QDialog" class="headerlink" title="QDialog"></a>QDialog</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
+<p>The QDialog class is the base class of dialog windows.</p>
+</blockquote>
+<p>QDialog 类是对话框窗口的基类。用于创建对话窗口。</p>
+<h4 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h4><pre><code>class Q_WIDGETS_EXPORT QDialog : public QWidget
+</code></pre><h2 id="QT-窗口模态（Qt-WindowModality）"><a href="#QT-窗口模态（Qt-WindowModality）" class="headerlink" title="QT 窗口模态（Qt::WindowModality）"></a>QT 窗口模态（Qt::WindowModality）</h2><h3 id="模态种类"><a href="#模态种类" class="headerlink" title="模态种类"></a>模态种类</h3><pre><code>enum WindowModality {
+    NonModal,
+    WindowModal,
+    ApplicationModal
+};
+</code></pre><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>Constant</th>
+<th>Value</th>
+<th>描述</th>
+<th>QDialog中的代表方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非模态</td>
+<td>Qt::NonModal</td>
+<td>0</td>
+<td>窗口不是模态，不会阻止其他窗口的操作</td>
+<td>QDialog::show()</td>
+</tr>
+<tr>
+<td>窗口模态</td>
+<td>Qt::WindowModal</td>
+<td>1</td>
+<td>窗口对单个窗口层次结构是模态，会阻止对其所有长辈（父窗口、祖父窗口、他们的兄弟姐妹）的操作，其子窗口不会阻止</td>
+<td>QDialog::open()</td>
+</tr>
+<tr>
+<td>应用模态</td>
+<td>Qt::ApplicationModal</td>
+<td>2</td>
+<td>窗口对应用程序是模态，并阻止对所有窗口的操作</td>
+<td>QDialog::exec()</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong>：窗口模态与应用模态都属于模态，只是<code>WindowModal</code>对局部模态，<code>ApplicationModal</code>对整个程序模态。</p>
+<h3 id="设置模态"><a href="#设置模态" class="headerlink" title="设置模态"></a>设置模态</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><pre><code>class Q_WIDGETS_EXPORT QWidget : public QObject, public QPaintDevice
+{
+public:
+    void setWindowModality(Qt::WindowModality windowModality);
+}
+</code></pre><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre><code>QDialog dialog;
+dialog.setWindowModality(Qt::ApplicationModal);
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/06/14/ChanceLeftPerson/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1678,176 +1874,6 @@ sudo yum install ntfs-3g
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.huihut.com/2017/03/26/MacQTCompilerOutputPathError/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="修电脑的裁缝酱">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://ojlsgreog.bkt.clouddn.com/H_white.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuiHut">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/26/MacQTCompilerOutputPathError/" itemprop="url">
-                  Mac下QT编译输出路径错误：ld unknown option ...
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T02:30:47+08:00">
-                2017-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CS/" itemprop="url" rel="index">
-                    <span itemprop="name">CS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="ERROR-ld-unknown-option-rpath"><a href="#ERROR-ld-unknown-option-rpath" class="headerlink" title="ERROR: ld unknown option rpath"></a>ERROR: ld unknown option rpath</h2><p>Mac指定qmake的生成路径时，用 <code>-Wl,-rpath,$$PWD/..</code> 而不是 <code>-Wl,-rpath=$$PWD/..</code> 如下：</p>
-<pre><code>macx{
-# linux only
-
-# 编译时候指定libs查找位置
-QMAKE_LFLAGS_RELEASE += -Wl,-rpath,$$PWD/../../Release/libs -Wl
-QMAKE_LFLAGS_DEBUG += -Wl,-rpath,$$PWD/../../Release/libs -Wl
-
-# 指定生成路径
-DESTDIR = $$PWD/../../Release
-}
-</code></pre><p>Linux则用 <code>-Wl,-rpath=$$PWD/..</code></p>
-<pre><code>unix:!macx{
-# linux only
-
-# 编译时候指定libs查找位置
-QMAKE_LFLAGS_RELEASE += -Wl,-rpath=$$PWD/../../Release/libs -Wl,-Bsymbolic
-QMAKE_LFLAGS_DEBUG += -Wl,-rpath=$$PWD/../../Release/libs -Wl,-Bsymbolic
-
-# 指定生成路径
-DESTDIR = $$PWD/../../Release/libs
-
-}
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/26/MacQTCompilerOutputPathError/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1897,7 +1923,7 @@ DESTDIR = $$PWD/../../Release/libs
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
