@@ -25,13 +25,13 @@ categories:
 
 ## QDialog
 
-#### 概述
+### 概述
 
 > The QDialog class is the base class of dialog windows.
 
 QDialog 类是对话框窗口的基类。用于创建对话窗口。
 
-#### 继承关系
+### 继承关系
 
 	class Q_WIDGETS_EXPORT QDialog : public QWidget
 	
