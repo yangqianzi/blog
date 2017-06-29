@@ -232,7 +232,7 @@ dialog.setWindowModality(Qt::ApplicationModal);
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/</id>
     <published>2017-04-27T10:11:53.000Z</published>
-    <updated>2017-06-05T13:30:32.000Z</updated>
+    <updated>2017-06-29T12:17:43.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文唠叨了些CloudComapre这个开源软件的插件编写。</p>
 <p>虽然这篇是入门教程，但是作为一只有梦想的程序猿，怎能像很多入门教程那样写个残缺的入门教程呢！</p>
@@ -404,8 +404,6 @@ void doAction();
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
-    
       <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
       <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
@@ -417,7 +415,7 @@ void doAction();
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/</id>
     <published>2017-04-27T04:35:43.000Z</published>
-    <updated>2017-06-05T13:30:39.000Z</updated>
+    <updated>2017-06-29T12:17:52.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
 <p>这是第二篇，<strong>数据结构篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
@@ -551,8 +549,6 @@ inline const ElementType* getValue(unsigned index) const
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
-    
       <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
       <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
@@ -564,7 +560,7 @@ inline const ElementType* getValue(unsigned index) const
     <link href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/"/>
     <id>https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/</id>
     <published>2017-04-27T02:35:43.000Z</published>
-    <updated>2017-06-05T13:30:44.000Z</updated>
+    <updated>2017-06-29T12:17:57.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨"><a href="#唠叨" class="headerlink" title="唠叨"></a>唠叨</h2><p>本文分三篇来介绍一个完整的CloudComapre插件的编写教程，分别是<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_1_Framework/">插件框架篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_2_DataStructure/">数据结构篇</a>、<a href="https://blog.huihut.com/2017/04/27/CloudCompareSAFPlugin_3_Algorithm/">算法实现篇</a>。</p>
 <p>这是第三篇，<strong>算法实现篇</strong>，你可以根据本文改成自己的插件，待卿临幸。</p>
@@ -825,8 +821,6 @@ void ccSAFDlg::saveSettings()
     
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
-    
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
     
       <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     

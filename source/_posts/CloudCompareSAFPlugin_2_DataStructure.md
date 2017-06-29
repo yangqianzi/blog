@@ -5,7 +5,6 @@ subtitle: CloudComapre插件的编写，理解CloudComapre插件编写及点云�
 date: 2017-04-27 12:35:43
 author: 修电脑的裁缝酱
 tags:
-	- C++
 	- QT
 	- CloudCompare
 categories: 
