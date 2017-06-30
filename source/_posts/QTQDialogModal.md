@@ -36,7 +36,7 @@ QDialog 类是对话框窗口的基类。用于创建对话窗口。
 	class Q_WIDGETS_EXPORT QDialog : public QWidget
 	
 
-## QT 窗口模态（Qt::WindowModality）
+## QT 窗口模态
 
 ### 模态种类
 
