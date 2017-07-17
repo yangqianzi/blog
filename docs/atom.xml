@@ -5,7 +5,7 @@
   <link href="//atom.xml" rel="self"/>
   
   <link href="https://blog.huihut.com/"/>
-  <updated>2017-06-30T09:54:51.000Z</updated>
+  <updated>2017-07-17T08:21:34.000Z</updated>
   <id>https://blog.huihut.com/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针</title>
+    <link href="https://blog.huihut.com/2017/07/17/StdMapTheIteratorPointerIsNotRecognized/"/>
+    <id>https://blog.huihut.com/2017/07/17/StdMapTheIteratorPointerIsNotRecognized/</id>
+    <published>2017-07-17T08:11:06.000Z</published>
+    <updated>2017-07-17T08:21:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="std-map-error-implicit-instantiation-of-undefined-template-不能识别std-map迭代器指针"><a href="#std-map-error-implicit-instantiation-of-undefined-template-不能识别std-map迭代器指针" class="headerlink" title="std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针"></a>std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针</h2><p>代码如下：</p>
+<pre><code>std::map&lt;std::string, int&gt;::iterator map_iter;
+map_iter-&gt;first
+</code></pre><p>QT中报错：</p>
+<pre><code>/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility:258: error: implicit instantiation of undefined template &apos;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&apos;
+_T1 first;
+    ^
+</code></pre><p>发现是引入头文件错误。</p>
+<a id="more"></a>
+<p>我原本头文件引入如下：</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+</code></pre><p>应该 <code>#include &lt;string&gt;</code>，而不是 <code>#include &lt;string.h&gt;</code>，修改为如下：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;map&gt;
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;std-map-error-implicit-instantiation-of-undefined-template-不能识别std-map迭代器指针&quot;&gt;&lt;a href=&quot;#std-map-error-implicit-instantiation-of-undefined-template-不能识别std-map迭代器指针&quot; class=&quot;headerlink&quot; title=&quot;std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针&quot;&gt;&lt;/a&gt;std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针&lt;/h2&gt;&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;std::map&amp;lt;std::string, int&amp;gt;::iterator map_iter;
+map_iter-&amp;gt;first
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;QT中报错：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility:258: error: implicit instantiation of undefined template &amp;apos;std::__1::basic_string&amp;lt;char, std::__1::char_traits&amp;lt;char&amp;gt;, std::__1::allocator&amp;lt;char&amp;gt; &amp;gt;&amp;apos;
+_T1 first;
+    ^
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;发现是引入头文件错误。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>QT QDialog 中模态与非模态对话框的研究</title>

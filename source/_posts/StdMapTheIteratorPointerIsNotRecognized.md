@@ -1,7 +1,7 @@
 ---
 
-title: std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针
-subtitle: std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针
+title: "std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针"
+subtitle: "std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针"
 date: 2017-07-17 16:11:06
 author: 修电脑的裁缝酱
 tags:

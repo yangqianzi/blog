@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针]]></title>
+      <url>%2F2017%2F07%2F17%2FStdMapTheIteratorPointerIsNotRecognized%2F</url>
+      <content type="text"><![CDATA[std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针代码如下： std::map&lt;std::string, int&gt;::iterator map_iter; map_iter-&gt;first QT中报错： /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility:258: error: implicit instantiation of undefined template &apos;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&apos; _T1 first; ^ 发现是引入头文件错误。 我原本头文件引入如下： #include &lt;stdio.h&gt; #include &lt;string.h&gt; #include &lt;map&gt; 应该 #include &lt;string&gt;，而不是 #include &lt;string.h&gt;，修改为如下： #include &lt;iostream&gt; #include &lt;string&gt; #include &lt;map&gt;]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[QT QDialog 中模态与非模态对话框的研究]]></title>
       <url>%2F2017%2F06%2F29%2FQTQDialogModal%2F</url>
       <content type="text"><![CDATA[模态与非模态对话框模态对话框模态对话框是只能首先对其进行操作后才能操作其他窗口的对话框。实质是父线程在子线程创建这个模态对话框后，父线程阻塞，等待子线程的操作。 非模态对话框非模态对话框则是可以同时对它和其他窗口进行操作的对话框。实质是父子进程并行运行。 QDialog概述 The QDialog class is the base class of dialog windows. QDialog 类是对话框窗口的基类。用于创建对话窗口。 继承关系class Q_WIDGETS_EXPORT QDialog : public QWidget QT 窗口模态模态种类enum WindowModality { NonModal, WindowModal, ApplicationModal }; 状态 Constant Value 描述 QDialog代表方法 非模态 Qt::NonModal 0 窗口不是模态，不会阻止其他窗口的操作 QDialog::show() 窗口模态 Qt::WindowModal 1 窗口对单个窗口层次结构是模态，会阻止对其所有长辈（父窗口、祖父窗口、他们的兄弟姐妹）的操作，其子窗口不会阻止 QDialog::open() 应用模态 Qt::ApplicationModal 2 窗口对应用程序是模态，并阻止对所有窗口的操作 QDialog::exec() 注意：窗口模态与应用模态都属于模态，只是WindowModal对局部模态，ApplicationModal对整个程序模态。 设置模态定义class Q_WIDGETS_EXPORT QWidget : public QObject, public QPaintDevice { public: void setWindowModality(Qt::WindowModality windowModality); } 使用QDialog dialog; dialog.setWindowModality(Qt::ApplicationModal);]]></content>
