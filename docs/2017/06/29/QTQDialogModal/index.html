@@ -392,8 +392,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/06/29/QTQDialogModal/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                <a href="/2017/06/29/QTQDialogModal/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/29/QTQDialogModal/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -550,7 +551,12 @@ dialog.setWindowModality(Qt::ApplicationModal);
           
   <div class="comments" id="comments">
     
-      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -620,7 +626,7 @@ dialog.setWindowModality(Qt::ApplicationModal);
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -812,6 +818,26 @@ dialog.setWindowModality(Qt::ApplicationModal);
 
   
 
+    
+      <script id="dsq-count-scr" src="https://huihut.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://blog.huihut.com/2017/06/29/QTQDialogModal/';
+          this.page.identifier = '2017/06/29/QTQDialogModal/';
+          this.page.title = 'QT QDialog 中模态与非模态对话框的研究';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://huihut.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -822,21 +848,18 @@ dialog.setWindowModality(Qt::ApplicationModal);
 
 
   
-    
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "ea1e5253dadb4824bb64739659b740a7",
-        target: "cloud-tie-wrapper"
-      };
-    </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
   
 
 
 
 
+
+  
 
 
 

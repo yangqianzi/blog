@@ -161,7 +161,7 @@ dialog.setWindowModality(Qt::ApplicationModal);
     <link href="https://blog.huihut.com/2017/06/05/QtDyldLibraryNotLoaded/"/>
     <id>https://blog.huihut.com/2017/06/05/QtDyldLibraryNotLoaded/</id>
     <published>2017-06-05T08:14:05.000Z</published>
-    <updated>2017-06-05T13:31:59.000Z</updated>
+    <updated>2017-06-29T12:12:29.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="qt-dyld-library-not-loaded-…-libhdf5-100-dylib"><a href="#qt-dyld-library-not-loaded-…-libhdf5-100-dylib" class="headerlink" title="qt dyld library not loaded …/libhdf5.100.dylib"></a>qt dyld library not loaded …/libhdf5.100.dylib</h2><p><img src="http://ojlsgreog.bkt.clouddn.com/DyldLibraryNotLoaded.png" alt="DyldLibraryNotLoaded"></p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>无法链接动态库，考虑手动添加链接。</p>
@@ -404,9 +404,9 @@ void doAction();
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
-    
       <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
+    
+      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
   </entry>
   
@@ -549,9 +549,9 @@ inline const ElementType* getValue(unsigned index) const
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
-    
       <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
+    
+      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
   </entry>
   
@@ -822,9 +822,9 @@ void ccSAFDlg::saveSettings()
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
-    
       <category term="QT" scheme="https://blog.huihut.com/tags/QT/"/>
+    
+      <category term="CloudCompare" scheme="https://blog.huihut.com/tags/CloudCompare/"/>
     
   </entry>
   
@@ -1703,7 +1703,7 @@ sudo yum install -y shadowsocks-qt5
     <link href="https://blog.huihut.com/2017/03/11/FancyMacTerminal/"/>
     <id>https://blog.huihut.com/2017/03/11/FancyMacTerminal/</id>
     <published>2017-03-11T06:59:45.000Z</published>
-    <updated>2017-06-05T13:31:01.000Z</updated>
+    <updated>2017-06-29T12:13:39.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="唠叨一下"><a href="#唠叨一下" class="headerlink" title="唠叨一下"></a>唠叨一下</h2><p>自从装了黑苹果后一直用着 Mac 自带的终端（Terminal），相比 Windows 的终端根本无法同台竞技！毕竟 Mac 是基于 Unix 嘛~ 对开发友好太多了。</p>
 <p>就是下面这个家伙了👇</p>
