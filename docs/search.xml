@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[undefined reference to ... 问题的解决]]></title>
+      <url>%2F2017%2F07%2F18%2FUndefinedReferenceTo%2F</url>
+      <content type="text"><![CDATA[描述我的代码中使用了libcstl库，在代码中声明： #include &lt;cstl/cmap.h&gt; 可是出现这个问题，无法识别libcstl库里调用的函数，如下图： 猜想 #include &lt;cstl/cmap.h&gt;这句话不报错说明库已经装好，环境变量也没有问题。 可能是链接时的错误。 解决查看Makefile文件发现忘记添加cstl的链接库了。 -lcstl 原来的代码是： mpicc -c main.c -std=c99 -lstdc++ -fopenmp -lm -o main.o 应该改为： mpicc -c main.c -std=c99 -lcstl -lstdc++ -fopenmp -lm -o main.o 如上图，改好之后就解决了！]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针]]></title>
       <url>%2F2017%2F07%2F17%2FStdMapTheIteratorPointerIsNotRecognized%2F</url>
       <content type="text"><![CDATA[std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针代码如下： std::map&lt;std::string, int&gt;::iterator map_iter; map_iter-&gt;first QT中报错： /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility:258: error: implicit instantiation of undefined template &apos;std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;&apos; _T1 first; ^ 发现是引入头文件错误。 我原本头文件引入如下： #include &lt;stdio.h&gt; #include &lt;string.h&gt; #include &lt;map&gt; 应该 #include &lt;string&gt;，而不是 #include &lt;string.h&gt;，修改为如下： #include &lt;iostream&gt; #include &lt;string&gt; #include &lt;map&gt;]]></content>
