@@ -89,46 +89,22 @@
 
 <meta name="description" content="描述我的代码中使用了libcstl库，在代码中声明：
 #include &amp;lt;cstl/cmap.h&amp;gt;
-可是出现这个问题，无法识别libcstl库里调用的函数，如下图：
-
-猜想
-#include &amp;lt;cstl/cmap.h&amp;gt;这句话不报错说明库已经装好，环境变量也没有问题。
-可能是链接时的错误。
-
-解决查看Makefile文件发现忘记添加cstl的链接库了。
--lcstl
-原来的代">
+可是出现这个问题，无法识别libcstl库里调用的函数，如下图：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="undefined reference to ... 问题的解决">
 <meta property="og:url" content="https://blog.huihut.com/2017/07/18/UndefinedReferenceTo/index.html">
 <meta property="og:site_name" content="HuiHut">
 <meta property="og:description" content="描述我的代码中使用了libcstl库，在代码中声明：
 #include &amp;lt;cstl/cmap.h&amp;gt;
-可是出现这个问题，无法识别libcstl库里调用的函数，如下图：
-
-猜想
-#include &amp;lt;cstl/cmap.h&amp;gt;这句话不报错说明库已经装好，环境变量也没有问题。
-可能是链接时的错误。
-
-解决查看Makefile文件发现忘记添加cstl的链接库了。
--lcstl
-原来的代">
+可是出现这个问题，无法识别libcstl库里调用的函数，如下图：">
 <meta property="og:image" content="http://ojlsgreog.bkt.clouddn.com/UndefinedReference.png">
 <meta property="og:image" content="http://ojlsgreog.bkt.clouddn.com/UndefinedReferenceMakefile.png">
-<meta property="og:updated_time" content="2017-07-18T01:08:56.000Z">
+<meta property="og:updated_time" content="2017-07-18T01:10:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="undefined reference to ... 问题的解决">
 <meta name="twitter:description" content="描述我的代码中使用了libcstl库，在代码中声明：
 #include &amp;lt;cstl/cmap.h&amp;gt;
-可是出现这个问题，无法识别libcstl库里调用的函数，如下图：
-
-猜想
-#include &amp;lt;cstl/cmap.h&amp;gt;这句话不报错说明库已经装好，环境变量也没有问题。
-可能是链接时的错误。
-
-解决查看Makefile文件发现忘记添加cstl的链接库了。
--lcstl
-原来的代">
+可是出现这个问题，无法识别libcstl库里调用的函数，如下图：">
 <meta name="twitter:image" content="http://ojlsgreog.bkt.clouddn.com/UndefinedReference.png">
 
 
@@ -453,6 +429,7 @@
         <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>我的代码中使用了<code>libcstl</code>库，在代码中声明：</p>
 <pre><code>#include &lt;cstl/cmap.h&gt;
 </code></pre><p>可是出现这个问题，无法识别<code>libcstl</code>库里调用的函数，如下图：</p>
+<a id="more"></a>
 <p><img src="http://ojlsgreog.bkt.clouddn.com/UndefinedReference.png" alt=""></p>
 <h2 id="猜想"><a href="#猜想" class="headerlink" title="猜想"></a>猜想</h2><ol>
 <li><code>#include &lt;cstl/cmap.h&gt;</code>这句话不报错说明库已经装好，环境变量也没有问题。</li>

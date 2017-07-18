@@ -19,6 +19,8 @@ categories:
 	
 可是出现这个问题，无法识别`libcstl`库里调用的函数，如下图：
 
+<!-- more -->
+
 ![](http://ojlsgreog.bkt.clouddn.com/UndefinedReference.png)
 
 ## 猜想

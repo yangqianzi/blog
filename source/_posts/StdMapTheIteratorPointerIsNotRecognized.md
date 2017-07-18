@@ -5,7 +5,7 @@ subtitle: "std::map error: implicit instantiation of undefined template 不能�
 date: 2017-07-17 16:11:06
 author: 修电脑的裁缝酱
 tags:
-	- C++
+	- C/C++
 categories: 
 	- CS
 	

@@ -5,7 +5,7 @@
   <link href="//atom.xml" rel="self"/>
   
   <link href="https://blog.huihut.com/"/>
-  <updated>2017-07-18T01:08:56.000Z</updated>
+  <updated>2017-07-18T01:10:24.000Z</updated>
   <id>https://blog.huihut.com/</id>
   
   <author>
@@ -20,11 +20,12 @@
     <link href="https://blog.huihut.com/2017/07/18/UndefinedReferenceTo/"/>
     <id>https://blog.huihut.com/2017/07/18/UndefinedReferenceTo/</id>
     <published>2017-07-18T01:03:48.000Z</published>
-    <updated>2017-07-18T01:08:56.000Z</updated>
+    <updated>2017-07-18T01:10:24.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>我的代码中使用了<code>libcstl</code>库，在代码中声明：</p>
 <pre><code>#include &lt;cstl/cmap.h&gt;
 </code></pre><p>可是出现这个问题，无法识别<code>libcstl</code>库里调用的函数，如下图：</p>
+<a id="more"></a>
 <p><img src="http://ojlsgreog.bkt.clouddn.com/UndefinedReference.png" alt=""></p>
 <h2 id="猜想"><a href="#猜想" class="headerlink" title="猜想"></a>猜想</h2><ol>
 <li><code>#include &lt;cstl/cmap.h&gt;</code>这句话不报错说明库已经装好，环境变量也没有问题。</li>
@@ -43,7 +44,8 @@
     <summary type="html">
     
       &lt;h1 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h1&gt;&lt;p&gt;我的代码中使用了&lt;code&gt;libcstl&lt;/code&gt;库，在代码中声明：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#include &amp;lt;cstl
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;cstl/cmap.h&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可是出现这个问题，无法识别&lt;code&gt;libcstl&lt;/code&gt;库里调用的函数，如下图：&lt;/p&gt;
     
     </summary>
     
@@ -59,7 +61,7 @@
     <link href="https://blog.huihut.com/2017/07/17/StdMapTheIteratorPointerIsNotRecognized/"/>
     <id>https://blog.huihut.com/2017/07/17/StdMapTheIteratorPointerIsNotRecognized/</id>
     <published>2017-07-17T08:11:06.000Z</published>
-    <updated>2017-07-17T08:21:34.000Z</updated>
+    <updated>2017-07-18T01:10:52.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="std-map-error-implicit-instantiation-of-undefined-template-不能识别std-map迭代器指针"><a href="#std-map-error-implicit-instantiation-of-undefined-template-不能识别std-map迭代器指针" class="headerlink" title="std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针"></a>std::map error: implicit instantiation of undefined template 不能识别std::map迭代器指针</h2><p>代码如下：</p>
 <pre><code>std::map&lt;std::string, int&gt;::iterator map_iter;
@@ -96,7 +98,7 @@ _T1 first;
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
+      <category term="C/C++" scheme="https://blog.huihut.com/tags/C-C/"/>
     
   </entry>
   
@@ -1025,7 +1027,7 @@ win32 {
     <link href="https://blog.huihut.com/2017/04/15/CppConditionStateAndEOF/"/>
     <id>https://blog.huihut.com/2017/04/15/CppConditionStateAndEOF/</id>
     <published>2017-04-15T04:12:24.000Z</published>
-    <updated>2017-06-05T13:30:50.000Z</updated>
+    <updated>2017-07-18T01:11:10.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文本文件判空问题"><a href="#文本文件判空问题" class="headerlink" title="文本文件判空问题"></a>文本文件判空问题</h2><p>对于空文本文件的判断问题引起了我对 IO 库中条件状态和 EOF 的探究。</p>
 <p>就是这段程序：</p>
@@ -1271,7 +1273,7 @@ if(infile.is_open())
       <category term="CS" scheme="https://blog.huihut.com/categories/CS/"/>
     
     
-      <category term="C++" scheme="https://blog.huihut.com/tags/C/"/>
+      <category term="C/C++" scheme="https://blog.huihut.com/tags/C-C/"/>
     
   </entry>
   
