@@ -7,6 +7,8 @@ layout: about
 	
 ---
 
+test
+
 <div align="center">
 <table frame=void width='70%'>
   <tr>
