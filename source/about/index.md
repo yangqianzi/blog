@@ -10,7 +10,7 @@ layout: about
 <style>
 .about-img{display:inline-block;}
 .about-a{border:0; margin: 0 5px}
-.about-div{align=center; text-align:center; margin-top: 15px}
+.about-div{align=center; text-align:center; margin:0 auto; margin-top: 15px}
 </style>
 
 
