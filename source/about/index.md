@@ -10,6 +10,8 @@ layout: about
 <style>
 .about-img{display:inline-block;}
 .about-a{border:0; margin: 0 5px}
+.about-div{align="center"; margin-top: 15px}
 </style>
 
-<div align="center"><a class="about-a" href="mailto:huihut@outlook.com"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/mail.png"/></a><a class="about-a" href="https://blog.huihut.com"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/blog.png"/></a><a class="about-a" href="http://blog.csdn.net/huihut"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/csdn.png"/></a><a class="about-a" href="https://github.com/huihut"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/github.png"/></a><a class="about-a" href="https://www.zhihu.com/people/huihut"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/zhihu.png"/></a></div>
+
+<div class="about-div"><a class="about-a" href="mailto:huihut@outlook.com"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/mail.png"/></a><a class="about-a" href="https://blog.huihut.com"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/blog.png"/></a><a class="about-a" href="http://blog.csdn.net/huihut"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/csdn.png"/></a><a class="about-a" href="https://github.com/huihut"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/github.png"/></a><a class="about-a" href="https://www.zhihu.com/people/huihut"><img class="about-img" src="http://ojlsgreog.bkt.clouddn.com/zhihu.png"/></a></div>
