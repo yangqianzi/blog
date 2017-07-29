@@ -3,6 +3,20 @@
   
     
     <entry>
+      <title><![CDATA[Unreal 源码编译运行 Missing cached shader map... 的问题]]></title>
+      <url>%2F2017%2F07%2F28%2FUnrealMissingCachedShaderMap%2F</url>
+      <content type="text"><![CDATA[Unreal 源码编译运行 Missing cached shader map… 的问题问题描述Unreal 源码是 Github-release 分支，版本是4.16。 编译运行Unreal引擎源码的时候，出现虚幻编辑器的窗口，但是卡在45%不动。 并在调试窗口输出： Missing cached shader map for material WorldGridMaterial, compiling. Is special engine material. 同类问题同样这个问题，在unrealengine社区有人遇到，但没有说明具体原因及解决方案。 answers.unrealengine.com - UE4.7 source build, missing cached shader 结果结果我没有进行任何操作，再等会儿 居然成功运行了起来！ 我猜测可能是WorldGridMaterial这个材质需要联网下载，然后由于网络问题在45%处卡住了一会儿。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Launcher 启动 UE4 引擎出现 An Unreal process has crashed 的问题]]></title>
+      <url>%2F2017%2F07%2F28%2FAnUnrealProcessHasCrashed%2F</url>
+      <content type="text"><![CDATA[Launcher 启动 UE4 引擎出现 An Unreal process has crashed 的问题问题描述在 Launcher 启动 UE4 引擎，引擎奔溃，出现奔溃报告： An Unreal process has crashed:UE4-…… 解决以管理员身份运行 Launcher，并启动 UE4 引擎则能正常启动。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[undefined reference to ... 问题的解决]]></title>
       <url>%2F2017%2F07%2F18%2FUndefinedReferenceTo%2F</url>
       <content type="text"><![CDATA[描述我的代码中使用了libcstl库，在代码中声明： #include &lt;cstl/cmap.h&gt; 可是出现这个问题，无法识别libcstl库里调用的函数，如下图： 猜想 #include &lt;cstl/cmap.h&gt;这句话不报错说明库已经装好，环境变量也没有问题。 可能是链接时的错误。 解决查看Makefile文件发现忘记添加cstl的链接库了。 -lcstl 原来的代码是： mpicc -c main.c -std=c99 -lstdc++ -fopenmp -lm -o main.o 应该改为： mpicc -c main.c -std=c99 -lcstl -lstdc++ -fopenmp -lm -o main.o 如上图，改好之后就解决了！]]></content>
